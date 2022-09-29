@@ -30,12 +30,6 @@
     (setq dired-sidebar-use-term-integration t)
     (setq dired-sidebar-use-custom-font t))
 
-(defun sidebar-toggle ()
-  "Toggle both `dired-sidebar' and `ibuffer-sidebar'."
-  (interactive)
-  (dired-sidebar-toggle-sidebar)
-  (ibuffer-sidebar-toggle-sidebar))
-
 (use-package projectile
   :config
   (projectile-mode +1))
@@ -55,7 +49,7 @@
 (general-define-key 
   :states 'normal
   :prefix "SPC"
-  "t" 'sidebar-toggle)
+  "t" 'dired-sidebar-toggle-sidebar)
 ;; Disable toolbars and scroll bars
 (tool-bar-mode -1)
 (menu-bar-mode -1)
