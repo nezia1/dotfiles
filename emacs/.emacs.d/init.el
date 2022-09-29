@@ -50,6 +50,10 @@
   :states 'normal
   :prefix "SPC"
   "t" 'dired-sidebar-toggle-sidebar)
+
+(general-define-key
+ :prefix "C-c"
+ "C-p" 'projectile-command-map)
 ;; Disable toolbars and scroll bars
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -69,6 +73,9 @@
 ;; Line numbers in programming mode
 (setq display-line-numbers-type 'relative)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+;; Enable flymake in programmaing mode
+(add-hook 'prog-mode-hook 'flymake-mode)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
