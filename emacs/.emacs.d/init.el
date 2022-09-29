@@ -12,12 +12,33 @@
   (setq use-package-always-ensure t
         use-package-expand-minimally t))
 
+(use-package no-littering
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
+
 (use-package evil
   :init (setq evil-want-C-i-jump nil)
   :config (evil-mode 1))
 
 (use-package dired-sidebar
-  :commands (dired-sidebar-toggle-sidebar))
+    :commands (dired-sidebar-toggle-sidebar)
+    :config
+    (setq dired-sidebar-subtree-line-prefix "__")
+    (setq dired-sidebar-theme 'vscode)
+    (setq dired-sidebar-use-term-integration t)
+    (setq dired-sidebar-use-custom-font t))
+
+(defun sidebar-toggle ()
+  "Toggle both `dired-sidebar' and `ibuffer-sidebar'."
+  (interactive)
+  (dired-sidebar-toggle-sidebar)
+  (ibuffer-sidebar-toggle-sidebar))
+
+(use-package projectile
+  :config
+  (projectile-mode +1))
 
 ;; Themes
 (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
@@ -31,13 +52,10 @@
 
 (use-package general)
 ;; Keybinds using generalusing general
-(general-create-definer my-leader-def
+(general-define-key 
   :states 'normal
-  :prefix "SPC")
-
-(my-leader-def
-  "t" 'treemacs)
-
+  :prefix "SPC"
+  "t" 'sidebar-toggle)
 ;; Disable toolbars and scroll bars
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -57,3 +75,17 @@
 ;; Line numbers in programming mode
 (setq display-line-numbers-type 'relative)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (projectile use-package nord-theme general evil dired-sidebar))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
