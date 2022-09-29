@@ -43,3 +43,10 @@ flycheck_*.el
 
 # directory configuration
 .dir-locals.el
+
+# trust package.el to download the packages
+/elpa/
+
+# no-littering directories
+/var/
+/etc/
