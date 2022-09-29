@@ -23,6 +23,7 @@
   :config (evil-mode 1))
 
 (use-package dired-sidebar
+    :ensure vscode-icon
     :commands (dired-sidebar-toggle-sidebar)
     :config
     (setq dired-sidebar-subtree-line-prefix "__")
@@ -83,7 +84,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (projectile use-package nord-theme general evil dired-sidebar))))
+    (vscode-icon projectile use-package nord-theme general evil dired-sidebar))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
