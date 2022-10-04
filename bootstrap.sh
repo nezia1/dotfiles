@@ -20,6 +20,14 @@ if [ -n "$(uname -a | grep -i "microsoft")" ]
 then
 	# im sorry
 	username=$(/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%" 2> /dev/null | tr -d '\r' )
+	# https://superuser.com/a/1676775
+	if [ ! -f /etc/wsl.conf ]
+	then
+		cat << EOF | tee -a /etc/wsl.conf
+[automount]
+options = "metadata,umask=022,fmask=111"
+EOF
+	fi
 
 	# https://x410.dev/cookbook/wsl/sharing-windows-fonts-with-wsl/
 	if [ ! -f /etc/fonts/local.conf ]
@@ -39,12 +47,12 @@ EOF
 	# https://superuser.com/questions/1183176/can-i-share-my-ssh-keys-between-wsl-and-windows
 	if [ ! -d "/home/$SUDO_USER/.ssh" ]
 	then
-		echo "symlinking windows ssh keys with wsl..."
+		echo "integrating windows ssh keys..."
 		# create .ssh directory in home directory with proper permissions
 		mkdir -m 700 "/home/$SUDO_USER/.ssh"
 		# add a permanent mount entry for Windows user .ssh directory
-		[-n $(grep "ssh" /etc/fstab) ] && cat << EOF | sudo tee -a /etc/fstab
-		C:\Users\\$username\.ssh\ /home/$SUDO_USER/.ssh drvfs rw,noatime,uid=1000,gid=1000,case=off,umask=0077,fmask=0177 0 0
+		[ -n $(grep "ssh" /etc/fstab) ] && cat << EOF | sudo tee -a /etc/fstab
+C:\Users\\$username\.ssh\ /home/$SUDO_USER/.ssh drvfs rw,noatime,uid=1000,gid=1000,case=off,umask=0077,fmask=0177 0 0
 EOF
 		# mount .ssh
 		mount /home/$SUDO_USER/.ssh && echo "done!"
