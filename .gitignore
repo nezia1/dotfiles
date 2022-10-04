@@ -1,2 +1,3 @@
 nvim/.config/nvim/plugins/*
 nvim/.config/nvim/autoload/*
+nvim/.config/fish/fish_variables
