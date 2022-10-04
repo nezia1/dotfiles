@@ -11,6 +11,6 @@ set wsl_version_name (uname -r | sed -E 's/^.*(Microsoft|microsoft-standard).*$/
 if test -n $wsl_version_name
 	# if wslg is not present, set the DISPLAY variable to work with external X servers
 	if test ! -d "/mnt/wslg"
-		set -Ux (DISPLAY grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}')
+		set -Ux DISPLAY (grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}')
 	end
 end
