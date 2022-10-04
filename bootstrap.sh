@@ -10,7 +10,7 @@ os_name=$(head -1 /etc/os-release | cut -d "=" -f 2 | tr -d '"')
 
 case $os_name in
 	"Ubuntu")
-		cat packages_list | xargs apt install -y 
+		apt update && cat packages_list | xargs apt install -y 
 		;;
 esac
 
@@ -23,14 +23,24 @@ then
 		fc-cache && echo "done!"
 	fi
 
-	if [ ! -d ~/.ssh ] || [ ! -L ~/.ssh ]
+	# im sorry
+	# watch out for windows commands in wsl (make sure to translate windows carriage returns to linux otherwise you're going to debug it for hours and lose your mind
+
+	if [ ! -d "/home/$SUDO_USER/.ssh" ]
 	then
-		# im sorry
-		# watch out for windows commands in wsl (make sure to translate windows carriage returns to linux otherwise you're going to debug it for hours and lose your mind
-		username=$(/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%" 2> /dev/null | tr -d '\r' )
+		# https://superuser.com/questions/1183176/can-i-share-my-ssh-keys-between-wsl-and-windows
 		echo "symlinking windows ssh keys with wsl..."
-		ln -s "/mnt/c/Users/$username/.ssh" /home/$SUDO_USER/.ssh && echo "done!"
-	fi
+		username=$(/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%" 2> /dev/null | tr -d '\r' )
+		# Create .ssh directory in home directory with proper permission
+		mkdir -m 700 "/home/$SUDO_USER/.ssh"
+		
+		# Add a permanent mount entry for Windows user .ssh directory
+		cat << EOF | sudo tee -a /etc/fstab
+		C:\Users\\$username\.ssh\ /home/$SUDO_USER/.ssh drvfs rw,noatime,uid=1000,gid=1000,case=off,umask=0077,fmask=0177 0 0
+EOF
+		# Mount the .ssh
+		mount /home/$SUDO_USER/.ssh && echo "done!"
+	fi	
 fi
 
 # symlink all dotfile directories
