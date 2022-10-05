@@ -52,7 +52,7 @@
     :run "npm start"
     :test-suffix ".spec")
   (projectile-mode +1))
-(setq projectile-project-search-path '(("~/dev" . 3)))
+(defvar projectile-project-search-path '(("~/dev" . 3)))
 
 (use-package magit)
 ;; Themes
@@ -99,7 +99,7 @@
 (setq ring-bell-function 'ignore)
 
 ;; Line numbers in programming mode
-(setq display-line-numbers-type 'relative)
+(defvar display-line-numbers-type relative)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Enable flymake in programmaing mode
@@ -118,3 +118,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Local Variables:
+;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
+;; End:
