@@ -64,7 +64,6 @@
 
 (set-face-attribute 'default nil :font "Fira Code NFM-12")
 
-
 (use-package general)
 ;; Keybinds using generalusing general
 (general-define-key 
@@ -74,7 +73,12 @@
   "p" 'projectile-command-map
   "g" 'magit)
 
-
+(use-package ivy
+  :init
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  :config
+  (ivy-mode))
 ;; Disable toolbars and scroll bars
 (tool-bar-mode -1)
 (menu-bar-mode -1)
