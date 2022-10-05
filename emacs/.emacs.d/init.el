@@ -45,6 +45,12 @@
 
 (use-package projectile
   :config
+  (projectile-register-project-type 'npm '("package.json")
+    :project-file "package.json"
+    :compile "npm install"
+    :test "npm test"
+    :run "npm start"
+    :test-suffix ".spec")
   (projectile-mode +1))
 (setq projectile-project-search-path '(("~/dev" . 3)))
 
