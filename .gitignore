@@ -2,3 +2,4 @@ nvim/.config/nvim/plugins/*
 nvim/.config/nvim/autoload/*
 fish/.config/fish/fish_variables
 emacs/.emacs.d/straight
+emacs/.emacs.d/config.el
