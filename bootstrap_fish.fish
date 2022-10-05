@@ -4,4 +4,3 @@ for plugin in (cat fisher_plugins)
 end
 
 fish nord.fish
-abbr -a vim neovim
