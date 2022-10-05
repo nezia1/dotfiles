@@ -2,7 +2,7 @@
 #+AUTHOR: Anthony Rodriguez
 #+EMAIL: anthony@nezia.dev
 * initialization
-** setup straight.el to replace package.el 
+** setup straight.el to replace package.el
 #+BEGIN_SRC emacs-lisp
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -55,7 +55,7 @@
   :config(evil-collection-init))
 #+END_SRC
 
-** install dired-sidebar to have a toggleable sidebar with icons (i don't use it all that much but it's still nice to have)
+** install dired-sidebar to have a toggleable sidebar with icons (i don't use it all that much but it's still nice to have) 
 #+BEGIN_SRC emacs-lisp
 (use-package vscode-icon)
 (use-package dired-sidebar
@@ -160,4 +160,11 @@
    #+BEGIN_SRC emacs-lisp
     (setq display-line-numbers-type 'relative)
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+   #+END_SRC
+** enables fill-column for org mode
+   This effectively limits the maximum amount of characters per line to 80,
+   which makes it really convenient when you're editing org mode files.  
+   #+BEGIN_SRC emacs-lisp
+   (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
+   (add-hook 'org-mode-hook 'auto-fill-mode)
    #+END_SRC
