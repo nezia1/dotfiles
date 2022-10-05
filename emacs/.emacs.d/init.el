@@ -103,11 +103,12 @@
 (setq ring-bell-function 'ignore)
 
 ;; Line numbers in programming mode
-(defvar display-line-numbers-type relative)
+(setq display-line-numbers-type 'relative)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Enable flymake in programmaing mode
 (add-hook 'prog-mode-hook 'flycheck-mode)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
