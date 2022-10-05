@@ -1,0 +1,163 @@
+#+TITLE: my emacs config
+#+AUTHOR: Anthony Rodriguez
+#+EMAIL: anthony@nezia.dev
+* initialization
+** setup straight.el to replace package.el 
+#+BEGIN_SRC emacs-lisp
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+#+END_SRC
+
+* packages installation
+** install use-package and configure it to ensure packages per default
+#+BEGIN_SRC emacs-lisp
+(straight-use-package 'use-package)
+(use-package straight
+             :custom (straight-use-package-by-default t))
+#+END_SRC
+
+** install no-littering to avoid cluttering ~/.emacs.d
+#+BEGIN_SRC emacs-lisp
+(use-package no-littering
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
+#+END_SRC
+
+** install nord theme
+   #+BEGIN_SRC emacs-lisp
+    (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+    (use-package nord-theme
+    :init
+    :config
+    (load-theme 'nord t))
+   #+END_SRC
+** install evil mode to have vi bindings everywhere
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+  :init
+  (setq evil-want-C-i-jump nil)
+  (setq evil-want-keybinding nil)
+  :config (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :config(evil-collection-init))
+#+END_SRC
+
+** install dired-sidebar to have a toggleable sidebar with icons (i don't use it all that much but it's still nice to have)
+#+BEGIN_SRC emacs-lisp
+(use-package vscode-icon)
+(use-package dired-sidebar
+    :commands (dired-sidebar-toggle-sidebar)
+    :config
+    (setq dired-sidebar-subtree-line-prefix "__")
+    (setq dired-sidebar-theme 'vscode)
+    (setq dired-sidebar-use-term-integration t)
+    (setq dired-sidebar-use-custom-font t))
+#+END_SRC
+** install projectile to have a really convenient way to navigate projects (it integrates well with fuzzy finding too!)
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :config
+  (projectile-register-project-type 'npm '("package.json")
+    :project-file "package.json"
+    :compile "npm install"
+    :test "npm test"
+    :run "npm start"
+    :test-suffix ".spec")
+  (projectile-mode +1))
+(defvar projectile-project-search-path '(("~/dev" . 3)))
+#+END_SRC
+
+** install magit (keyboard driven git interface that also works with vi bindings!)
+#+BEGIN_SRC emacs-lisp
+(use-package magit)
+#+END_SRC
+
+** install ivy (an emacs fuzzy finder that integrates into the mini buffer
+    #+BEGIN_SRC emacs-lisp
+    (use-package ivy
+    :init
+    (setq enable-recursive-minibuffers t)
+    :config
+    (ivy-mode))
+    #+END_SRC
+
+** install Flycheck (a more modern flymake replacement)
+   #+BEGIN_SRC emacs-lisp
+    (use-package flycheck
+    :config
+    (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+   #+END_SRC
+*** enables Flycheck mode in programming mode
+    #+BEGIN_SRC emacs-lisp
+    (add-hook 'prog-mode-hook 'flycheck-mode)
+    #+END_SRC
+
+* bindings
+** install general (a more convenient keybindings manager)
+    #+BEGIN_SRC emacs-lisp
+    (use-package general)
+    #+END_SRC
+
+** bindings for C-x
+    #+BEGIN_SRC emacs-lisp
+    (general-define-key 
+    :states 'normal
+    :prefix "C-x"
+    "p" 'projectile-command-map
+    "g" 'magit)
+
+    #+END_SRC
+
+** bindings for SPC
+    #+BEGIN_SRC emacs-lisp
+    (general-define-key 
+    :states 'normal
+    :prefix "SPC"
+    "t" 'dired-sidebar-toggle-sidebar)
+    #+END_SRC
+* miscellanous configuration
+  
+** sets the font to Fira Code (the best font in existence)
+   #+BEGIN_SRC emacs-lisp
+    (set-face-attribute 'default nil :font "Fira Code")
+   #+END_SRC
+
+** makes the emacs startup minimal (remove all startup messages and splashscreens)
+    #+BEGIN_SRC emacs-lisp
+    (setq inhibit-startup-message t)
+    (setq inhibit-splash-screen t)
+    (setq initial-scratch-message nil)
+    #+END_SRC
+** disable toolbars / scroll bars
+   #+BEGIN_SRC emacs-lisp
+    (tool-bar-mode -1)
+    (menu-bar-mode -1)
+    (if (boundp 'fringe-mode)
+    (fringe-mode -1))
+    (if (boundp 'scroll-bar-mode)
+	(scroll-bar-mode -1))
+   #+END_SRC
+
+** disable bell (visual and audio)
+   #+BEGIN_SRC emacs-lisp
+    (setq ring-bell-function 'ignore)
+   #+END_SRC
+
+** enable relative line numbers in programming mode
+   #+BEGIN_SRC emacs-lisp
+    (setq display-line-numbers-type 'relative)
+    (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+   #+END_SRC
