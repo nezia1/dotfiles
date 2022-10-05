@@ -12,5 +12,6 @@ if test -n $wsl_version_name
 	# if wslg is not present, set the DISPLAY variable to work with external X servers
 	if test -z (ls -A /mnt/wslg)
 		set -Ux DISPLAY (grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
+		set -Ux LIBGL_ALWAYS_REDIRECT 1
 	end
 end
