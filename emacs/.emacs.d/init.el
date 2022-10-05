@@ -69,9 +69,13 @@
 (general-define-key 
   :states 'normal
   :prefix "C-x"
-  "t" 'dired-sidebar-toggle-sidebar
   "p" 'projectile-command-map
   "g" 'magit)
+
+(general-define-key 
+  :states 'normal
+  :prefix "SPC"
+  "t" 'dired-sidebar-toggle-sidebar)
 
 (use-package ivy
   :init
