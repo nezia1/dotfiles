@@ -75,10 +75,13 @@
 
 (use-package ivy
   :init
-  (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   :config
   (ivy-mode))
+
+(use-package flycheck
+  :config
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 ;; Disable toolbars and scroll bars
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -100,7 +103,7 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Enable flymake in programmaing mode
-(add-hook 'prog-mode-hook 'flymake-mode)
+(add-hook 'prog-mode-hook 'flycheck-mode)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
