@@ -123,30 +123,12 @@
     (ivy-mode))
     #+END_SRC
 
-** install ligature.el
-   ligature is a small emacs package that allows us to use font ligatures. It is
-   currently only supported on emacs 28, so we need to test the version before
-   installing it.
-   #+BEGIN_SRC emacs-lisp
-   (if "28" (<= 'version)
-   (use-package ligature
-   :config
-   (ligature-set-ligatures 't ("www"))
-   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-   (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-                                       "\\\\" "://"))))
-   #+END_SRC
+** install fira code mode
+    fira code mode is a minor mode that turns on ligatures for fira code in emacs.
+    #+BEGIN_SRC emacs-lisp
+	(use-package fira-code-mode
+	:hook prog-mode)
+    #+END_SRC
 ** install Flycheck
    Flycheck is a modern replacement for flymake, a base emacs plugin that allows
    us to get on-the-fly spell checking for a lot of different languages.
@@ -229,6 +211,7 @@
     (setq display-line-numbers-type 'relative)
     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
    #+END_SRC
+
 ** enables fill-column for org mode
    This effectively limits the maximum amount of characters per line to 80,
    which makes it really convenient when you're editing org mode files.  
