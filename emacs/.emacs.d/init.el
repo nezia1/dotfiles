@@ -1,16 +1,22 @@
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
+;; straight.el setup
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-and-compile
-  (setq use-package-always-ensure t
-        use-package-expand-minimally t))
+;; Install use-package
+(straight-use-package 'use-package)
+
+;; Configure use-package to use straight.el by default
+(use-package straight
+             :custom (straight-use-package-by-default t))
 
 (use-package no-littering
   :config
@@ -19,11 +25,17 @@
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
 (use-package evil
-  :init (setq evil-want-C-i-jump nil)
+  :init
+  (setq evil-want-C-i-jump nil)
+  (setq evil-want-keybinding nil)
   :config (evil-mode 1))
 
+(use-package evil-collection
+  :after evil
+  :config(evil-collection-init))
+
+(use-package vscode-icon)
 (use-package dired-sidebar
-    :ensure vscode-icon
     :commands (dired-sidebar-toggle-sidebar)
     :config
     (setq dired-sidebar-subtree-line-prefix "__")
@@ -34,7 +46,9 @@
 (use-package projectile
   :config
   (projectile-mode +1))
+(setq projectile-project-search-path '(("~/dev" . 3)))
 
+(use-package magit)
 ;; Themes
 (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
 (use-package nord-theme
@@ -49,12 +63,12 @@
 ;; Keybinds using generalusing general
 (general-define-key 
   :states 'normal
-  :prefix "SPC"
-  "t" 'dired-sidebar-toggle-sidebar)
+  :prefix "C-x"
+  "t" 'dired-sidebar-toggle-sidebar
+  "p" 'projectile-command-map
+  "g" 'magit)
 
-(general-define-key
- :prefix "C-c"
- "C-p" 'projectile-command-map)
+
 ;; Disable toolbars and scroll bars
 (tool-bar-mode -1)
 (menu-bar-mode -1)
