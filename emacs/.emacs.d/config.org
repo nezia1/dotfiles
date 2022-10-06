@@ -142,6 +142,28 @@
     #+begin_src emacs-lisp
     (add-hook 'prog-mode-hook 'flycheck-mode)
     #+end_src
+** install which-key
+which-key is a package that allows us to see what keybind we're typing after
+waiting for a fixed duration (1 second by default).
+#+begin_src emacs-lisp
+  (use-package which-key
+    :config
+    (which-key-mode))
+#+end_src
+** install LSP Mode
+    #+begin_src emacs-lisp
+      (use-package lsp-mode
+	:hook ((prog-mode . lsp)
+	       (lsp-mode . lsp-enable-which-key-integration)))
+    #+end_src
+*** install lsp ivy integration
+    #+begin_src emacs-lisp
+      (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+    #+end_src
+*** install company
+#+begin_src emacs-lisp
+  (use-package company)
+#+end_src
 * bindings
 ** install general (a more convenient keybindings manager)
    general is a replacement for the default emacs keybind macros, allowing us to
