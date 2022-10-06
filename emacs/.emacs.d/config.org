@@ -175,6 +175,15 @@ waiting for a fixed duration (1 second by default).
 #+begin_src emacs-lisp
   (use-package company)
 #+end_src
+*** install yasnippet
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :straight yasnippet-snippets
+    :config
+    (yas-reload-all)
+    :hook ((prog-mode . yas-minor-mode)
+	   (web-mode . yas-minor-mode)))
+#+end_src
 * install format-all
 #+begin_src emacs-lisp
     (use-package format-all
