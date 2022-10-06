@@ -158,8 +158,7 @@ waiting for a fixed duration (1 second by default).
 		("\\.php$" . web-mode)
 		("\\.html$" . web-mode)
 		("\\.jsx?$" . web-mode)
-		("\\.tsx?$" . web-mode)
-		("\\.vue$" . web-mode))
+		("\\.tsx?$" . web-mode))
 #+end_src
 ** install LSP Mode
     #+begin_src emacs-lisp
@@ -170,6 +169,7 @@ waiting for a fixed duration (1 second by default).
 	(setq lsp-ui-doc-show-with-mouse nil)
 	(setq lsp-ui-doc-position 'bottom)
 	:hook ((prog-mode . lsp)
+	       (vue-mode . lsp)
 	       (lsp-mode . lsp-enable-which-key-integration)))
     #+end_src
 *** format code on save
@@ -193,12 +193,12 @@ waiting for a fixed duration (1 second by default).
     :hook ((prog-mode . yas-minor-mode)
 	   (web-mode . yas-minor-mode)))
 #+end_src
-* install format-all
-#+begin_src emacs-lisp
-    (use-package format-all
-      :hook ((prog-mode . format-all-mode)
-	     (web-mode . format-all-mode)))
-#+end_src
+*** install vue mode
+    #+begin_src emacs-lisp
+      (use-package vue-mode
+	:mode "\\.vue$"
+	)
+    #+end_src
 * bindings
 ** install general (a more convenient keybindings manager)
    general is a replacement for the default emacs keybind macros, allowing us to
