@@ -167,6 +167,7 @@ waiting for a fixed duration (1 second by default).
 	:init
 	(setq lsp-keymap-prefix "C-x l")
 	(setq lsp-ui-doc-show-with-mouse nil)
+	(setq lsp-ui-doc-show-with-cursor nil)
 	(setq lsp-ui-doc-position 'bottom)
 	:hook ((prog-mode . lsp)
 	       (vue-mode . lsp)
