@@ -150,12 +150,23 @@ waiting for a fixed duration (1 second by default).
     :config
     (which-key-mode))
 #+end_src
+** install web mode
+#+begin_src emacs-lisp 
+	(use-package web-mode
+	  :mode
+	  ("\\.php$" . web-mode)
+	  ("\\.html$" . web-mode))
+#+end_src
 ** install LSP Mode
     #+begin_src emacs-lisp
-      (use-package lsp-mode
-	:hook ((prog-mode . lsp)
-	       (lsp-mode . lsp-enable-which-key-integration)))
+		  (use-package lsp-mode
+		    :hook ((prog-mode . lsp)
+			   (lsp-mode . lsp-enable-which-key-integration)))
     #+end_src
+*** format code on save
+#+begin_src emacs-lisp
+  (add-hook 'before-save-hook 'lsp-format-buffer nil )
+#+end_src
 *** install lsp ivy integration
     #+begin_src emacs-lisp
       (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
@@ -163,6 +174,12 @@ waiting for a fixed duration (1 second by default).
 *** install company
 #+begin_src emacs-lisp
   (use-package company)
+#+end_src
+* install format-all
+#+begin_src emacs-lisp
+    (use-package format-all
+      :hook ((prog-mode . format-all-mode)
+	     (web-mode . format-all-mode)))
 #+end_src
 * bindings
 ** install general (a more convenient keybindings manager)
@@ -196,7 +213,7 @@ waiting for a fixed duration (1 second by default).
    very readable and also has ligatures, which is a feature not a lot of fonts
    have, and I feel like it really helps to make my code a lot more readable.
    #+begin_src emacs-lisp
-    (set-face-attribute 'default nil :font "Fira Code")
+    (set-face-attribute 'default nil :font "Fira Code 12")
    #+end_src
 
 ** makes the emacs startup minimal (remove all startup messages and splashscreens)
