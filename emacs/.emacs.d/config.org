@@ -159,9 +159,14 @@ waiting for a fixed duration (1 second by default).
 #+end_src
 ** install LSP Mode
     #+begin_src emacs-lisp
-		  (use-package lsp-mode
-		    :hook ((prog-mode . lsp)
-			   (lsp-mode . lsp-enable-which-key-integration)))
+      (use-package lsp-mode
+	:straight lsp-ui
+	:init
+	(setq lsp-keymap-prefix "C-x l")
+	(setq lsp-ui-doc-show-with-mouse nil)
+	(setq lsp-ui-doc-position 'bottom)
+	:hook ((prog-mode . lsp)
+	       (lsp-mode . lsp-enable-which-key-integration)))
     #+end_src
 *** format code on save
 #+begin_src emacs-lisp
@@ -199,20 +204,24 @@ waiting for a fixed duration (1 second by default).
     #+end_src
     
 ** bindings for C-x
+    These bindings are bindings that are supposed to do something no matter what the
+    mode is (global keybindings).
     #+begin_src emacs-lisp
-    (general-define-key 
-    :states 'normal
-    :prefix "C-x"
-    "p" 'projectile-command-map
-    "g" 'magit)
+	  (general-define-key 
+	  :states 'normal
+	  :prefix "C-x"
+	  "p" 'projectile-command-map
+	  "g" 'magit)
 
     #+end_src
-** bindings for SPC
+** bindings for C-c
+    These bindings are bindings that are for my own convenience (personal keybindings).
     #+begin_src emacs-lisp
-    (general-define-key 
-    :states 'normal
-    :prefix "SPC"
-    "t" 'dired-sidebar-toggle-sidebar)
+	  (general-define-key 
+	  :states 'normal
+	  :prefix "C-c"
+	  "t" 'dired-sidebar-toggle-sidebar
+	  "d" 'lsp-ui-doc-glance)
     #+end_src
 * miscellanous configuration
  This section contains different settings that aren't related to packages or
@@ -263,3 +272,7 @@ waiting for a fixed duration (1 second by default).
    (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
    (add-hook 'org-mode-hook 'auto-fill-mode)
    #+end_src
+** enable matching parenthesis / brackets / quotes
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+(add-hook 'web-mode-hook 'electric-pair-mode)
+
