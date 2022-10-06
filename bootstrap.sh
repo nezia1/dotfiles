@@ -10,8 +10,9 @@ os_name=$(head -1 /etc/os-release | cut -d "=" -f 2 | tr -d '"')
 # OS specific config
 case $os_name in
 	"Ubuntu")
-		cat ppa_list | xargs add-apt-repository -y
+		cat ppa_list | xargs -L 1 add-apt-repository -y
 		apt update && cat packages_list | xargs apt install -y 
+
 		;;
 esac
 
