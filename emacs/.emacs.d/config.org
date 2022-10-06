@@ -153,11 +153,13 @@ waiting for a fixed duration (1 second by default).
 #+end_src
 ** install web mode
 #+begin_src emacs-lisp 
-	  (use-package web-mode
-	    :mode
-	    ("\\.php$" . web-mode)
-	    ("\\.html$" . web-mode)
-	    ("\\.jsx?$" . web-mode))
+	      (use-package web-mode
+		:mode
+		("\\.php$" . web-mode)
+		("\\.html$" . web-mode)
+		("\\.jsx?$" . web-mode)
+		("\\.tsx?$" . web-mode)
+		("\\.vue$" . web-mode))
 #+end_src
 ** install LSP Mode
     #+begin_src emacs-lisp
@@ -275,6 +277,10 @@ waiting for a fixed duration (1 second by default).
    (add-hook 'org-mode-hook 'auto-fill-mode)
    #+end_src
 ** enable matching parenthesis / brackets / quotes
-(add-hook 'prog-mode-hook 'electric-pair-mode)
-(add-hook 'web-mode-hook 'electric-pair-mode)
+    This is just so that emacs automatically pairs characters when typing in
+    prog-mode or web-mode.
+    #+begin_src emacs-lisp
+    (add-hook 'prog-mode-hook 'electric-pair-mode)
+    (add-hook 'web-mode-hook 'electric-pair-mode)
+    #+end_src
 
