@@ -17,6 +17,7 @@
    disabled in early-init.el.
     #+begin_src emacs-lisp
     	(unless (package-installed-p 'use-package)
+		(package-refresh-contents)
 		(package-install 'use-package))
 	(require 'use-package)
 	(require 'use-package-ensure)
@@ -124,23 +125,7 @@
     for projectile, allowing us not to type the entire directory structure by hand.
     #+begin_src emacs-lisp
 	(use-package ivy
-	:init
-	(setq enable-recursive-minibuffers t)
-	(setq ivy-use-virtual-buffers t)
-	:bind (("C-s" . swiper)
-	    :map ivy-minibuffer-map
-	    ("TAB" . ivy-alt-done)
-	    ("C-l" . ivy-alt-done)
-	    ("C-j" . ivy-next-line)
-	    ("C-k" . ivy-previous-line)
-	    :map ivy-switch-buffer-map
-	    ("C-k" . ivy-previous-line)
-	    ("C-l" . ivy-done)
-	    ("C-d" . ivy-switch-buffer-kill)
-	    :map ivy-reverse-i-search-map
-	    ("C-k" . ivy-previous-line)
-	    ("C-d" . ivy-reverse-i-search-kill))
-	:config (ivy-mode))
+	:config (ivy-mode 1))
 #+end_src
 
 ** install fira code mode
