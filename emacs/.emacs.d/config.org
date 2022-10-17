@@ -129,12 +129,12 @@
 #+end_src
 
 ** install org bullets
-org-bullets is a nice little package that allows us to have pretty UTF-8 bullets
-in org mode.
-#+begin_src emacs-lisp
-    (use-package org-bullets
-    :hook org-mode)
-#+end_src
+    org-bullets is a nice little package that allows us to have pretty UTF-8 bullets
+    in org mode.
+    #+begin_src emacs-lisp
+	(use-package org-bullets
+	:hook org-mode)
+    #+end_src
 ** install Flycheck
    Flycheck is a modern replacement for flymake, a base emacs plugin that allows
    us to get on-the-fly spell checking for a lot of different languages.
