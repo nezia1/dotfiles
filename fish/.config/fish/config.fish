@@ -1,8 +1,3 @@
-# powerline initialization
-set fish_function_path $fish_function_path "/usr/share/powerline/bindings/fish"
-source /usr/share/powerline/bindings/fish/powerline-setup.fish
-powerline-setup
-
 # setup keychain
 eval (keychain --eval --agents ssh -Q --quiet ssh id_ed25519 --nogui)
 
