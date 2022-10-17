@@ -128,12 +128,6 @@
 	:config (ivy-mode 1))
 #+end_src
 
-** install fira code mode
-    fira code mode is a minor mode that turns on ligatures for fira code in emacs.
-    #+begin_src emacs-lisp
-	(use-package fira-code-mode
-	:hook prog-mode)
-    #+end_src
 ** install org bullets
 org-bullets is a nice little package that allows us to have pretty UTF-8 bullets
 in org mode.
