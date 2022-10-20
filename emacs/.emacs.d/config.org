@@ -244,7 +244,7 @@ waiting for a fixed duration (1 second by default).
    very readable and also has ligatures, which is a feature not a lot of fonts
    have, and I feel like it really helps to make my code a lot more readable.
    #+begin_src emacs-lisp
-    (set-face-attribute 'default nil :font "Fira Code 12")
+    (set-face-attribute 'default nil :font "Fira Code Retina 13")
    #+end_src
 
 ** makes the emacs startup minimal (remove all startup messages and splashscreens)
