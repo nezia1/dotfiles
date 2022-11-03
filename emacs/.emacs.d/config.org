@@ -295,3 +295,4 @@ waiting for a fixed duration (1 second by default).
     (add-hook 'prog-mode-hook 'electric-pair-mode)
     (add-hook 'web-mode-hook 'electric-pair-mode)
     #+end_src
+
