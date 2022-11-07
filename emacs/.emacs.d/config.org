@@ -277,6 +277,8 @@ waiting for a fixed duration (1 second by default).
 ** disable relative line numbers in some modes
    This adds a hook to some modes that don't really need line numbers to disable them.
    #+begin_src emacs-lisp
+     (setq display-line-numbers 'relative)
+     (global-display-line-numbers-mode)
      (dolist (mode '(org-mode-hook
      term-mode-hook
      shell-mode-hook
