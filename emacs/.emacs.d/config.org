@@ -42,10 +42,12 @@
    Nord is the theme I use on all my environments, so having it in emacs is a no brainer.
    #+begin_src emacs-lisp
     (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
-    (use-package nord-theme
-    :init
-    :config
-    (load-theme 'nord t))
+    (use-package nord-theme)
+	(if (daemonp) 
+		    (add-hook 'after-make-frame-functions 
+			      (lambda (frame) 
+				(with-selected-frame frame (load-theme 'nord t)))) 
+		  (load-theme 'nord t))
    #+end_src
 ** install doom-modeline
     doom-modeline is a replacement for the default emacs modeline, that allows us to
@@ -245,6 +247,7 @@ waiting for a fixed duration (1 second by default).
    have, and I feel like it really helps to make my code a lot more readable.
    #+begin_src emacs-lisp
     (set-face-attribute 'default nil :font "Fira Code Retina 13")
+    (add-to-list 'default-frame-alist '(font . "Fira Code Retina-13"))
    #+end_src
 
 ** makes the emacs startup minimal (remove all startup messages and splashscreens)
