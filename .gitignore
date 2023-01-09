@@ -5,3 +5,5 @@ emacs/.emacs.d/straight
 emacs/.emacs.d/config.el
 emacs/.emacs.d/lsp-cache/
 emacs/.emacs.d/eln-cache/
+systemd/.config/systemd/user/default.target.wants/*
+!systemd/.config/systemd/user/default.target.wants/.gitkeep
