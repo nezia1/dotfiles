@@ -1,5 +1,5 @@
 # setup keychain
-# eval (keychain --eval --agents ssh -Q --quiet ssh id_ed25519 --nogui)
+# eval (keychain --eval --agents ssh -Q --quiet id_ed25519 --nogui)
 
 # wsl related config
 set wsl_version_name (uname -r | sed -E 's/^.*(Microsoft|microsoft-standard).*$/\1/')
@@ -16,3 +16,6 @@ end
 if [ -f $HOME/.config/fish/alias.fish ]
 source $HOME/.config/fish/alias.fish
 end
+
+# ssh config
+set SSH_AUTH_SOCK "$XDG_RUNTIME_DIR"/ssh-agent.socket
