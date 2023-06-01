@@ -1,0 +1,6 @@
+#+TITLE: nezia's dotfiles
+
+These are my personal dotfiles for configuring my workstation. I use [stow](https://www.gnu.org/software/stow/) to manage them, hence why everything is under its own module, so I can use `stow *` to symlink them to the right place. All of them should be self explanatory, just be careful when cloning the repository as I also have my wallpapers version controlled to make it easier for future deployments.
+
+# Software used
+I use [hyprland]( as my window manager, a wayland compositor.

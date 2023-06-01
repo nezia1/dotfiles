@@ -1,0 +1,11 @@
+*
+!.gitignore
+!init.el
+<<<<<<< HEAD
+!/themes/**
+!*.org
+=======
+!*.org
+!themes
+!themes/*
+>>>>>>> 9ad15b2 (add local whitelist)
