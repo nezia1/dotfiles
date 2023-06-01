@@ -19,7 +19,7 @@ I use [[https://github.com/catppuccin/catppuccin][catppuccin]] as my theme (the 
 - Notification daemon: [[https://github.com/dunst-project/dunst][dunst]]
 - Password manager: [[https://keepassxc.org/][KeePassXC]]
 
-Hyprland is configured to use a random wallpaper from the ~~​/.dotfiles~ directory, so you need to have your wallpapers in it.
+Hyprland is configured to use a random wallpaper from the ~$HOME/.dotfiles~ directory, so you need to have your wallpapers in it.
 
 * Services and timers
 
