@@ -1,7 +1,6 @@
 #+TITLE: my dotfiles
-#+ATTR_HTML: :width 50%
+
 [[./screenshots/desktop.png]]
-#+ATTR_HTML: :width 50%
 [[./screenshots/desktop-terminals.png]]
 
 These are my personal dotfiles for configuring my workstation. I use [[https://www.gnu.org/software/stow/][stow]] to manage them, hence why everything is under its own module, so I can use ~stow *~ to symlink them to the right place.
