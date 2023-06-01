@@ -2,7 +2,7 @@
 Description=Sync personal files with Google Drive
 
 [Service]
-ExecStart=/home/tony/.scripts/sync.sh
+ExecStart=%h/.scripts/sync.sh
 
 [Install]
 WantedBy=default.target

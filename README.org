@@ -1,6 +1,21 @@
 #+TITLE: nezia's dotfiles
 
-These are my personal dotfiles for configuring my workstation. I use [stow](https://www.gnu.org/software/stow/) to manage them, hence why everything is under its own module, so I can use `stow *` to symlink them to the right place. All of them should be self explanatory, just be careful when cloning the repository as I also have my wallpapers version controlled to make it easier for future deployments.
+These are my personal dotfiles for configuring my workstation. I use [[https://www.gnu.org/software/stow/][stow]] to manage them, hence why everything is under its own module, so I can use ~stow *~ to symlink them to the right place.
 
-# Software used
-I use [hyprland]( as my window manager, a wayland compositor.
+* Theme
+I use [[https://github.com/catppuccin/catppuccin][catppuccin]] as my theme (the mocha variant). I love the soothing pastel colors. The GTK theme and the Qt5 theme are also configured to be used with supported applications.
+
+* Software used
+- Operating system: [[https://archlinux.org/][Arch Linux]]
+- Window manager: [[https://hyprland.org][Hyprland]]
+- Status bar: [[https://github.com/Alexays/Waybar][Waybar]]
+- Application launcher: [[https://sr.ht/~scoopta/wofi/][wofi]]
+- Terminal emulator: [[https://github.com/kovidgoyal/kitty][kitty]]
+- Shell: [[https://www.zsh.org/][zsh]] with [[https://ohmyz.sh/][Oh My Zsh]]
+- Text editor: [[https://www.gnu.org/software/emacs/][Emacs]]
+- Notification daemon: [[https://github.com/dunst-project/dunst][dunst]]
+- Password manager: [[https://keepassxc.org/][KeePassXC]]
+
+Hyprland is configured to use a random wallpaper from the ~~​/.dotfiles~ directory, so you need to have your wallpapers in it.
+
+
