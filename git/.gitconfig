@@ -3,8 +3,6 @@
 [user]
 	name = Anthony Rodriguez
 	email = anthony@nezia.dev
-	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEPEdx0FDYntSZlbiVBb7mbp4EUnlzUTawlGYRy+9I3 id_ed25519
+	signingKey = 838541960B42C340 
 [commit]
 	gpgsign = true
-[gpg]
-	format = ssh
