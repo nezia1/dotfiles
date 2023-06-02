@@ -14,7 +14,7 @@ I use [[https://github.com/catppuccin/catppuccin][catppuccin]] as my theme (the 
 - Status bar: [[https://github.com/Alexays/Waybar][Waybar]]
 - Application launcher: [[https://sr.ht/~scoopta/wofi/][wofi]]
 - Terminal emulator: [[https://github.com/kovidgoyal/kitty][kitty]]
-- Shell: [[https://www.zsh.org/][zsh]] with [[https://ohmyz.sh/][Oh My Zsh]]
+- Shell: [[https://www.zsh.org/][zsh]]
 - Text editor: [[https://www.gnu.org/software/emacs/][Emacs]]
 - Notification daemon: [[https://github.com/dunst-project/dunst][dunst]]
 - Password manager: [[https://keepassxc.org/][KeePassXC]]
