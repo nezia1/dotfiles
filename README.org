@@ -17,7 +17,7 @@ I use [[https://github.com/catppuccin/catppuccin][catppuccin]] as my theme (the 
 - Shell: [[https://www.zsh.org/][zsh]]
 - Text editor: [[https://www.gnu.org/software/emacs/][Emacs]]
 - Notification daemon: [[https://github.com/dunst-project/dunst][dunst]]
-- Password manager: [[https://keepassxc.org/][KeePassXC]]
+- Password manager: [[https://www.passwordstore.org/][pass]]
 
 Hyprland is configured to use a random wallpaper from the ~$HOME/.dotfiles~ directory, so you need to have your wallpapers in it.
 
@@ -25,5 +25,5 @@ Hyprland is configured to use a random wallpaper from the ~$HOME/.dotfiles~ dire
 
 The user-services module contains different systemd daemons and timers that you might or might not need depending on your specific use-case:
 
-- sync: a systemd timer that synchronizes my password file and my org directory using [[https://rclone.org/][rclone]] to a remote called drive (runs every 5 minutes)
-- ssh-agent: starts an ssh agent on SSH_ACTH_SOCK
+- sync: a systemd timer that synchronizes my org directory using [[https://rclone.org/][rclone]] to a remote called drive (runs every 5 minutes)
+- ssh-agent: starts an ssh agent on SSH_AUTH_SOCK
