@@ -19,7 +19,6 @@
 
 ;; Initialize package sources
 (require 'package)
-
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
@@ -38,9 +37,9 @@
 (use-package catppuccin-theme
   :custom
   (catppuccin-flavor 'mocha)
-  :config
-  (load-theme 'catppuccin t))
-
+  :init
+  (load-theme 'catppuccin t)
+  (catppuccin-reload))
 
 ;; ensures environment variables are available in GUI and daemon
 (use-package exec-path-from-shell
@@ -161,19 +160,19 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 	 (prog-mode . lsp)
+	 (rustic-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
 (use-package company)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-mode which-key vertico use-package rustic pdf-tools org-roam magit guess-language expand-region exec-path-from-shell elcord eglot doom-modeline company catppuccin-theme all-the-icons)))
+   '(company lsp-mode rustic which-key vertico use-package pdf-tools org-roam magit guess-language expand-region exec-path-from-shell doom-modeline catppuccin-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
