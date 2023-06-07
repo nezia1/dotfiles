@@ -152,7 +152,7 @@
 
 (use-package rustic
   :custom
-  (rustic-format-on-save t))
+  (rustic-format-trigger 'on-save))
 
 ;; lsp configuration
 (use-package lsp-mode
