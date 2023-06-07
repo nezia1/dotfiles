@@ -152,7 +152,9 @@
 (use-package rustic
   :custom
   (rustic-format-trigger 'on-save)
-  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
+  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer"))
+  :hook
+  (rustic-mode . display-line-numbers-mode))
 
 ;; lsp integration
 (use-package lsp-mode
@@ -162,17 +164,11 @@
   ;; what to use when checking on-save. "check" is default, I prefer clippy
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-eldoc-render-all t)
-  (lsp-idle-delay 0.6)
-  ;; enable / disable the hints as you prefer:
-  (lsp-rust-analyzer-server-display-inlay-hints t)
-  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
-  (lsp-rust-analyzer-display-chaining-hints t)
-  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
-  (lsp-rust-analyzer-display-closure-return-type-hints t)
-  (lsp-rust-analyzer-display-parameter-hints nil)
-  (lsp-rust-analyzer-display-reborrow-hints nil)
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (lsp-idle-delay 0.6))
+
+(use-package lsp-ui
+  :after lsp-mode
+  :hook (lsp-mode . lsp-ui-mode))
 
 ;; code completion
 (use-package company
@@ -182,3 +178,16 @@
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(lsp-ui yasnippet which-key vertico use-package rustic pdf-tools org-roam magit lsp-mode guess-language expand-region exec-path-from-shell doom-modeline company-box catppuccin-theme)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
