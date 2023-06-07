@@ -1,18 +1,3 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(elcord company company-mode pdf-tools org-roam magit expand-region doom-modeline all-the-icons vertico use-package))
- '(warning-suppress-log-types '((use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 (setq user-full-name "Anthony Rodriguez")
 
 (setq inhibit-startup-message t)
@@ -30,12 +15,6 @@
 (setq auto-save-default nil)
 
 (add-to-list 'default-frame-alist '(font . "Monospace 14"))
-;; Set theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'catppuccin t)
-(setq catppuccin-flavor 'frappe)
-(catppuccin-reload)
-
 (add-hook 'text-mode-hook 'visual-line-mode)
 
 ;; Initialize package sources
@@ -55,6 +34,14 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Set theme
+(use-package catppuccin-theme
+  :custom
+  (catppuccin-flavor 'mocha)
+  :config
+  (load-theme 'catppuccin t))
+
+
 ;; ensures environment variables are available in GUI and daemon
 (use-package exec-path-from-shell
   :config
@@ -70,7 +57,8 @@
 (use-package vertico
   :init
   (vertico-mode))
-(use-package all-the-icons)  
+
+(use-package nerd-icons)
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
@@ -84,7 +72,6 @@
 
 ;; org setup
 ;; export to a4
-
 (with-eval-after-load 'ox-latex (add-to-list 'org-latex-classes
 					     '("article" "\\documentclass[11pt,a4paper]{article}"
 					       ("\\section{%s}" . "\\section*{%s}")
@@ -103,6 +90,7 @@
          (:map org-mode-map
                (("C-c n i" . org-roam-node-insert)
                 ("C-c n l" . org-roam-buffer-toggle)))))
+
 (setq org-publish-project-alist
       (list 
        '("notes"
@@ -162,41 +150,33 @@
   (pdf-tools-install)
   (setq-default pdf-view-display-size 'fit-width))
 
-;; make language settings work with latex exports
-(add-to-list 'org-latex-packages-alist
-             '("AUTO" "babel" t ("pdflatex" "xelatex" "lualatex")))
-(add-to-list 'org-latex-packages-alist
-             '("AUTO" "polyglossia" t ("xelatex" "lualatex")))
+(use-package rustic
+  :custom
+  (rustic-format-on-save t))
 
 ;; lsp configuration
-(use-package eglot)
-(add-hook 'prog-mode-hook 'eglot-ensure)
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+	 (prog-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
 
-;; in buffer auto completion
-(use-package company
-  :hook (prog-mode . emacs-lisp-mode))
+(use-package company)
 
-;; discord integration
-(use-package elcord
-  :config
-  (elcord-mode))
-;; Makes sure elcord doesn't run on empty frames (for daemonized setups) - https://github.com/Mstrodl/elcord/issues/17#issuecomment-571383324
-(defun elcord--disable-elcord-if-no-frames (f)
-  (declare (ignore f))
-  (when (let ((frames (delete f (visible-frame-list))))
-          (or (null frames)
-              (and (null (cdr frames))
-                   (eq (car frames) terminal-frame))))
-    (elcord-mode -1)
-    (add-hook 'after-make-frame-functions 'elcord--enable-on-frame-created)))
-
-(defun elcord--enable-on-frame-created (f)
-  (declare (ignore f))
-  (elcord-mode +1))
-
-(defun my/elcord-mode-hook ()
-  (if elcord-mode
-      (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
-    (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
-
-(add-hook 'elcord-mode-hook 'my/elcord-mode-hook)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(lsp-mode which-key vertico use-package rustic pdf-tools org-roam magit guess-language expand-region exec-path-from-shell elcord eglot doom-modeline company catppuccin-theme all-the-icons)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
