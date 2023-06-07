@@ -38,3 +38,8 @@ fi
 source ${zsh_plugins}.zsh
 
 eval $(keychain --eval --quiet id_ed25519)
+
+# fzf integration
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
