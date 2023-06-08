@@ -1,5 +1,5 @@
 [Unit]
-Description=Sync passwords every 5 minutes
+Description=Sync a remote called drive every 5 minutes using rclone
 
 [Timer]
 OnBootSec=5min
