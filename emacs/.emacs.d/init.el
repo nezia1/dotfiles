@@ -17,7 +17,7 @@
 (add-to-list 'default-frame-alist '(font . "Monospace 15"))
 (add-hook 'text-mode-hook 'visual-line-mode)
 
-;; Initialize package sources
+;; initialize straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -30,14 +30,15 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
-;; Initialize use-package on non-Linux platforms
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
 
-(require 'use-package)
+;; initialize use-package 
+(straight-use-package 'use-package)
 (setq use-package-always-ensure t)
 
-;; Set theme
+(use-package straight
+	     :custom
+	     (straight-use-package-by-default t))
+;; set theme
 (use-package catppuccin-theme
   :custom
   (catppuccin-flavor 'mocha)
@@ -176,9 +177,7 @@
 
 ;; code completion
 (use-package company
-  :after lsp-mode
-  :custom
-  (company-idle-delay 0.0))
+  :after lsp-mode)
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
