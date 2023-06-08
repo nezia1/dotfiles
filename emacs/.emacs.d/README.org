@@ -91,6 +91,32 @@ Share the path on daemonized setups
   (when (daemonp)
     (exec-path-from-shell-initialize))
 #+end_src
+
+** Completion
+*** Minibuffer completion
+I use [[https://github.com/minad/vertico][vertico]] for my vertical/minibuffer completion. It's light, stays out of my way and works great out of the box, which is what I expect from all of my Emacs packages.
+#+begin_src emacs-lisp
+  (use-package vertico
+  :init
+  (vertico-mode))
+#+end_src
+
+** which-key
+I use [[https://github.com/justbur/emacs-which-key][which-key]], a small package that shows a window that describes available keybindings that follow the prefix I just hit. I just can't live without it, it's mandatory for me since I often don't remember which exact keybind I need to press to do a certain thing.
+#+begin_src emacs-lisp
+  (use-package which-key
+  :config
+  (which-key-mode))
+#+end_src
+
+** expand-region
+[[https://github.com/magnars/expand-region.el][expand-region]] is a really useful package that allows for selection regions of text in semantic units. It works with text (words, sentences, paragraphs), code etc.
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :bind
+    ("C-=" . er/expand-region))
+#+end_src
+  
 * Appearance
 ** Theme
 I use [[https://github.com/catppuccin][catppuccin]] as my theme (the mocha flavor).
@@ -124,23 +150,11 @@ doom-modeline requires nerd-icons to be able to display icons. Don't forget to r
 #+begin_src emacs-lisp
   (use-package nerd-icons)
 #+end_src
+* Org mode
+This section contains all of my org mode configuration. Over the course of learning Emacs, I learned to appreciate org-mode more and more, and I use it for a lot of various tasks, from writing documents and exporting them to pdf, to writing this exact config, or just taking notes.
+** General settings
+Export documents to A4 (I'm European, so US letter won't work for me)
 #+begin_src emacs-lisp
-
-  
-  (use-package vertico
-    :init
-    (vertico-mode))
-
-
-  
-  (use-package which-key
-    :config
-    (which-key-mode))
-  ;; magit
-  (use-package magit)
-
-  ;; org setup
-  ;; export to a4
   (with-eval-after-load 'ox-latex (add-to-list 'org-latex-classes
 					       '("article" "\\documentclass[11pt,a4paper]{article}"
 						 ("\\section{%s}" . "\\section*{%s}")
@@ -148,18 +162,15 @@ doom-modeline requires nerd-icons to be able to display icons. Don't forget to r
 						 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 						 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 						 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+#+end_src
 
-  (use-package org-roam
-    :custom
-    (org-roam-directory "~/org/notes")
-    (org-roam-completion-everywhere t)
-    :config
-    (org-roam-setup)
-    :bind (("C-c n f" . org-roam-node-find)
-	   (:map org-mode-map
-		 (("C-c n i" . org-roam-node-insert)
-		  ("C-c n l" . org-roam-buffer-toggle)))))
-
+Enable syntax highlighting in org source blocks
+#+begin_src emacs-lisp
+  (setq org-src-fontify-natively t)
+#+end_src
+** Publishing
+I use org's [[https://orgmode.org/manual/Publishing.html][publishing feature]] to export all of my notes at once. 
+#+begin_src emacs-lisp
   (setq org-publish-project-alist
 	(list 
 	 '("notes"
@@ -168,82 +179,130 @@ doom-modeline requires nerd-icons to be able to display icons. Don't forget to r
 	   :publishing-directory "~/org/notes"
 	   :publishing-function org-latex-publish-to-pdf
 	   )))
+#+end_src
+** org-roam
+I use [[https://github.com/org-roam/org-roam][org-roam]] for my note taking purposes. The [[https://en.wikipedia.org/wiki/Zettelkasten][Zettelkasten]] method works for me, and allows for flexibility as I really dislike very strict note-taking systems.
+#+begin_src emacs-lisp
+  (use-package org-roam
+  :custom
+  (org-roam-directory "~/org/notes")
+  (org-roam-completion-everywhere t)
+  :config
+  (org-roam-setup)
+  :bind (("C-c n f" . org-roam-node-find)
+	 (:map org-mode-map
+	       (("C-c n i" . org-roam-node-insert)
+		("C-c n l" . org-roam-buffer-toggle)))))
+#+end_src
 
-  ;; spell checking for text modes
-  (dolist (hook '(text-mode-hook))
-    (add-hook hook (lambda () (flyspell-mode 1))))
-  (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
-    (add-hook hook (lambda () (flyspell-mode -1))))
+** Spellchecking
+I use [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Spelling.html][flyspell]], Emac's integated spellchecker.
 
-  (add-hook 'prog-mode-hook
-	    (lambda ()
-	      (flyspell-prog-mode)))
-  ;; avoid spell checking code regions in org mode
-  (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
-
-  ;; add different dictionaries
+Add different dictionaries for languages that I use
+#+begin_src emacs-lisp
   (let ((langs '("american" "francais")))
-    (setq lang-ring (make-ring (length langs)))
-    (dolist (elem langs) (ring-insert lang-ring elem)))
+  (setq lang-ring (make-ring (length langs)))
+  (dolist (elem langs) (ring-insert lang-ring elem)))
+#+end_src
 
-  ;; cycle through languages
-  (defun cycle-ispell-languages ()
+Enable flyspell for text modes
+#+begin_src emacs-lisp
+      (dolist (hook '(text-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode 1))))
+    (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode -1)))
+      )
+#+end_src
+
+Cycle through languages with F6
+#+begin_src emacs-lisp
+    (defun cycle-ispell-languages ()
     (interactive)
     (let ((lang (ring-ref lang-ring -1)))
       (ring-insert lang-ring lang)
       (ispell-change-dictionary lang)))
   (setq ispell-program-name "aspell")
-
+  
   (global-set-key [f6] 'cycle-ispell-languages)
+#+end_src
 
-  ;; automatic language detection
+Enable flyspell in comments for programming modes
+#+begin_src emacs-lisp
+  (add-hook 'prog-mode-hook
+	    (lambda ()
+	      (flyspell-prog-mode)))
+#+end_src
+
+Install [[https://github.com/tmalsburg/guess-language.el][guess-language.el]], which automatically detects the main language used and switches to that dictionary. It even works with documents written in multiple languages!
+#+begin_src emacs-lisp
   (use-package guess-language
-    :config
-    (setq guess-language-languages '(en fr))
-    (setq guess-language-min-paragraph-length 35)
-    :hook
-    (text-mode . guess-language-mode))
+    :custom
+    (guess-language-languages '(en fr))
+    (guess-language-min-paragraph-length 35)
+  :hook
+  (text-mode . guess-language-mode))
+#+end_src
 
-  (use-package expand-region
-    :bind
-    ("C-=" . er/expand-region))
-
-  ;; enable syntax highlighting in org source blocks
-  (setq org-src-fontify-natively t)
-
-  ;; disable latex subscript in org-mode
-  (setq org-export-with-sub-superscripts nil)
-
+** pdf-tools
+[[https://github.com/vedang/pdf-tools][pdf-tools]] allows us to have a pdf viewer embedded inside of Emacs, which also works with org exports.
+#+begin_src emacs-lisp
   (use-package pdf-tools
     :config
     (pdf-tools-install)
     (setq-default pdf-view-display-size 'fit-width))
+  #+end_src
+* Development
+This section contains all of my development related configuration. As a compsci student, it's absolutely mandatory for me to have a good editor experience and have it integrate well with all languages and frameworks I need to use in my day-to-day work.
+** git
+I use [[https://github.com/magit/magit][magit]] as my git client. It's incredible, it makes everything that you need to do in git available under a single prefix (C-x G), the diff interface is great and has genuinely made me more productive over the months of using it. Definitely prefer using it over the CLI.
+#+begin_src emacs-lisp
+  (use-package magit)
+#+end_src
 
-  (use-package rustic
-    :custom
-    (rustic-format-trigger 'on-save)
-    (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer"))
-    :hook
-    (rustic-mode . display-line-numbers-mode))
+** LSP
+The following section contains the configuration of [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]], which aims to provide an IDE like experience by leveraging different available language server protocols.
 
-  ;; lsp integration
+Install lsp-mode
+#+begin_src emacs-lisp
   (use-package lsp-mode
     :ensure
     :commands lsp
     :custom
     ;; what to use when checking on-save. "check" is default, I prefer clippy
-    (lsp-rust-analyzer-cargo-watch-command "clippy")
-    (lsp-eldoc-render-all t)
-    (lsp-idle-delay 0.6))
-
+  
+#+end_src
+Install [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]], which provides UI additions to lsp-mode such as code lenses, flycheck diagnostics etc.
+#+begin_src emacs-lisp
   (use-package lsp-ui
-    :after lsp-mode
-    :hook (lsp-mode . lsp-ui-mode))
-
-  ;; code completion
-  (use-package company
+  :after lsp-mode
+  :hook (lsp-mode . lsp-ui-mode))
+#+end_src
+Install [[http://company-mode.github.io/][company-mode]], a text completion framework for Emacs that integrates with LSP to provide in-buffer code completion, similar to VS Code and other text editors / IDEs
+#+begin_src emacs-lisp
+    (use-package company
     :after lsp-mode)
 
+#+end_src
+
+Install [[https://github.com/sebastiencs/company-box][company-box]], which adds icons to company-mode
+#+begin_src emacs-lisp
   (use-package company-box
-    :hook (company-mode . company-box-mode))
+  :hook (company-mode . company-box-mode))
+#+end_src
+*** Rust
+Install [[https://github.com/brotzeit/rustic][rustic]], an Emacs major mode for Rust
+#+begin_src emacs-lisp
+  (use-package rustic
+  :custom
+  (rustic-format-trigger 'on-save)
+  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer"))
+  :hook
+  (rustic-mode . display-line-numbers-mode))
+#+end_src
+**** LSP
+Use [[https://github.com/rust-lang/rust-clippy][clippy]] as the watch command
+#+begin_src emacs-lisp
+  (setq lsp-rust-analyzer-cargo-watch-command "clippy")
+  (setq lsp-eldoc-render-all t)
+  (setq lsp-idle-delay 0.6)
 #+end_src
