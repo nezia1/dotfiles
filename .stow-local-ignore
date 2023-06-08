@@ -1,1 +1,5 @@
+\.git
+\.gitignore
+\.gitmodules
 screenshots
+^/README.*
