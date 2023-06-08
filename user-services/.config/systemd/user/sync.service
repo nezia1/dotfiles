@@ -1,5 +1,5 @@
 [Unit]
-Description=Sync personal files with Google Drive
+Description=Sync personal files with a remote called drive
 
 [Service]
 ExecStart=%h/.scripts/sync.sh
