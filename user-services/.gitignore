@@ -1,1 +1,9 @@
-*.wants/
+*
+!*/
+
+# track this file
+!.gitignore
+
+# sync
+!sync.service
+!sync.timer
