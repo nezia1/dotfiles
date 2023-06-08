@@ -1,24 +1,44 @@
+#+TITLE: My literate Emacs config
+* Introduction
+This is my personal Emacs config, using org mode to make it easier to structure things and comment what section is used for exactly.
+
+* Initialization
+** General settings
+Set the author name
 #+begin_src emacs-lisp
   (setq user-full-name "Anthony Rodriguez")
+#+end_src
 
-  (setq inhibit-startup-message t)
+Remove the startup message
+#+begin_src emacs-lisp
+    (setq inhibit-startup-message t)
+#+end_src
 
-  (scroll-bar-mode -1)        ; Disable visible scrollbar
-  (tool-bar-mode -1)          ; Disable the toolbar
-  (tooltip-mode -1)           ; Disable tooltips
-  (set-fringe-mode 10)        ; Give some breathing room
+Disable some UI elements that I don't need
+#+begin_src emacs-lisp
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (menu-bar-mode -1)
+#+end_src
 
-  (menu-bar-mode -1)            ; Disable the menu bar
+Add space on the sides
+#+begin_src emacs-lisp
+    (set-fringe-mode 10)
+#+end_src
 
-					  ;disable backup
+Disable backup and auto save as I use git repositories a lot and I don't like having to ignore Emacs specific files
+#+begin_src emacs-lisp
   (setq backup-inhibited t)
-					  ;disable auto save
   (setq auto-save-default nil)
+#+end_src
 
-  (add-to-list 'default-frame-alist '(font . "Monospace 15"))
-  (add-hook 'text-mode-hook 'visual-line-mode)
 
-  ;; initialize straight.el
+** Package management
+I use [[https://github.com/radian-software/straight.el][straight.el]] for my package management, alongside [[https://github.com/jwiegley/use-package][use-package]] to make my configuration easier to maintain.
+
+Initialize straight.el
+#+begin_src emacs-lisp
   (defvar bootstrap-version)
   (let ((bootstrap-file
 	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -31,14 +51,50 @@
 	(goto-char (point-max))
 	(eval-print-last-sexp)))
     (load bootstrap-file nil 'nomessage))
+#+end_src
 
-  ;; initialize use-package 
+Install use-package with straight.el
+#+begin_src emacs-lisp
   (straight-use-package 'use-package)
-  (setq use-package-always-ensure t)
+#+end_src
 
+Set use-package to always ensure (makes sure all of our packages download automatically)
+#+begin_src emacs-lisp
+  (setq use-package-always-ensure t)
+#+end_src
+
+Makes use-package use straight.el by default
+#+begin_src emacs-lisp
   (use-package straight
-	       :custom
-	       (straight-use-package-by-default t))
+    :custom
+    (straight-use-package-by-default t))
+#+end_src
+** Environment variables
+One issue I had using Emacs was the fact that my environment variables were not available inside of the GUI version. This is because on some systems, mainly OS X, where graphical apps inherit a minimal set of environment variables, or setups running Emacs as a daemon, graphical apps may not have all of the available environment variables (mainly $PATH and ssh related variables). This is why we use [[https://github.com/purcell/exec-path-from-shell][exec-path-from-shell]], a handy library that will ensure we have access to the same stuff across Emacs and the terminal.
+
+Here, we install the aforementioned package, and define a list of commonly needed variables to share with the Emacs instance.
+#+begin_src emacs-lisp
+  (use-package exec-path-from-shell
+    :config
+    (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO" "LANG" "LC_CTYPE" "NIX_SSL_CERT_FILE" "NIX_PATH"))
+      (add-to-list 'exec-path-from-shell-variables var)))
+#+end_src
+
+Share the path on OS X
+#+begin_src emacs-lisp
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+#+end_src
+
+Share the path on daemonized setups
+#+begin_src emacs-lisp
+  (when (daemonp)
+    (exec-path-from-shell-initialize))
+#+end_src
+* Appearance
+** Theme
+I use [[https://github.com/catppuccin][catppuccin]] as my theme (the mocha flavor).
+#+begin_src emacs-lisp
   ;; set theme
   (use-package catppuccin-theme
     :custom
@@ -46,29 +102,37 @@
     :init
     (load-theme 'catppuccin t)
     (catppuccin-reload))
+#+end_src
 
-  ;; ensures environment variables are available in GUI and daemon
-  (use-package exec-path-from-shell
-    :config
-    (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO" "LANG" "LC_CTYPE" "NIX_SSL_CERT_FILE" "NIX_PATH"))
-      (add-to-list 'exec-path-from-shell-variables var)))
+** Font
+I really like being able to use standard fonts, so I decided to set my Emacs font to my system monospace font.
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist '(font . "Monospace 15"))
+  (add-hook 'text-mode-hook 'visual-line-mode)
+#+end_src
 
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize))
-
-  (when (daemonp)
-    (exec-path-from-shell-initialize))
-
-  (use-package vertico
-    :init
-    (vertico-mode))
-
-  (use-package nerd-icons)
+** Mode-line
+I use [[https://github.com/seagle0128/doom-modeline][doom-modeline]] as my mode-line, it's really slick and shows me all that I need to know at all times.
+#+begin_src emacs-lisp
   (use-package doom-modeline
     :ensure t
     :init (doom-modeline-mode 1)
     :custom ((doom-modeline-height 15)))
+#+end_src
 
+doom-modeline requires nerd-icons to be able to display icons. Don't forget to run nerd-icons-install-fonts to make it available on your system.
+#+begin_src emacs-lisp
+  (use-package nerd-icons)
+#+end_src
+#+begin_src emacs-lisp
+
+  
+  (use-package vertico
+    :init
+    (vertico-mode))
+
+
+  
   (use-package which-key
     :config
     (which-key-mode))
