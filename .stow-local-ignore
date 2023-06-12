@@ -3,3 +3,4 @@
 \.gitmodules
 screenshots
 ^/README.*
+^/packages_list.txt
