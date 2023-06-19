@@ -5,3 +5,5 @@ end
 if test -f ~/.keychain/$hostname-fish
 	source ~/.keychain/$hostname-fish
 end
+
+set -g fish_greeting
