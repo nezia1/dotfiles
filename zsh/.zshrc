@@ -31,7 +31,7 @@ alias ll="ls -al"
 zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins
 if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
 	(
-		source $HOME/.antidote/antidote.zsh
+		source /usr/share/zsh-antidote/antidote.zsh
 		antidote bundle <${zsh_plugins}.txt >${zsh_plugins}.zsh
 	)
 fi
