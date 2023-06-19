@@ -7,9 +7,9 @@ These are my personal dotfiles for configuring my workstation. I use [[https://w
 * Installing
 You could install it on any Linux distribution that you want, but I recommend Arch Linux as there is a file containing a list of required packages installable via pacman or your favorite AUR helper.
 
-- Clone the config in your home directory `git clone git@github.com:nezia1/dotfiles.git ~/.dotfiles`
-- If you're using Arch Linux, install the packages with `sudo pacman ​-S < packages` or using your favorite AUR helper
-- `cd ~/.dotfiles && stow */` to symlink everything to the right place
+- Clone the config in your home directory ~git clone git@github.com:nezia1/dotfiles.git ​~/.dotfiles~
+- If you're using Arch Linux, install the packages with ~sudo pacman ​-S < packages~ or using your favorite AUR helper
+- ~cd ​~/.dotfiles && stow */~ to symlink everything to the right place
 * Theme
 I use [[https://github.com/catppuccin/catppuccin][catppuccin]] as my theme (the mocha variant). I love the soothing pastel colors. The GTK theme and the Qt5 theme are also configured to be used with supported applications.
 
