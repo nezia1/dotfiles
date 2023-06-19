@@ -3,10 +3,12 @@ alsa-firmware
 alsa-utils
 base
 base-devel
+bat
 catppuccin-gtk-theme-mocha
 discord
 dunst
 emacs
+fd
 filezilla
 firefox
 fish
