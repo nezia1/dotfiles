@@ -18,13 +18,17 @@ You could install it on any Linux distribution that you want, but I recommend Ar
 * Theme
 I use [[https://github.com/catppuccin/catppuccin][catppuccin]] as my theme (the mocha variant). I love the soothing pastel colors. The GTK theme and the Qt5 theme are also configured to be used with supported applications.
 
+* Shell setup
+I use [[https://github.com/fish-shell/fish-shell][fish]] as my interactive shell, but I still keep [[https://www.gnu.org/software/bash/][bash]] as my non-interactive shell for compatibility purposes, as some pieces of software that I use require the user to have a POSIX compliant shell. This is why I have a bash module, where I setup everything that I want to have non-interactively and interactively and if running interactively, have it start a fish session.
+
+It also keeps variables set in .profile, since we're starting fish from bash.
 * Software used
 - Operating system: [[https://archlinux.org/][Arch Linux]]
 - Window manager: [[https://hyprland.org][Hyprland]]
 - Status bar: [[https://github.com/Alexays/Waybar][Waybar]]
 - Application launcher: [[https://sr.ht/~scoopta/wofi/][wofi]]
 - Terminal emulator: [[https://github.com/kovidgoyal/kitty][kitty]]
-- Shell: [[https://www.zsh.org/][zsh]]
+- Shell: [[https://github.com/fish-shell/fish-shell][fish]]
 - Text editor: [[https://www.gnu.org/software/emacs/][Emacs]]
 - Notification daemon: [[https://github.com/dunst-project/dunst][dunst]]
 - Password manager: [[https://www.passwordstore.org/][pass]]

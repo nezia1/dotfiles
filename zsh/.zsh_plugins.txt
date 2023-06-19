@@ -1,4 +1,0 @@
-sindresorhus/pure
-lukechilds/zsh-nvm
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-syntax-highlighting
