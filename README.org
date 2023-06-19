@@ -14,6 +14,7 @@ You could install it on any Linux distribution that you want, but I recommend Ar
 - Initialize submodules with ~git submodule update --init~
 - If you're using Arch Linux, install the packages with ~sudo pacman ​-S < packages~ or using your favorite AUR helper
 - ~stow */~ to symlink everything to the right place
+- ~fisher update~ to install fish plugins
   
 * Theme
 I use [[https://github.com/catppuccin/catppuccin][catppuccin]] as my theme (the mocha variant). I love the soothing pastel colors. The GTK theme and the Qt5 theme are also configured to be used with supported applications.
@@ -22,6 +23,7 @@ I use [[https://github.com/catppuccin/catppuccin][catppuccin]] as my theme (the 
 I use [[https://github.com/fish-shell/fish-shell][fish]] as my interactive shell, but I still keep [[https://www.gnu.org/software/bash/][bash]] as my non-interactive shell for compatibility purposes, as some pieces of software that I use require the user to have a POSIX compliant shell. This is why I have a bash module, where I setup everything that I want to have non-interactively and interactively and if running interactively, have it start a fish session.
 
 It also keeps variables set in .profile, since we're starting fish from bash.
+
 * Software used
 - Operating system: [[https://archlinux.org/][Arch Linux]]
 - Window manager: [[https://hyprland.org][Hyprland]]
