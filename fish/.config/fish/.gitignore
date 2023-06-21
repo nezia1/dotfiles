@@ -1,5 +1,5 @@
-completions
-functions
+completions/*
+functions/*
 conf.d
 themes
 fish_variables
