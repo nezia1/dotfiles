@@ -3,6 +3,6 @@
 [user]
 	name = Anthony Rodriguez
 	email = anthony@nezia.dev
-	signingKey = 838541960B42C340 
+	signingkey = 133EACC7CCC7D17F
 [commit]
 	gpgsign = true
