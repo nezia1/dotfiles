@@ -1,6 +1,9 @@
 afetch
 alsa-firmware
 alsa-utils
+aspell
+aspell-en
+aspell-fr
 base
 base-devel
 bat
@@ -10,6 +13,7 @@ discord
 dunst
 emacs
 fd
+feh
 filezilla
 firefox
 fish
@@ -42,6 +46,7 @@ openssh
 pamixer
 paru
 pass
+pass-otp
 passff-host
 pavucontrol
 pipewire-pulse
