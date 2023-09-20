@@ -1,7 +1,7 @@
 README.md
 screenshots
 packages
-{{ if (toString .chezmoi.os | toString | contains "windows")}}
+{{ if eq .chezmoi.os "windows" }}
   *
   !dot_gitconfig
 {{ else if (ne .chezmoi.os "linux") }}
