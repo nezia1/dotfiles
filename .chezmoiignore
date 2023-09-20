@@ -4,8 +4,6 @@ packages
 {{ if eq .chezmoi.os "windows" }}
   *
   !dot_gitconfig
-{{ else if (ne .chezmoi.os "linux") }}
-  {{   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{ else if (.chezmoi.kernel.osrelease | lower | contains "wsl") }} # else is necessary because windows does not have a .chezmoi.osrelease
     private_dot_gnupg
-  {{   end }}
 {{ end }}
