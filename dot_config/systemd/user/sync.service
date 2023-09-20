@@ -1,0 +1,8 @@
+[Unit]
+Description=Sync personal files with a remote called drive
+
+[Service]
+ExecStart=%h/.scripts/sync.sh
+
+[Install]
+WantedBy=default.target
