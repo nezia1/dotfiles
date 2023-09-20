@@ -2,12 +2,10 @@
 ![](./screenshots/desktop.png) ![](./screenshots/desktop-terminals.png)
 
 These are my personal dotfiles for configuring my workstation. I use
-[stow](https://www.gnu.org/software/stow/) to manage them, hence why
-everything is under its own module, so I can use `stow */` to symlink
+[chezmoi](https://www.gnu.org/software/stow/) to manage them, as it just makes managing it all way more convenient, and allows me to setup everything in one command.
 them to the right place.
 
-This configuration uses git submodules in order to pull some plugins and
-to integrate my Emacs config in a separate repository, so make sure to
+This configuration uses git submodules in order to integrate my Emacs config in a separate repository, so make sure to
 initialize them before trying to install it (installation instructions
 below).
 
@@ -17,12 +15,13 @@ You could install it on any Linux distribution that you want, but I
 recommend Arch Linux as there is a file containing a list of required
 packages installable via pacman or your favorite AUR helper.
 
+You do require chezmoi installed on your system (you can find the installation instructions [here](https://www.chezmoi.io/install/))
 -   Clone the config in your home directory
-    `git clone git@github.com:nezia1/dotfiles.git ​~/.dotfiles`
+    `chezmoi init git@github.com:nezia1/dotfiles.git`
+-   Get into your new chezmoi directory with `chezmoi cd`
 -   Initialize submodules with `git submodule update --init`
 -   If you\'re using Arch Linux, install the packages with
-    `sudo pacman ​-S < packages` or using your favorite AUR helper
--   `stow */` to symlink everything to the right place
+    `sudo pacman < packages` or using your favorite AUR helper
 -   `fisher update` to install fish plugins
 
 # Theme
