@@ -4,3 +4,6 @@
 [submodule "vim/.vim/pack/vim-wayland-clipboard"]
 	path = vim/.vim/pack/vim-wayland-clipboard
 	url = git@github.com:jasonccox/vim-wayland-clipboard.git
+[submodule "dot_emacs.d"]
+	path = dot_emacs.d
+	url = git@github.com:nezia1/emacs-config.git
