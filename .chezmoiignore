@@ -1,7 +1,10 @@
 README.md
 screenshots
 packages
-{{ if (ne .chezmoi.os "linux") }}
+{{ if (toString .chezmoi.os | toString | contains "windows")}}
+  *
+  !dot_gitconfig
+{{ else if (ne .chezmoi.os "linux") }}
   {{   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
     private_dot_gnupg
   {{   end }}
