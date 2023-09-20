@@ -1,0 +1,12 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Anthony Rodriguez
+	email = anthony@nezia.dev
+	signingkey = EE3BE97C040A86CE
+[commit]
+	gpgsign = true
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
