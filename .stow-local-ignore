@@ -1,6 +1,0 @@
-\.git
-\.gitignore
-\.gitmodules
-screenshots
-^/README.*
-^/packages_list.txt

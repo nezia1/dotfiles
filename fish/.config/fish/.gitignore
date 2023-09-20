@@ -1,8 +1,0 @@
-completions/*
-functions/*
-conf.d
-themes
-fish_variables
-
-# fisher needs to be available
-!fisher.fish
