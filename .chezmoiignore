@@ -2,9 +2,8 @@ README.md
 screenshots
 packages
 {{ if eq .chezmoi.os "windows" }}
-  *
-  !dot_gitconfig/
-  !dot_gitconfig/**
+  **
+  !dot_gitconfig
 # else is necessary because windows does not have a .chezmoi.osrelease
   {{ else if not (.chezmoi.kernel.osrelease | lower | contains "wsl2") }} 
     private_dot_gnupg
