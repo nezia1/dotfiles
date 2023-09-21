@@ -1,10 +1,26 @@
 README.md
 screenshots
 packages
+
 {{ if eq .chezmoi.os "windows" }}
-  **
-  !.gitconfig
-# else is necessary because windows does not have a .chezmoi.osrelease
-  {{ else if not (.chezmoi.kernel.osrelease | lower | contains "wsl2") }} 
-    private_dot_gnupg
+**
+!.gitconfig
+
+{{ else if (.chezmoi.kernel.osrelease | lower | contains "wsl2") }} 
+.config/dunst
+.config/gtk-3.0
+.config/hypr
+.config/kitty
+.config/qt5ct
+.config/swaylock
+.config/systemd
+.config/waybar
+.config/wofi
+.config/mimeapps.list
+.emacs.d
+.scripts
+.gtkrc-2.0
+
+{{ else if eq .chezmoi.os "linux" or eq .chezmoi.os "darwin" }}
+.gnupg
 {{ end }}
