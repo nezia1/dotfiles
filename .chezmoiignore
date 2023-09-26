@@ -21,6 +21,6 @@ packages
 .scripts
 .gtkrc-2.0
 
-{{ else if eq .chezmoi.os "linux" or eq .chezmoi.os "darwin" }}
+{{ else if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) }}
 .gnupg
 {{ end }}
