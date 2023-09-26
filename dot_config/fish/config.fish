@@ -1,4 +1,4 @@
-if test -f /proc/sys/fs/binfmt_misc/WSLInterop andtest -f /proc/sys/fs/binfmt_misc/WSLInterop; and status is-interactive 
+if test -f /proc/sys/fs/binfmt_misc/WSLInterop; and status is-interactive 
    keychain --quiet -Q id_ed25519 
 end
 
