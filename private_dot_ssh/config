@@ -1,0 +1,3 @@
+Host gitlab.ictge.ch
+	HostName gitlab.ictge.ch
+	Port 22002
