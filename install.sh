@@ -1,2 +1,2 @@
 #!/bin/sh
-chezmoi apply
+chezmoi apply --force
