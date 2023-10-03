@@ -1,6 +1,7 @@
 README.md
 screenshots
 packages
+dev-container-install.sh
 
 {{ if eq .chezmoi.os "windows" }}
 **
