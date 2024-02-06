@@ -1,13 +1,13 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export SSH_AGENT_PID:4838
-SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dpT9JF828Bnsz/agent\x2e4836
+SETUVAR --export SSH_AGENT_PID:12926
+SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dXXXXXXYhFDr7/agent\x2e12925
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/Catppuccin\x20Frappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Latte\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Macchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Mocha\x2etheme
 SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:\x7e/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_list\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e\x7e/\x2econfig/fish/functions/nvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e\x7e/\x2econfig/fish/completions/nvm\x2efish
 SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
 SETUVAR _fisher_plugins:catppuccin/fish\x1epure\x2dfish/pure\x1epatrickf1/fzf\x2efish\x1ejorgebucaran/nvm\x2efish
-SETUVAR _fisher_pure_2D_fish_2F_pure_files:\x7e/\x2econfig/fish/functions/_pure_check_availability\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_check_for_new_release\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_detect_container_by_cgroup_method\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_detect_container_by_pid_method\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_format_time\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_get_prompt_symbol\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_is_inside_container\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_is_single_line_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_k8s_context\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_k8s_namespace\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_parse_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_parse_git_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_place_iterm2_prompt_mark\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prefix_root_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_print_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_print_prompt_rows\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_beginning\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_command_duration\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_container\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_current_folder\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_ending\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_first_line\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git_dirty\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git_pending_commits\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git_stash\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_jobs\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_k8s\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_new_line\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_ssh\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_symbol\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_system_time\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_vimode\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_virtualenv\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_set_color\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_set_default\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_string_width\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_user_at_host\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_greeting\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_mode_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_title\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/_pure_init\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/pure\x2efish
+SETUVAR _fisher_pure_2D_fish_2F_pure_files:\x7e/\x2econfig/fish/functions/_pure_check_availability\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_check_for_new_release\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_detect_container_by_cgroup_method\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_detect_container_by_pid_method\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_format_time\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_get_prompt_symbol\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_is_inside_container\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_is_single_line_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_k8s_context\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_k8s_namespace\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_parse_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_parse_git_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_place_iterm2_prompt_mark\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prefix_root_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_print_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_print_prompt_rows\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_beginning\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_command_duration\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_container\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_current_folder\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_ending\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_first_line\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git_dirty\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git_pending_commits\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_git_stash\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_jobs\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_k8s\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_new_line\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_nixdevshell\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_ssh\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_symbol\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_system_time\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_vimode\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_prompt_virtualenv\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_set_color\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_set_default\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_string_width\x2efish\x1e\x7e/\x2econfig/fish/functions/_pure_user_at_host\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_greeting\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_mode_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_title\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/_pure_init\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/pure\x2efish
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
@@ -37,7 +37,7 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/nezia/\x2ebun/bin\x1e/home/nezia/bin
+SETUVAR fish_user_paths:/home/nezia/\x2eflutter/bin\x1e/home/nezia/\x2ebun/bin\x1e/home/nezia/bin
 SETUVAR nvm_default_version:lts
 SETUVAR pure_begin_prompt_with_current_directory:true
 SETUVAR pure_check_for_new_release:false
@@ -56,8 +56,11 @@ SETUVAR pure_color_info:cyan
 SETUVAR pure_color_jobs:pure_color_normal
 SETUVAR pure_color_k8s_context:pure_color_success
 SETUVAR pure_color_k8s_namespace:pure_color_primary
+SETUVAR pure_color_k8s_prefix:pure_color_info
 SETUVAR pure_color_light:white
 SETUVAR pure_color_mute:brblack
+SETUVAR pure_color_nixdevshell_prefix:pure_color_info
+SETUVAR pure_color_nixdevshell_symbol:pure_color_mute
 SETUVAR pure_color_normal:normal
 SETUVAR pure_color_prefix_root_prompt:pure_color_danger
 SETUVAR pure_color_primary:blue
@@ -72,6 +75,7 @@ SETUVAR pure_color_warning:yellow
 SETUVAR pure_enable_container_detection:true
 SETUVAR pure_enable_git:true
 SETUVAR pure_enable_k8s:false
+SETUVAR pure_enable_nixdevshell:false
 SETUVAR pure_enable_single_line_prompt:false
 SETUVAR pure_enable_virtualenv:true
 SETUVAR pure_reverse_prompt_symbol_in_vimode:true
@@ -88,6 +92,7 @@ SETUVAR pure_symbol_git_stash:\u2261
 SETUVAR pure_symbol_git_unpulled_commits:\u21e3
 SETUVAR pure_symbol_git_unpushed_commits:\u21e1
 SETUVAR pure_symbol_k8s_prefix:\u2638
+SETUVAR pure_symbol_nixdevshell_prefix:\u2744\ufe0f
 SETUVAR pure_symbol_prefix_root_prompt:\x23
 SETUVAR pure_symbol_prompt:\u276f
 SETUVAR pure_symbol_reverse_prompt:\u276e
@@ -95,3 +100,5 @@ SETUVAR pure_symbol_ssh_prefix:
 SETUVAR pure_symbol_title_bar_separator:\x2d
 SETUVAR pure_symbol_virtualenv_prefix:
 SETUVAR pure_threshold_command_duration:5
+SETUVAR pure_truncate_prompt_current_directory_keeps:\x2d1
+SETUVAR pure_truncate_window_title_current_directory_keeps:\x2d1
