@@ -6,8 +6,9 @@
     - [Prerequisites](#prerequisites)
     - [Fedora (desktop)](#fedora-desktop)
     - [Arch (window manager)](#arch-window-manager)
-  - [Theme](#theme)
-  - [Shell](#shell)
+  - [Common software](#common-software)
+    - [Theme](#theme)
+    - [Shell](#shell)
   - [Window Manager configuration](#window-manager-configuration)
     - [Software used](#software-used)
     - [Services and timers](#services-and-timers)
@@ -36,14 +37,16 @@ Since I use 1password as my password manager, I also use it to fetch my GPG key 
 
 `FLAVOR=wm chezmoi init --apply https://github.com/nezia1/dotfiles`
 
-## Theme
+## Common software
+
+### Theme
 
 I use [catppuccin](https://github.com/catppuccin/catppuccin) as my theme
 (the mocha variant). I love the soothing pastel colors. The GTK theme
 and the Qt5 theme are also configured to be used with supported
 applications.
 
-## Shell
+### Shell
 
 I use [fish](https://github.com/fish-shell/fish-shell) as my interactive shell, but I still keep [bash](https://www.gnu.org/software/bash/) as my non-interactive shell for compatibility purposes, as some pieces of software that I use require the user to have a POSIX compliant shell. This is why I have a bash module, where I setup everything that I want to have non-interactively and interactively and if running interactively, have it start a fish session.
 
