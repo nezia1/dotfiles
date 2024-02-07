@@ -15,3 +15,8 @@ sudo dnf check-update
 sudo dnf install $(cat fedora_packages) -y
 {{ end }}
 {{ end }}
+
+{{ if (and (eq .flavor "wm") (eq .chezmoi.osRelease.id "arch")) }}
+# TODO add arch packages (1password for GPG, vscode for chezmoi edit)
+sudo pacman -Sy - < arch_packages
+{{ end }}
