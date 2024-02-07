@@ -1,5 +1,12 @@
 # My dotfiles
 
+These are my personal dotfiles for configuring my workstations. I use
+[chezmoi](https://www.gnu.org/software/stow/) to manage them, as it just makes managing it all way more convenient, and allows me to setup everything in one command.
+
+I use different flavors for my configuration, as I prefer having a window manager on my laptop, and a desktop environment on my desktop. Therefore, the programs installed as well as the configuration files are different for each of them. Currently, it works using the operating system name but I'm currently working on changing it as you might want to use a window manager on Fedora for instance. The different configurations are going to be detailed below.
+
+This configuration uses git submodules in order to integrate my Emacs config from  a separate repository, so make sure to initialize them before trying to install it (installation instructions below).
+
 - [My dotfiles](#my-dotfiles)
   - [Installing](#installing)
   - [Theme](#theme)
@@ -7,13 +14,6 @@
   - [Window Manager configuration](#window-manager-configuration)
     - [Software used](#software-used)
     - [Services and timers](#services-and-timers)
-
-These are my personal dotfiles for configuring my workstations. I use
-[chezmoi](https://www.gnu.org/software/stow/) to manage them, as it just makes managing it all way more convenient, and allows me to setup everything in one command.
-
-I use different flavors for my configuration, as I prefer having a window manager on my laptop, and a desktop environment on my desktop. Therefore, the programs installed as well as the configuration files are different for each of them. Currently, it works using the operating system name but I'm currently working on changing it as you might want to use a window manager on Fedora for instance. The different configurations are going to be detailed below.
-
-This configuration uses git submodules in order to integrate my Emacs config from  a separate repository, so make sure to initialize them before trying to install it (installation instructions below).
 
 ## Installing
 
