@@ -3,6 +3,7 @@
 
 - [My dotfiles](#my-dotfiles)
   - [Installing](#installing)
+    - [Prerequisites](#prerequisites)
     - [Fedora (desktop)](#fedora-desktop)
     - [Arch (window manager)](#arch-window-manager)
   - [Theme](#theme)
@@ -15,7 +16,15 @@ I use different flavors for my configuration, as I prefer having a window manage
 
 This configuration uses git submodules in order to integrate my Emacs config from  a separate repository, so make sure to initialize them before trying to install it (installation instructions below).
 
+Since I use 1password as my password manager, I also use it to fetch my GPG key and import it automatically, which is why it's a dependency for my configuration. It expects a document called `gpg key`in the `Personal` vault.
+
 ## Installing
+
+### Prerequisites
+
+- [git](https://git-scm.com)
+- [chezmoi](https://chezmoi.io)
+- [1Password](https://1password.com) and the [1Password CLI](https://developer.1password.com/docs/cli) (these dependencies will eventually become completely optional if you are not using it)
 
 **As of today, only Fedora is supported (with the desktop flavor) and Arch Linux (with the window manager flavor). The installation process for both of them is similar:**
 
