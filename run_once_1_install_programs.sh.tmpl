@@ -12,7 +12,7 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 
 # install packages
 sudo dnf check-update
-sudo dnf install $(cat fedora_packages) -y
+sudo dnf install $(cat {{ .chezmoi.sourceDir -}}/fedora_packages) -y
 {{ end }}
 {{ end }}
 
