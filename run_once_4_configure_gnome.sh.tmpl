@@ -1,0 +1,193 @@
+{{- if and (eq .chezmoi.os "linux") -}}
+#!/bin/sh
+
+dconf load /org/gnome/ <<EOF
+
+[Weather]
+locations=[<(uint32 2, <('Geneva', 'LSGG', true, [(0.80721477904737737, 0.10704685497122136)], [(0.80634211442138026, 0.10762864302408116)])>)>]
+window-height=512
+window-maximized=false
+window-width=948
+
+[control-center]
+last-panel='display'
+window-state=(948, 512, false)
+
+[desktop/app-folders]
+folder-children=['Utilities', 'YaST', 'Pardus']
+
+[desktop/app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[desktop/app-folders/folders/Utilities]
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[desktop/input-sources]
+current=uint32 0
+mru-sources=[('xkb', 'us')]
+sources=[('xkb', 'ch+fr')]
+xkb-options=@as []
+
+[desktop/interface]
+color-scheme='prefer-dark'
+enable-hot-corners=false
+font-antialiasing='rgba'
+font-hinting='full'
+gtk-enable-primary-paste=false
+
+[desktop/notifications]
+application-children=['org-gnome-software', 'org-freedesktop-problems-applet', 'firefox', 'gnome-power-panel', 'com-google-androidstudio', 'com-discordapp-discord']
+
+[desktop/notifications/application/com-discordapp-discord]
+application-id='com.discordapp.Discord.desktop'
+
+[desktop/notifications/application/com-google-androidstudio]
+application-id='com.google.AndroidStudio.desktop'
+
+[desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[desktop/notifications/application/org-freedesktop-problems-applet]
+application-id='org.freedesktop.problems.applet.desktop'
+
+[desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[desktop/peripherals/keyboard]
+numlock-state=true
+
+[desktop/privacy]
+report-technical-problems=true
+
+[desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+
+[evolution-data-server]
+migrated=true
+
+[mutter]
+edge-tiling=false
+
+[nautilus/preferences]
+default-folder-viewer='icon-view'
+migrated-gtk-settings=true
+search-filter-time-type='last_modified'
+
+[nautilus/window-state]
+initial-size=(948, 1064)
+
+[settings-daemon/plugins/color]
+night-light-enabled=false
+night-light-last-coordinates=(46.23232745083984, 6.1516000000000002)
+
+[shell]
+enabled-extensions=['background-logo@fedorahosted.org', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'pop-shell@system76.com']
+favorite-apps=['firefox.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'code.desktop', 'org.gnome.Terminal.desktop']
+welcome-dialog-last-shown-version='45.0'
+
+[shell/extensions/pop-shell]
+active-hint=false
+active-hint-border-radius=uint32 5
+mouse-cursor-focus-location=uint32 2
+smart-gaps=true
+stacking-with-mouse=false
+tile-by-default=true
+
+[shell/extensions/user-theme]
+name='Catppuccin-Frappe-BL-GS'
+
+[shell/weather]
+automatic-location=true
+locations=[<(uint32 2, <('Geneva', 'LSGG', true, [(0.80721477904737737, 0.10704685497122136)], [(0.80634211442138026, 0.10762864302408116)])>)>]
+
+[shell/world-clocks]
+locations=@av []
+
+[software]
+check-timestamp=int64 1707298748
+first-run=false
+flatpak-purge-timestamp=int64 1707307092
+install-timestamp=int64 1707299335
+packagekit-historical-updates-timestamp=uint64 1707299335
+update-notification-timestamp=int64 1707299578
+
+[system/location]
+enabled=true
+
+[terminal/legacy/profiles:]
+default='71a9971e-e829-43a9-9b2f-4565c855d664'
+list=['de8a9081-8352-4ce4-9519-5de655ad9361', '71a9971e-e829-43a9-9b2f-4565c855d664', '5083e06b-024e-46be-9cd2-892b814f1fc8', '95894cfd-82f7-430d-af6e-84d168bc34f5']
+
+[terminal/legacy/profiles:/:5083e06b-024e-46be-9cd2-892b814f1fc8]
+background-color='#24273a'
+cursor-background-color='#f4dbd6'
+cursor-colors-set=true
+cursor-foreground-color='#24273a'
+foreground-color='#cad3f5'
+highlight-background-color='#24273a'
+highlight-colors-set=true
+highlight-foreground-color='#5b6078'
+palette=['#494d64', '#ed8796', '#a6da95', '#eed49f', '#8aadf4', '#f5bde6', '#8bd5ca', '#b8c0e0', '#5b6078', '#ed8796', '#a6da95', '#eed49f', '#8aadf4', '#f5bde6', '#8bd5ca', '#a5adcb']
+use-theme-colors=false
+visible-name='Catppuccin Macchiato'
+
+[terminal/legacy/profiles:/:71a9971e-e829-43a9-9b2f-4565c855d664]
+background-color='#303446'
+cursor-background-color='#f2d5cf'
+cursor-colors-set=true
+cursor-foreground-color='#303446'
+foreground-color='#c6d0f5'
+highlight-background-color='#303446'
+highlight-colors-set=true
+highlight-foreground-color='#626880'
+palette=['#51576d', '#e78284', '#a6d189', '#e5c890', '#8caaee', '#f4b8e4', '#81c8be', '#b5bfe2', '#626880', '#e78284', '#a6d189', '#e5c890', '#8caaee', '#f4b8e4', '#81c8be', '#a5adce']
+use-system-font=false
+use-theme-colors=false
+visible-name='Catppuccin Frappe'
+
+[terminal/legacy/profiles:/:95894cfd-82f7-430d-af6e-84d168bc34f5]
+background-color='#1e1e2e'
+cursor-background-color='#f5e0dc'
+cursor-colors-set=true
+cursor-foreground-color='#1e1e2e'
+foreground-color='#cdd6f4'
+highlight-background-color='#1e1e2e'
+highlight-colors-set=true
+highlight-foreground-color='#585b70'
+palette=['#45475a', '#f38ba8', '#a6e3a1', '#f9e2af', '#89b4fa', '#f5c2e7', '#94e2d5', '#bac2de', '#585b70', '#f38ba8', '#a6e3a1', '#f9e2af', '#89b4fa', '#f5c2e7', '#94e2d5', '#a6adc8']
+use-theme-colors=false
+visible-name='Catppuccin Mocha'
+
+[terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+use-theme-colors=true
+
+[terminal/legacy/profiles:/:de8a9081-8352-4ce4-9519-5de655ad9361]
+background-color='#eff1f5'
+cursor-background-color='#dc8a78'
+cursor-colors-set=true
+cursor-foreground-color='#eff1f5'
+foreground-color='#4c4f69'
+highlight-background-color='#eff1f5'
+highlight-colors-set=true
+highlight-foreground-color='#acb0be'
+palette=['#5c5f77', '#d20f39', '#40a02b', '#df8e1d', '#1e66f5', '#ea76cb', '#179299', '#acb0be', '#6c6f85', '#d20f39', '#40a02b', '#df8e1d', '#1e66f5', '#ea76cb', '#179299', '#bcc0cc']
+use-theme-colors=false
+visible-name='Catppuccin Latte'
+
+[tweaks]
+show-extensions-notice=false
+EOF
+{{ end }}
