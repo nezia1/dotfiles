@@ -21,7 +21,7 @@ You do require chezmoi installed on your system (you can find the installation i
 -   Get into your new chezmoi directory with `chezmoi cd`
 -   Initialize submodules with `git submodule update --init`
 -   If you\'re using Arch Linux, install the packages with
-    `sudo pacman < packages` or using your favorite AUR helper
+    `sudo pacman < arch_packages` or using your favorite AUR helper
 -   `fisher update` to install fish plugins
 
 # Theme
