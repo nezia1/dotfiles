@@ -3,6 +3,8 @@
 
 - [My dotfiles](#my-dotfiles)
   - [Installing](#installing)
+    - [Fedora (desktop)](#fedora-desktop)
+    - [Arch (window manager)](#arch-window-manager)
   - [Theme](#theme)
   - [Shell](#shell)
   - [Window Manager configuration](#window-manager-configuration)
@@ -15,8 +17,15 @@ This configuration uses git submodules in order to integrate my Emacs config fro
 
 ## Installing
 
-The configuration can be installed using a single command:
-`chezmoi init --apply https://github.com/nezia1/dotfiles`
+**As of today, only Fedora is supported (with the desktop flavor) and Arch Linux (with the window manager flavor). The installation process for both of them is similar:**
+
+### Fedora (desktop)
+
+`FLAVOR=desktop chezmoi init --apply https://github.com/nezia1/dotfiles`
+
+### Arch (window manager)
+
+`FLAVOR=wm chezmoi init --apply https://github.com/nezia1/dotfiles`
 
 ## Theme
 
