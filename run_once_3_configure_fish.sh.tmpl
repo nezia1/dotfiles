@@ -1,0 +1,4 @@
+#!/bin/sh
+{{ if and (eq .chezmoi.os "linux") (not .is_wsl) -}}
+fish -c "fisher update"
+{{ end }}

@@ -2,3 +2,6 @@
 	command = "nvim"
 [data]
 	is_wsl = {{ (.chezmoi.kernel.osrelease | regexMatch "-microsoft-standard$") }}
+[git]
+	autoCommit = true
+	autoPush = true
