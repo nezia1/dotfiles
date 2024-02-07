@@ -7,7 +7,6 @@ I use different flavors for my configuration, as I prefer having a window manage
 
 This configuration uses git submodules in order to integrate my Emacs config from  a separate repository, so make sure to initialize them before trying to install it (installation instructions below).
 
-![](./screenshots/desktop.png) ![](./screenshots/desktop-terminals.png)
 
 ## Installing
 
@@ -26,6 +25,10 @@ applications.
 I use [fish](https://github.com/fish-shell/fish-shell) as my interactive shell, but I still keep [bash](https://www.gnu.org/software/bash/) as my non-interactive shell for compatibility purposes, as some pieces of software that I use require the user to have a POSIX compliant shell. This is why I have a bash module, where I setup everything that I want to have non-interactively and interactively and if running interactively, have it start a fish session.
 
 ## Window Manager configuration
+
+This is my laptop configuration. I like using window managers as it optimizes my screen space, and the keybindings are extremely convenient when using a trackpad compared to using a mouse.
+
+![](./screenshots/desktop.png) ![](./screenshots/desktop-terminals.png)
 
 ### Software used
 
