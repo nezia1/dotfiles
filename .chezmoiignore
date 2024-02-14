@@ -1,6 +1,7 @@
 README.md
 screenshots
 *_packages
+flatpaks
 .gnupg
 
 dev-container-install.sh
