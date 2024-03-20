@@ -9,8 +9,13 @@ window-height=512
 window-maximized=false
 window-width=948
 
+[calendar]
+active-view='month'
+window-maximized=true
+window-size=(768, 600)
+
 [control-center]
-last-panel='display'
+last-panel='keyboard'
 window-state=(948, 512, false)
 
 [desktop/app-folders]
@@ -45,15 +50,23 @@ font-antialiasing='rgba'
 font-hinting='full'
 gtk-enable-primary-paste=false
 gtk-theme='Catppuccin-Frappe-Standard-Lavender-Dark'
+monospace-font-name='Operator Mono Semi-Light Italic 12'
+toolkit-accessibility=false
 
 [desktop/notifications]
-application-children=['org-gnome-software', 'org-freedesktop-problems-applet', 'firefox', 'gnome-power-panel', 'com-google-androidstudio', 'com-discordapp-discord']
+application-children=['org-gnome-software', 'org-freedesktop-problems-applet', 'firefox', 'gnome-power-panel', 'com-google-androidstudio', 'com-discordapp-discord', 'org-gnome-terminal', 'com-spotify-client', 'code']
+
+[desktop/notifications/application/code]
+application-id='code.desktop'
 
 [desktop/notifications/application/com-discordapp-discord]
 application-id='com.discordapp.Discord.desktop'
 
 [desktop/notifications/application/com-google-androidstudio]
 application-id='com.google.AndroidStudio.desktop'
+
+[desktop/notifications/application/com-spotify-client]
+application-id='com.spotify.Client.desktop'
 
 [desktop/notifications/application/firefox]
 application-id='firefox.desktop'
@@ -67,8 +80,11 @@ application-id='org.freedesktop.problems.applet.desktop'
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
 
+[desktop/notifications/application/org-gnome-terminal]
+application-id='org.gnome.Terminal.desktop'
+
 [desktop/peripherals/keyboard]
-numlock-state=true
+numlock-state=false
 
 [desktop/privacy]
 report-technical-problems=true
@@ -79,8 +95,13 @@ button-layout='appmenu:minimize,maximize,close'
 [evolution-data-server]
 migrated=true
 
+[login-screen]
+enable-fingerprint-authentication=true
+enable-password-authentication=true
+enable-smartcard-authentication=false
+
 [mutter]
-edge-tiling=false
+edge-tiling=true
 
 [nautilus/preferences]
 default-folder-viewer='icon-view'
@@ -89,14 +110,29 @@ search-filter-time-type='last_modified'
 
 [nautilus/window-state]
 initial-size=(948, 1064)
+maximized=true
+
+[nm-applet/eap/8bf38f10-ab40-3c58-b101-06d1db448719]
+ignore-ca-cert=false
+ignore-phase2-ca-cert=false
+
+[portal/filechooser/com.github.Eloston.UngoogledChromium]
+last-folder-path='/home/nezia/Downloads'
+
+[portal/filechooser/google-chrome-unstable]
+last-folder-path='/home/nezia/Downloads/nuphy-gem80-via.json'
+
+[portal/filechooser/im.riot.Riot]
+last-folder-path='/home/nezia/Documents/packaging/uni-sync'
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(46.23232745083984, 6.1516000000000002)
+night-light-last-coordinates=(46.137508751540878, 6.0872999999999999)
 
 [shell]
+app-picker-layout=[{'org.fedoraproject.MediaWriter.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'libreoffice-calc.desktop': <{'position': <5>}>, 'libreoffice-impress.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.Calculator.desktop': <{'position': <8>}>, 'libreoffice-writer.desktop': <{'position': <9>}>, 'simple-scan.desktop': <{'position': <10>}>, 'org.gnome.Settings.desktop': <{'position': <11>}>, 'gnome-system-monitor.desktop': <{'position': <12>}>, 'org.gnome.Boxes.desktop': <{'position': <13>}>, 'org.gnome.Terminal.desktop': <{'position': <14>}>, 'Utilities': <{'position': <15>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <16>}>, 'yelp.desktop': <{'position': <17>}>, 'org.gnome.TextEditor.desktop': <{'position': <18>}>, 'org.gnome.Cheese.desktop': <{'position': <19>}>, 'org.gnome.Tour.desktop': <{'position': <20>}>}]
 enabled-extensions=['background-logo@fedorahosted.org', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'pop-shell@system76.com']
-favorite-apps=['firefox.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'code.desktop', 'org.gnome.Terminal.desktop']
+favorite-apps=['firefox.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'code.desktop', 'org.gnome.Terminal.desktop', 'com.discordapp.Discord.desktop']
 welcome-dialog-last-shown-version='45.0'
 
 [shell/extensions/pop-shell]
@@ -108,7 +144,10 @@ stacking-with-mouse=false
 tile-by-default=true
 
 [shell/extensions/user-theme]
-name='Catppuccin-Frappe-BL-GS'
+name='Catppuccin-Frappe-Standard-Lavender-Dark'
+
+[shell/keybindings]
+show-screenshot-ui=['<Shift><Super>s']
 
 [shell/weather]
 automatic-location=true
@@ -118,12 +157,12 @@ locations=[<(uint32 2, <('Geneva', 'LSGG', true, [(0.80721477904737737, 0.107046
 locations=@av []
 
 [software]
-check-timestamp=int64 1707298748
+check-timestamp=int64 1710931379
 first-run=false
-flatpak-purge-timestamp=int64 1707307092
-install-timestamp=int64 1707299335
-packagekit-historical-updates-timestamp=uint64 1707299335
-update-notification-timestamp=int64 1707299578
+flatpak-purge-timestamp=int64 1710948973
+install-timestamp=int64 1710676988
+packagekit-historical-updates-timestamp=uint64 1710676988
+update-notification-timestamp=int64 1710677060
 
 [system/location]
 enabled=true
@@ -150,6 +189,7 @@ background-color='#303446'
 cursor-background-color='#f2d5cf'
 cursor-colors-set=true
 cursor-foreground-color='#303446'
+font='Monospace 12'
 foreground-color='#c6d0f5'
 highlight-background-color='#303446'
 highlight-colors-set=true
@@ -190,5 +230,4 @@ visible-name='Catppuccin Latte'
 
 [tweaks]
 show-extensions-notice=false
-EOF
-{{ end }}
+
