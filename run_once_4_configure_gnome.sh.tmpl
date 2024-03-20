@@ -3,40 +3,6 @@
 
 dconf load /org/gnome/ <<EOF
 
-[Weather]
-locations=[<(uint32 2, <('Geneva', 'LSGG', true, [(0.80721477904737737, 0.10704685497122136)], [(0.80634211442138026, 0.10762864302408116)])>)>]
-window-height=512
-window-maximized=false
-window-width=948
-
-[calendar]
-active-view='month'
-window-maximized=true
-window-size=(768, 600)
-
-[control-center]
-last-panel='keyboard'
-window-state=(948, 512, false)
-
-[desktop/app-folders]
-folder-children=['Utilities', 'YaST', 'Pardus']
-
-[desktop/app-folders/folders/Pardus]
-categories=['X-Pardus-Apps']
-name='X-Pardus-Apps.directory'
-translate=true
-
-[desktop/app-folders/folders/Utilities]
-apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
-categories=['X-GNOME-Utilities']
-name='X-GNOME-Utilities.directory'
-translate=true
-
-[desktop/app-folders/folders/YaST]
-categories=['X-SuSE-YaST']
-name='suse-yast.directory'
-translate=true
-
 [desktop/input-sources]
 current=uint32 0
 mru-sources=[('xkb', 'us'), ('xkb', 'ch+fr')]
@@ -53,95 +19,14 @@ gtk-theme='Catppuccin-Frappe-Standard-Lavender-Dark'
 monospace-font-name='Operator Mono Semi-Light Italic 12'
 toolkit-accessibility=false
 
-[desktop/notifications]
-application-children=['org-gnome-software', 'org-freedesktop-problems-applet', 'firefox', 'gnome-power-panel', 'com-google-androidstudio', 'com-discordapp-discord', 'org-gnome-terminal', 'com-spotify-client', 'code']
-
-[desktop/notifications/application/code]
-application-id='code.desktop'
-
-[desktop/notifications/application/com-discordapp-discord]
-application-id='com.discordapp.Discord.desktop'
-
-[desktop/notifications/application/com-google-androidstudio]
-application-id='com.google.AndroidStudio.desktop'
-
-[desktop/notifications/application/com-spotify-client]
-application-id='com.spotify.Client.desktop'
-
-[desktop/notifications/application/firefox]
-application-id='firefox.desktop'
-
-[desktop/notifications/application/gnome-power-panel]
-application-id='gnome-power-panel.desktop'
-
-[desktop/notifications/application/org-freedesktop-problems-applet]
-application-id='org.freedesktop.problems.applet.desktop'
-
-[desktop/notifications/application/org-gnome-software]
-application-id='org.gnome.Software.desktop'
-
-[desktop/notifications/application/org-gnome-terminal]
-application-id='org.gnome.Terminal.desktop'
-
 [desktop/peripherals/keyboard]
-numlock-state=false
-
-[desktop/privacy]
-report-technical-problems=true
+numlock-state=true
 
 [desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
 
-[evolution-data-server]
-migrated=true
-
-[login-screen]
-enable-fingerprint-authentication=true
-enable-password-authentication=true
-enable-smartcard-authentication=false
-
 [mutter]
 edge-tiling=true
-
-[nautilus/preferences]
-default-folder-viewer='icon-view'
-migrated-gtk-settings=true
-search-filter-time-type='last_modified'
-
-[nautilus/window-state]
-initial-size=(948, 1064)
-maximized=true
-
-[nm-applet/eap/8bf38f10-ab40-3c58-b101-06d1db448719]
-ignore-ca-cert=false
-ignore-phase2-ca-cert=false
-
-[portal/filechooser/com.github.Eloston.UngoogledChromium]
-last-folder-path='/home/nezia/Downloads'
-
-[portal/filechooser/google-chrome-unstable]
-last-folder-path='/home/nezia/Downloads/nuphy-gem80-via.json'
-
-[portal/filechooser/im.riot.Riot]
-last-folder-path='/home/nezia/Documents/packaging/uni-sync'
-
-[settings-daemon/plugins/color]
-night-light-enabled=false
-night-light-last-coordinates=(46.137508751540878, 6.0872999999999999)
-
-[shell]
-app-picker-layout=[{'org.fedoraproject.MediaWriter.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'libreoffice-calc.desktop': <{'position': <5>}>, 'libreoffice-impress.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.Calculator.desktop': <{'position': <8>}>, 'libreoffice-writer.desktop': <{'position': <9>}>, 'simple-scan.desktop': <{'position': <10>}>, 'org.gnome.Settings.desktop': <{'position': <11>}>, 'gnome-system-monitor.desktop': <{'position': <12>}>, 'org.gnome.Boxes.desktop': <{'position': <13>}>, 'org.gnome.Terminal.desktop': <{'position': <14>}>, 'Utilities': <{'position': <15>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <16>}>, 'yelp.desktop': <{'position': <17>}>, 'org.gnome.TextEditor.desktop': <{'position': <18>}>, 'org.gnome.Cheese.desktop': <{'position': <19>}>, 'org.gnome.Tour.desktop': <{'position': <20>}>}]
-enabled-extensions=['background-logo@fedorahosted.org', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'pop-shell@system76.com']
-favorite-apps=['firefox.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'code.desktop', 'org.gnome.Terminal.desktop', 'com.discordapp.Discord.desktop']
-welcome-dialog-last-shown-version='45.0'
-
-[shell/extensions/pop-shell]
-active-hint=false
-active-hint-border-radius=uint32 5
-mouse-cursor-focus-location=uint32 2
-smart-gaps=true
-stacking-with-mouse=false
-tile-by-default=true
 
 [shell/extensions/user-theme]
 name='Catppuccin-Frappe-Standard-Lavender-Dark'
@@ -151,10 +36,9 @@ show-screenshot-ui=['<Shift><Super>s']
 
 [shell/weather]
 automatic-location=true
-locations=[<(uint32 2, <('Geneva', 'LSGG', true, [(0.80721477904737737, 0.10704685497122136)], [(0.80634211442138026, 0.10762864302408116)])>)>]
 
-[shell/world-clocks]
-locations=@av []
+[system/location]
+enabled=true
 
 [software]
 check-timestamp=int64 1710931379
@@ -163,9 +47,6 @@ flatpak-purge-timestamp=int64 1710948973
 install-timestamp=int64 1710676988
 packagekit-historical-updates-timestamp=uint64 1710676988
 update-notification-timestamp=int64 1710677060
-
-[system/location]
-enabled=true
 
 [terminal/legacy/profiles:]
 default='71a9971e-e829-43a9-9b2f-4565c855d664'
