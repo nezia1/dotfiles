@@ -3,5 +3,10 @@
     "workbench.iconTheme": "catppuccin-frappe",
     "editor.fontSize": 16,
     "editor.fontFamily": "monospace, Fira Code",
-    "terminal.integrated.fontSize": 16
+    "terminal.integrated.fontSize": 16,
+    "editor.minimap.enabled": false,
+    "sync.gist": "6d8559a01164b003d08f3c0bbc6cc664",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    }
 }

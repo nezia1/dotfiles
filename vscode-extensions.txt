@@ -1,0 +1,14 @@
+aaron-bond.better-comments
+asvetliakov.vscode-neovim
+biomejs.biome
+catppuccin.catppuccin-vsc
+catppuccin.catppuccin-vsc-icons
+codeium.codeium
+dart-code.dart-code
+dart-code.flutter
+editorconfig.editorconfig
+icrawl.discord-vscode
+ms-python.debugpy
+ms-python.python
+naumovs.color-highlight
+oven.bun-vscode
