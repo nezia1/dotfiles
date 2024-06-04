@@ -29,5 +29,7 @@ dev-container-install.sh
 !/.gitconfig
 !.gnupg
 {{ end }}
+
+# vscode configuration
 settings.json
-extensions.json
+vscode-extensions.txt
