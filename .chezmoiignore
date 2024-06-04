@@ -30,3 +30,4 @@ dev-container-install.sh
 !.gnupg
 {{ end }}
 settings.json
+extensions.json
