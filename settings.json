@@ -8,5 +8,11 @@
     "sync.gist": "6d8559a01164b003d08f3c0bbc6cc664",
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
+    },
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "editor.formatOnSave": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
     }
 }
