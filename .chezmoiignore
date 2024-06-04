@@ -29,3 +29,4 @@ dev-container-install.sh
 !/.gitconfig
 !.gnupg
 {{ end }}
+settings.json
