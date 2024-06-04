@@ -1,8 +1,7 @@
 {
-    "sync.gist": "6d8559a01164b003d08f3c0bbc6cc664",
     "workbench.colorTheme": "Catppuccin Frappé",
     "workbench.iconTheme": "catppuccin-frappe",
     "editor.fontSize": 16,
     "editor.fontFamily": "monospace, Fira Code",
-    "terminal.integrated.fontSize": 15
+    "terminal.integrated.fontSize": 16
 }
