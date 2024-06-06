@@ -2,7 +2,7 @@
     "workbench.colorTheme": "Catppuccin Frappé",
     "workbench.iconTheme": "catppuccin-frappe",
     "editor.fontSize": 16,
-    "editor.fontFamily": "JetBrainsMono NFM, monospace, Fira Code",
+    "editor.fontFamily": "monospace, Fira Code",
     "terminal.integrated.fontSize": 16,
     "editor.minimap.enabled": false,
     "extensions.experimental.affinity": {
