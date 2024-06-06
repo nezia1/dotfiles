@@ -17,5 +17,7 @@
     "redhat.telemetry.enabled": true,
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one"
-    }
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
 }
