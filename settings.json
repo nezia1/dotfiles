@@ -22,4 +22,6 @@
     "files.trimFinalNewlines": true,
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
     "editor.wordWrap": "wordWrapColumn",
+    "ltex.additionalRules.motherTongue": "fr",
+    "ltex.language": "fr",
 }
