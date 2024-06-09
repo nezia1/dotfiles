@@ -24,4 +24,5 @@
     "editor.wordWrap": "wordWrapColumn",
     "ltex.additionalRules.motherTongue": "fr",
     "ltex.language": "fr",
+    "git.suggestSmartCommit": false,
 }
