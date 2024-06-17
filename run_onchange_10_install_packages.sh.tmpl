@@ -1,21 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 {{ if eq .flavor "desktop" }}
 {{ if eq .chezmoi.osRelease.id "fedora" }}
-
 # add codium
 sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
 printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/yum.repos.d/vscodium.repo
 
-# add starship copr
-sudo dnf copr enable atim/starship -y
-
-# install packages
-sudo dnf check-update
-sudo dnf install $(cat {{ .chezmoi.sourceDir -}}/fedora_packages) -y
+sudo dnf install -y {{ .packages.linux.fedora | join " " -}}
 {{ end }}
-{{ end }}
-
-{{ if (and (eq .flavor "wm") (eq .chezmoi.osRelease.id "arch")) }}
-# TODO add arch packages (1password for GPG, vscode for chezmoi edit)
-sudo pacman -Sy - < arch_packages
 {{ end }}

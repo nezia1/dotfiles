@@ -1,6 +1,0 @@
-#!/bin/sh
-# allow gtk themes to work with flatpaks
-sudo flatpak override --filesystem=$HOME/.themes
-sudo flatpak override --filesystem=$HOME/.icons
-
-xargs -a {{ .chezmoi.sourceDir -}}/flatpaks flatpak install
