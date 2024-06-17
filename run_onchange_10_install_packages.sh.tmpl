@@ -7,4 +7,9 @@ printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbase
 
 sudo dnf install -y {{ .packages.linux.fedora | join " " -}}
 {{ end }}
+{{ else }}
+{{ if eq.chezmoi.osRelease.id "arch" }}
+sudo pacman -Syu {{ .packages.linux.arch | join " " -}}
 {{ end }}
+{{ end }}
+
