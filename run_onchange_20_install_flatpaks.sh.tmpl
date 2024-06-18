@@ -1,2 +1,2 @@
 #!/bin/bash
-flatpak install -y --user {{ .packages.linux.flatpaks | join " " -}} 
+flatpak install -y {{ .packages.linux.flatpaks | join " " -}} 
