@@ -2,7 +2,6 @@ vscode:
   extensions:
     - 42crunch.vscode-openapi
     - aaron-bond.better-comments
-    - alexisvt.flutter-snippets
     - asvetliakov.vscode-neovim
     - biomejs.biome
     - catppuccin.catppuccin-vsc
@@ -15,10 +14,8 @@ vscode:
     - editorconfig.editorconfig
     - icrawl.discord-vscode
     - jebbs.plantuml
-    - jirkavrba.subway-surfers
     - naumovs.color-highlight
     - oven.bun-vscode
-    - pdconsec.vscode-print
     - prisma.prisma
     - redhat.vscode-yaml
     - rust-lang.rust-analyzer
