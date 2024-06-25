@@ -19,7 +19,6 @@ dev-container-install.sh
 .config/waybar
 .config/wofi
 .config/mimeapps.list
-.emacs.d
 .scripts
 .gtkrc-2.0
 {{ end }}
