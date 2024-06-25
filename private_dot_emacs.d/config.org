@@ -1,0 +1,270 @@
+#+auto_tangle:
+
+* Emacs config
+
+** Packages initialization
+
+Here, we're initializing MELPA, as well as package.el and use-package.
+
+#+begin_src emacs-lisp
+    (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+  ;; and `package-pinned-packages`. Most users will not need or want to do this.
+  ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+
+  (require 'use-package)
+  (setq use-package-always-ensure t)
+  #+end_src
+
+** General config
+*** Minimal interface
+
+We disable a lot of interface elements, to make the editor more minimal looking.
+
+#+begin_src emacs-lisp
+  (setq inhibit-startup-message t)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (set-fringe-mode 10)
+  (menu-bar-mode -1)
+#+end_src
+
+*** Match fish shell's path
+#+begin_src emacs-lisp
+    (defun set-exec-path-from-shell-PATH ()
+    "Set up Emacs' `exec-path' and PATH environment variable to match
+  that used by the user's shell.
+
+  This is particularly useful under Mac OS X and macOS, where GUI
+  apps are not started from a shell."
+    (interactive)
+    (let ((path-from-shell (replace-regexp-in-string
+			    "[ \t\n]*$" "" (shell-command-to-string
+					    "/usr/bin/fish --login -c 'string join : $PATH'"
+						      ))))
+      (setenv "PATH" path-from-shell)
+      (setq exec-path (split-string path-from-shell path-separator))))
+
+  (set-exec-path-from-shell-PATH)
+
+#+end_src
+*** Bell
+
+I don't like any visual or sound bell.
+
+#+begin_src emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+end_src
+*** Font
+
+I use the default monospace font, as it allows me to configure it system wide and have everything coherent. We just make it bigger here for readability.
+
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil :height 125)
+#+end_src
+
+*** Visual mode
+
+We turn on visual mode, so that lines can wrap nicely and do go beyond my Emacs buffer size.
+
+#+begin_src emacs-lisp
+  (visual-line-mode t)
+#+end_src
+
+*** Theme
+I use catppuccin as my theme, as I find it comfortable to work with (the Frappe flavor).
+
+#+begin_src emacs-lisp
+  (use-package catppuccin-theme
+    :init
+    (setq catppuccin-flavor 'frappe)
+    :config
+    (load-theme 'catppuccin :no-confirm))
+#+end_src
+
+*** Modeline
+
+I use doom-modeline as my modeline, as I find it really clean and minimal.
+
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-height 30)
+  (setq nerd-icons-font-family "monospace"))
+#+end_src
+
+*** Completion
+
+I use vertico as my completion framework. It's minimal, fast and tells me all I need to know and even sorts by history.
+
+#+begin_src emacs-lisp
+  (use-package vertico
+    :init
+    (vertico-mode)
+
+    ;; Different scroll margin
+    ;; (setq vertico-scroll-margin 0)
+
+    ;; Show more candidates
+    ;; (setq vertico-count 20)
+
+    ;; Grow and shrink the Vertico minibuffer
+    (setq vertico-resize t)
+
+    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+    (setq vertico-cycle t)
+    )
+
+  ;; Persist history over Emacs restarts. Vertico sorts by history position.
+  (use-package savehist
+    :init
+    (savehist-mode))
+
+  ;; A few more useful configurations...
+  (use-package emacs
+    :init
+    ;; Add prompt indicator to `completing-read-multiple'.
+    ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+    (defun crm-indicator (args)
+      (cons (format "[CRM%s] %s"
+		    (replace-regexp-in-string
+		     "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+		     crm-separator)
+		    (car args))
+	    (cdr args)))
+    (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+    ;; Do not allow the cursor in the minibuffer prompt
+    (setq minibuffer-prompt-properties
+	  '(read-only t cursor-intangible t face minibuffer-prompt))
+    (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+    ;; Support opening new minibuffers from inside existing minibuffers.
+    (setq enable-recursive-minibuffers t)
+
+    ;; Emacs 28 and newer: Hide commands in M-x which do not work in the current
+    ;; mode.  Vertico commands are hidden in normal buffers. This setting is
+    ;; useful beyond Vertico.
+    (setq read-extended-command-predicate #'command-completion-default-include-p))
+
+#+end_src
+*** which-key
+
+which-key is a nice little package that allows to have a minibuffer showing which keybinds are available under prefixes.
+
+#+begin_src emacs-lisp
+  (use-package which-key
+    :config
+    (which-key-mode))
+#+end_src
+
+*** quelpa
+
+quelpa is a package that allows to build packages from source.
+
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'quelpa)
+    (with-temp-buffer
+      (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+      (eval-buffer)
+      (quelpa-self-upgrade)))
+#+end_src
+
+use-package integration with quelpa.
+#+begin_src emacs-lisp
+  (quelpa
+     '(quelpa-use-package
+     :fetcher git
+     :url "https://github.com/quelpa/quelpa-use-package.git"))
+  (require 'quelpa-use-package)
+#+end_src
+
+*** Reload org config config on save
+
+This allows to tangle automatically when saving the config. This is mostly for convenience.
+#+begin_src emacs-lisp
+  (use-package org-auto-tangle
+    :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (defun my/reload-config-on-save ()
+    (when (string-equal (buffer-file-name)
+			(expand-file-name "~/.emacs.d/config.org"))
+      (load-file (expand-file-name "~/.emacs.d/config.el"))))
+    (add-hook 'after-save-hook #'my/reload-config-on-save))
+  #+end_src
+
+** Org mode
+
+*** Pretty bullets and headlines
+
+I use org-superstar-mode, as it makes headlines and bullets look really nice.
+
+#+begin_src emacs-lisp
+  (use-package org-superstar
+    :hook (org-mode . org-superstar-mode))
+#+end_src
+
+** Programming
+*** LSP
+#+begin_src emacs-lisp
+  (defun my-lsp-mode-setup ()
+    "Enable lsp-mode except in org-mode and emacs-lisp-mode."
+    (unless (or (derived-mode-p 'org-mode)
+		(derived-mode-p 'emacs-lisp-mode))
+      (lsp)))
+
+  (use-package lsp-mode
+    :hook (prog-mode . my-lsp-mode-setup)
+    :init
+    (setq lsp-keymap-prefix "C-c l"))
+
+  (use-package lsp-ui)
+#+end_src
+
+*** Autocompletion
+#+begin_src emacs-lisp
+  (use-package company)
+#+end_src
+
+*** Snippets
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :diminish yas-minor-mode
+    :hook (prog-mode . yas-minor-mode)
+    :bind (:map yas-minor-mode-map
+		("C-c C-e" . yas-expand)))
+#+end_src
+
+*** Languages
+
+**** Rust
+
+#+begin_src emacs-lisp
+  (use-package rust-mode
+    :init
+    (setq rust-format-on-save t))
+#+end_src
+
+**** Typescript
+#+begin_src emacs-lisp
+  (use-package typescript-mode)
+#+end_src
+
+***** Biome
+Biome is a formatter for Typescript, and integrates with LSP.
+
+#+begin_src emacs-lisp
+  (use-package lsp-biome
+    :quelpa (lsp-biome :fetcher github :repo "cxa/lsp-biome"))
+#+end_src
