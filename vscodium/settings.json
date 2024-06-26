@@ -22,9 +22,5 @@
     "files.trimFinalNewlines": true,
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
     "editor.wordWrap": "wordWrapColumn",
-    "ltex.additionalRules.motherTongue": "fr",
-    "ltex.language": "fr",
     "git.suggestSmartCommit": false,
-    "sync.gist": "6d8559a01164b003d08f3c0bbc6cc664",
-    "dart.flutterSdkPath": "/home/nezia/.flutter",
 }

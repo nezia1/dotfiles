@@ -1,1 +1,2 @@
-abbr --add code codium
+abbr -a -- code codium
+abbr -a -- cd z
