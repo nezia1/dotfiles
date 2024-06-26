@@ -225,15 +225,29 @@ I use org-superstar-mode, as it makes headlines and bullets look really nice.
 
   (use-package lsp-mode
     :hook (prog-mode . my-lsp-mode-setup)
+    (lsp-mode . lsp-enable-which-key-integration)
     :init
-    (setq lsp-keymap-prefix "C-c l"))
+    (setq lsp-keymap-prefix "C-c l")
+    (setq read-process-output-max (* 1024 1024))
+    (setq gc-cons-threshold 100000000))
 
   (use-package lsp-ui)
 #+end_src
 
+*** Projectile
+#+begin_src emacs-lisp
+  (use-package projectile
+    :config
+    (projectile-mode +1)
+    (setq projectile-project-search-path '("~/projects"))
+    :bind
+    ("C-c p" . 'projectile-command-map))
+#+end_src
 *** Autocompletion
 #+begin_src emacs-lisp
-  (use-package company)
+  (use-package company
+    :config
+    (setq company-idle-delay 0))
 #+end_src
 
 *** Snippets
@@ -245,7 +259,12 @@ I use org-superstar-mode, as it makes headlines and bullets look really nice.
     :bind (:map yas-minor-mode-map
 		("C-c C-e" . yas-expand)))
 #+end_src
+*** Magit
 
+Magit is a git client in Emacs.
+#+begin_src emacs-lisp
+  (use-package magit)
+#+end_src
 *** Languages
 
 **** Rust
@@ -258,13 +277,12 @@ I use org-superstar-mode, as it makes headlines and bullets look really nice.
 
 **** Typescript
 #+begin_src emacs-lisp
-  (use-package typescript-mode)
+  (use-package typescript-mode
+    :hook (typescript-mode . lsp)
+    :config
+    (setq typescript-indent-level 2))
 #+end_src
 
-***** Biome
-Biome is a formatter for Typescript, and integrates with LSP.
-
-#+begin_src emacs-lisp
-  (use-package lsp-biome
-    :quelpa (lsp-biome :fetcher github :repo "cxa/lsp-biome"))
+#+begin_src sh
+  npm install -g typescript-language-server
 #+end_src
