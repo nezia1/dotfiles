@@ -129,8 +129,7 @@ I use vertico as my completion framework. It's minimal, fast and tells me all I 
       (setq vertico-resize t)
 
       ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-      (setq vertico-cycle t)
-      )
+      (setq vertico-cycle t))
 
     ;; Persist history over Emacs restarts. Vertico sorts by history position.
     (use-package savehist
@@ -164,7 +163,7 @@ I use vertico as my completion framework. It's minimal, fast and tells me all I 
       ;; useful beyond Vertico.
       (setq read-extended-command-predicate #'command-completion-default-include-p))
 
-  ;; Optionally use the `orderless' completion style.
+    ;; Optionally use the `orderless' completion style.
   (use-package orderless
     :init
     ;; Configure a custom style dispatcher (see the Consult wiki)
@@ -174,6 +173,7 @@ I use vertico as my completion framework. It's minimal, fast and tells me all I 
 	  completion-category-defaults nil
 	  completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
+
 *** which-key
 
 which-key is a nice little package that allows to have a minibuffer showing which keybinds are available under prefixes.
