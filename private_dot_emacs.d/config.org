@@ -75,7 +75,27 @@ I don't like any visual or sound bell.
 I use the default monospace font, as it allows me to configure it system wide and have everything coherent. We just make it bigger here for readability.
 
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :height 125)
+  (set-face-attribute 'default nil :font "monospace" :height 125)
+#+end_src
+**** Ligatures
+
+#+begin_src emacs-lisp
+  (use-package ligature
+    :config
+    (ligature-set-ligatures '(prog-mode tsx-ts-mode) '("--" "---" "==" "===" "!=" "!==" "=!="
+							"=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!"
+							"??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>"
+							"<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####"
+							"#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<$>" "<$"
+							"$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--"
+							"-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>"
+							"==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|"
+							"<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~"
+							"~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||"
+							"|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::="
+							":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__" "???"
+							"<:<" ";;;"))
+    (global-ligature-mode t))
 #+end_src
 
 *** Visual mode
