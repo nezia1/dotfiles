@@ -24,6 +24,13 @@ Here, we're initializing MELPA, as well as package.el and use-package.
   #+end_src
 
 ** General config
+*** no-littering
+
+no-littering is a useful package that allows to put all of the autosave files and temporary files in one directory (the files ending with ~ for instance)
+#+begin_src emacs-lisp
+  (use-package no-littering)
+#+end_src
+
 *** Minimal interface
 
 We disable a lot of interface elements, to make the editor more minimal looking.
@@ -108,55 +115,64 @@ I use doom-modeline as my modeline, as I find it really clean and minimal.
 I use vertico as my completion framework. It's minimal, fast and tells me all I need to know and even sorts by history.
 
 #+begin_src emacs-lisp
-  (use-package vertico
+    (use-package vertico
+      :init
+      (vertico-mode)
+
+      ;; Different scroll margin
+      ;; (setq vertico-scroll-margin 0)
+
+      ;; Show more candidates
+      ;; (setq vertico-count 20)
+
+      ;; Grow and shrink the Vertico minibuffer
+      (setq vertico-resize t)
+
+      ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+      (setq vertico-cycle t)
+      )
+
+    ;; Persist history over Emacs restarts. Vertico sorts by history position.
+    (use-package savehist
+      :init
+      (savehist-mode))
+
+    ;; A few more useful configurations...
+    (use-package emacs
+      :init
+      ;; Add prompt indicator to `completing-read-multiple'.
+      ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+      (defun crm-indicator (args)
+	(cons (format "[CRM%s] %s"
+		      (replace-regexp-in-string
+		       "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+		       crm-separator)
+		      (car args))
+	      (cdr args)))
+      (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+      ;; Do not allow the cursor in the minibuffer prompt
+      (setq minibuffer-prompt-properties
+	    '(read-only t cursor-intangible t face minibuffer-prompt))
+      (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+      ;; Support opening new minibuffers from inside existing minibuffers.
+      (setq enable-recursive-minibuffers t)
+
+      ;; Emacs 28 and newer: Hide commands in M-x which do not work in the current
+      ;; mode.  Vertico commands are hidden in normal buffers. This setting is
+      ;; useful beyond Vertico.
+      (setq read-extended-command-predicate #'command-completion-default-include-p))
+
+  ;; Optionally use the `orderless' completion style.
+  (use-package orderless
     :init
-    (vertico-mode)
-
-    ;; Different scroll margin
-    ;; (setq vertico-scroll-margin 0)
-
-    ;; Show more candidates
-    ;; (setq vertico-count 20)
-
-    ;; Grow and shrink the Vertico minibuffer
-    (setq vertico-resize t)
-
-    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-    (setq vertico-cycle t)
-    )
-
-  ;; Persist history over Emacs restarts. Vertico sorts by history position.
-  (use-package savehist
-    :init
-    (savehist-mode))
-
-  ;; A few more useful configurations...
-  (use-package emacs
-    :init
-    ;; Add prompt indicator to `completing-read-multiple'.
-    ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
-    (defun crm-indicator (args)
-      (cons (format "[CRM%s] %s"
-		    (replace-regexp-in-string
-		     "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-		     crm-separator)
-		    (car args))
-	    (cdr args)))
-    (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
-
-    ;; Do not allow the cursor in the minibuffer prompt
-    (setq minibuffer-prompt-properties
-	  '(read-only t cursor-intangible t face minibuffer-prompt))
-    (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-
-    ;; Support opening new minibuffers from inside existing minibuffers.
-    (setq enable-recursive-minibuffers t)
-
-    ;; Emacs 28 and newer: Hide commands in M-x which do not work in the current
-    ;; mode.  Vertico commands are hidden in normal buffers. This setting is
-    ;; useful beyond Vertico.
-    (setq read-extended-command-predicate #'command-completion-default-include-p))
-
+    ;; Configure a custom style dispatcher (see the Consult wiki)
+    ;; (setq orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch)
+    ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+    (setq completion-styles '(orderless basic)
+	  completion-category-defaults nil
+	  completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 *** which-key
 
@@ -273,6 +289,14 @@ Magit is a git client in Emacs.
     (setq rust-format-on-save t))
 #+end_src
 
+**** Typst
+#+begin_src emacs-lisp
+  (use-package typst-ts-mode
+    :quelpa (typst-ts-mode :fetcher git :url "https://git.sr.ht/~meow_king/typst-ts-mode" :files ("*.el"))
+    :custom
+    (typst-ts-mode-grammar-location (expand-file-name "tree-sitter/libtree-sitter-typst.so" user-emacs-directory)))
+#+end_src
+
 **** tree-sitter
 #+begin_src emacs-lisp
   (setq treesit-language-source-alist
@@ -290,11 +314,11 @@ Magit is a git client in Emacs.
 	  (toml "https://github.com/tree-sitter/tree-sitter-toml")
 	  (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
 	  (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+	  (typst "https://github.com/uben0/tree-sitter-typst")
 	  (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
-
 #+end_src
 
 #+begin_src sh
@@ -312,4 +336,11 @@ Magit is a git client in Emacs.
     (setf (alist-get 'prettier-typescript apheleia-formatters)
 	  '(npx "prettier" file)))
   (use-package dtrt-indent)
+#+end_src
+
+**** expand-region
+
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :bind ("C-=" . er/expand-region))
 #+end_src
