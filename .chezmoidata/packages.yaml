@@ -13,7 +13,6 @@ packages:
     flatpaks:
       - com.getpostman.Postman
       - com.spotify.Client
-      - one.ablaze.floorp
       - dev.vencord.Vesktop
     copr: 
       - atim/starship
