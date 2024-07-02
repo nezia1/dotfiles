@@ -1,11 +1,7 @@
 #+auto_tangle:
-
 * Emacs config
-
 ** Packages initialization
-
 Here, we're initializing MELPA, as well as package.el and use-package.
-
 #+begin_src emacs-lisp
     (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -25,16 +21,13 @@ Here, we're initializing MELPA, as well as package.el and use-package.
 
 ** General config
 *** no-littering
-
-no-littering is a useful package that allows to put all of the autosave files and temporary files in one directory (the files ending with ~ for instance)
+no-littering is a useful package that allows to put all of the autosave files and temporary files in one directory (the files ending with ~ for instance).
 #+begin_src emacs-lisp
   (use-package no-littering)
 #+end_src
 
 *** Minimal interface
-
 We disable a lot of interface elements, to make the editor more minimal looking.
-
 #+begin_src emacs-lisp
   (setq inhibit-startup-message t)
   (scroll-bar-mode -1)
@@ -63,52 +56,48 @@ We disable a lot of interface elements, to make the editor more minimal looking.
   (set-exec-path-from-shell-PATH)
 
 #+end_src
+
 *** Bell
-
 I don't like any visual or sound bell.
-
 #+begin_src emacs-lisp
   (setq ring-bell-function 'ignore)
 #+end_src
+
 *** Font
-
 I use the default monospace font, as it allows me to configure it system wide and have everything coherent. We just make it bigger here for readability.
-
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil :font "monospace" :height 125)
 #+end_src
-**** Ligatures
 
+**** Ligatures
 #+begin_src emacs-lisp
   (use-package ligature
     :config
+    (ligature-set-ligatures 't '("www"))
     (ligature-set-ligatures '(prog-mode tsx-ts-mode) '("--" "---" "==" "===" "!=" "!==" "=!="
-							"=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!"
-							"??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>"
-							"<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####"
-							"#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<$>" "<$"
-							"$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--"
-							"-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>"
-							"==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|"
-							"<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~"
-							"~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||"
-							"|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::="
-							":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__" "???"
-							"<:<" ";;;"))
+						       "=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!"
+						       "??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>"
+						       "<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####"
+						       "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<$>" "<$"
+						       "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--"
+						       "-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>"
+						       "==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|"
+						       "<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~"
+						       "~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||"
+						       "|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::="
+						       ":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__" "???"
+						       "<:<" ";;;"))
     (global-ligature-mode t))
 #+end_src
 
 *** Visual mode
-
 We turn on visual mode, so that lines can wrap nicely and do go beyond my Emacs buffer size.
-
 #+begin_src emacs-lisp
   (visual-line-mode t)
 #+end_src
 
 *** Theme
 I use catppuccin as my theme, as I find it comfortable to work with (the Frappe flavor).
-
 #+begin_src emacs-lisp
   (use-package catppuccin-theme
     :init
@@ -118,9 +107,7 @@ I use catppuccin as my theme, as I find it comfortable to work with (the Frappe 
 #+end_src
 
 *** Modeline
-
 I use doom-modeline as my modeline, as I find it really clean and minimal.
-
 #+begin_src emacs-lisp
   (use-package doom-modeline
   :ensure t
@@ -131,9 +118,7 @@ I use doom-modeline as my modeline, as I find it really clean and minimal.
 #+end_src
 
 *** Completion
-
 I use vertico as my completion framework. It's minimal, fast and tells me all I need to know and even sorts by history.
-
 #+begin_src emacs-lisp
     (use-package vertico
       :init
@@ -195,9 +180,7 @@ I use vertico as my completion framework. It's minimal, fast and tells me all I 
 #+end_src
 
 *** which-key
-
 which-key is a nice little package that allows to have a minibuffer showing which keybinds are available under prefixes.
-
 #+begin_src emacs-lisp
   (use-package which-key
     :config
@@ -205,9 +188,7 @@ which-key is a nice little package that allows to have a minibuffer showing whic
 #+end_src
 
 *** quelpa
-
 quelpa is a package that allows to build packages from source.
-
 #+begin_src emacs-lisp
   (unless (package-installed-p 'quelpa)
     (with-temp-buffer
@@ -226,7 +207,6 @@ use-package integration with quelpa.
 #+end_src
 
 *** Reload org config config on save
-
 This allows to tangle automatically when saving the config. This is mostly for convenience.
 #+begin_src emacs-lisp
   (use-package org-auto-tangle
@@ -240,11 +220,8 @@ This allows to tangle automatically when saving the config. This is mostly for c
   #+end_src
 
 ** Org mode
-
 *** Pretty bullets and headlines
-
 I use org-superstar-mode, as it makes headlines and bullets look really nice.
-
 #+begin_src emacs-lisp
   (use-package org-superstar
     :hook (org-mode . org-superstar-mode))
@@ -278,6 +255,7 @@ I use org-superstar-mode, as it makes headlines and bullets look really nice.
     :bind
     ("C-c p" . 'projectile-command-map))
 #+end_src
+
 *** Autocompletion
 #+begin_src emacs-lisp
   (use-package company
@@ -294,14 +272,14 @@ I use org-superstar-mode, as it makes headlines and bullets look really nice.
     :bind (:map yas-minor-mode-map
 		("C-c C-e" . yas-expand)))
 #+end_src
-*** Magit
 
+*** Magit
 Magit is a git client in Emacs.
 #+begin_src emacs-lisp
   (use-package magit)
 #+end_src
-*** Languages
 
+*** Languages
 **** Rust
 #+begin_src emacs-lisp
   (use-package rust-mode
@@ -359,7 +337,6 @@ Magit is a git client in Emacs.
 #+end_src
 
 **** expand-region
-
 #+begin_src emacs-lisp
   (use-package expand-region
     :bind ("C-=" . er/expand-region))
