@@ -264,7 +264,6 @@ Magit is a git client in Emacs.
 
 *** Languages
 **** tree-sitter
-
 Tree-sitter is a built-in Emacs package that allows us to have extremely well integrated language. Here, we're setting up the list of sources, most of them being on tree-sitter's official GitHub, as well as hooking up the languages to their different modes.
 #+begin_src emacs-lisp
   (setq treesit-language-source-alist
@@ -286,7 +285,7 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
   (setq treesit-font-lock-level 4)
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
-#+end_src
+  #+end_src
 
 #+begin_src sh
   npm install -g typescript-language-server
