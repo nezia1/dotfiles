@@ -111,7 +111,7 @@ Besides the font settings, I use the package fixed-pitch, which sets up hooks au
 *** Visual mode
 We turn on visual mode, so that lines can wrap nicely and do go beyond my Emacs buffer size.
 #+begin_src emacs-lisp
-  (visual-line-mode t)
+  (global-visual-line-mode t)
 #+end_src
 
 *** Theme
@@ -234,15 +234,6 @@ I use org-superstar-mode, as it makes headlines and bullets look really nice.
     :config
     (eglot-booster-mode))
 #+end_src
-*** Projectile
-#+begin_src emacs-lisp
-  (use-package projectile
-    :config
-    (projectile-mode +1)
-    (setq projectile-project-search-path '("~/projects"))
-    :bind
-    ("C-c p" . 'projectile-command-map))
-#+end_src
 
 *** Autocompletion
 #+begin_src emacs-lisp
@@ -272,14 +263,9 @@ Magit is a git client in Emacs.
 #+end_src
 
 *** Languages
-**** Rust
-#+begin_src emacs-lisp
-  (use-package rust-mode
-    :init
-    (setq rust-format-on-save t))
-#+end_src
-
 **** tree-sitter
+
+Tree-sitter is a built-in Emacs package that allows us to have extremely well integrated language. Here, we're setting up the list of sources, most of them being on tree-sitter's official GitHub, as well as hooking up the languages to their different modes.
 #+begin_src emacs-lisp
   (setq treesit-language-source-alist
 	'((bash "https://github.com/tree-sitter/tree-sitter-bash")
