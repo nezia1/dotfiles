@@ -1,9 +1,8 @@
-#+auto_tangle:
 * Emacs config
 ** Packages initialization
 Here, we're initializing MELPA, as well as package.el and use-package.
 #+begin_src emacs-lisp
-    (require 'package)
+  (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
   ;; and `package-pinned-packages`. Most users will not need or want to do this.
@@ -14,16 +13,15 @@ Here, we're initializing MELPA, as well as package.el and use-package.
 
   (require 'use-package)
   (setq use-package-always-ensure t)
-
   #+end_src
 
 *** vc-use-package
 
-vc-use-package integrated package-vc-install, which allows installing packages from git repositories, into use-package. It won't be needed from Emacs 30, as it integrates natively (hence the condition).
+vc-use-package integrates package-vc-install, which allows installing packages from git repositories, into use-package. It won't be needed from Emacs 30, as it will integrate natively (hence the condition).
 #+begin_src emacs-lisp
   (if (< emacs-major-version 30)
-    (unless (package-installed-p 'vc-use-package)
-      (package-vc-install "https://github.com/slotThe/vc-use-package"))
+      (unless (package-installed-p 'vc-use-package)
+	(package-vc-install "https://github.com/slotThe/vc-use-package"))
     (require 'vc-use-package))
 #+end_src
 ** General config
@@ -70,9 +68,23 @@ I don't like any visual or sound bell.
 #+end_src
 
 *** Font
-I use the default monospace font, as it allows me to configure it system wide and have everything coherent. We just make it bigger here for readability.
+I use two different fonts in Emacs : my sans serif font for anything where variable fonts wouldn't matter, and monospace for fixed width text (such as code, org blocks and org tables). I like to use the generic sans-serif and monospace fonts, as it allows me to define them system-wide, which I highly prefer.
+
+Besides the font settings, I use the package fixed-pitch, which sets up hooks automatically for all the modes that require fixed width fonts. This allows me to have my sans serif everywhere else but in 
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :font "monospace" :height 125)
+  ;; Set base fonts
+  (set-face-attribute 'default nil :font "sans-serif" :height 125)
+  (set-face-attribute 'fixed-pitch nil :font "monospace" :height 125)
+
+  ;; set monospace for specific org mode elements
+  (custom-theme-set-faces
+   'user
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-table ((t (:inherit fixed-pitch :foreground "#83a598")))))
+
+  (use-package fixed-pitch
+    :vc ( :fetcher github :repo cstby/fixed-pitch-mode))
 #+end_src
 
 **** Ligatures
@@ -188,19 +200,6 @@ which-key is a nice little package that allows to have a minibuffer showing whic
     :config
     (which-key-mode))
 #+end_src
-
-*** Reload org config config on save
-This allows to tangle automatically when saving the config. This is mostly for convenience.
-#+begin_src emacs-lisp
-  (use-package org-auto-tangle
-    :hook (org-mode . org-auto-tangle-mode)
-  :config
-  (defun my/reload-config-on-save ()
-    (when (string-equal (buffer-file-name)
-			(expand-file-name "~/.emacs.d/config.org"))
-      (load-file (expand-file-name "~/.emacs.d/config.el"))))
-    (add-hook 'after-save-hook #'my/reload-config-on-save))
-  #+end_src
 
 *** Discord presence
 #+begin_src emacs-lisp
