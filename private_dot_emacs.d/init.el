@@ -1,20 +1,12 @@
-(package-initialize)
+;; Paths to config.org and the tangled init.el
+(defvar org-config-file (expand-file-name "config.org" user-emacs-directory))
+(defvar tangled-init-file (expand-file-name "init.el" user-emacs-directory))
 
-(org-babel-load-file "~/.emacs.d/config.org")
+;; Function to tangle the org file
+(defun tangle-org-config ()
+  (require 'org)
+  (org-babel-tangle-file org-config-file))
 
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(eglot-booster))
- '(package-vc-selected-packages
-   '((eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")
-     (vc-use-package :vc-backend Git :url "https://github.com/slotThe/vc-use-package"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; Check if config.org is newer than init.el and tangle if necessary
+(when (file-newer-than-file-p org-config-file tangled-init-file)
+  (tangle-org-config))
