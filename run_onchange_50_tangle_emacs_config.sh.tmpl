@@ -1,0 +1,9 @@
+#!/bin/sh
+
+ORG_FILE="{{ joinPath .chezmoi.sourceDir "private_dot_emacs.d/config.org" }}"
+TANGLED_FILE="$HOME/.emacs.d/init.el"
+
+mkdir -p "$(dirname "$TANGLED_FILE")"
+
+emacs --batch -l org \
+      --eval "(org-babel-tangle-file \"$ORG_FILE\" \"$TANGLED_FILE\" \"emacs-lisp\")"
