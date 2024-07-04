@@ -97,7 +97,7 @@ Besides the font settings, I use the package fixed-pitch, which sets up hooks au
     :vc ( :fetcher github :repo cstby/fixed-pitch-mode))
 #+end_src
 
-** Ligatures
+*** Ligatures
 #+begin_src emacs-lisp
   (use-package ligature
     :config
@@ -119,7 +119,7 @@ Besides the font settings, I use the package fixed-pitch, which sets up hooks au
 #+end_src
 
 ** Visual mode
-We turn on visual mode, so that lines can wrap nicely and do go beyond my Emacs buffer size.
+We turn on visual mode, so that lines can wrap nicely and not go beyond my Emacs buffer size.
 #+begin_src emacs-lisp
   (global-visual-line-mode t)
 #+end_src
