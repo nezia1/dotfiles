@@ -1,0 +1,330 @@
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
+#+TITLE: Emacs config
+#+AUTHOR: Anthony Rodriguez
+
+* Packages initialization
+Here, we're initializing MELPA, as well as package.el and use-package.
+#+begin_src emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+  ;; and `package-pinned-packages`. Most users will not need or want to do this.
+  ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  (require 'use-package)
+  (setq use-package-always-ensure t)
+  #+end_src
+
+** vc-use-package
+vc-use-package integrates package-vc-install, which allows installing packages from git repositories, into use-package. It won't be needed from Emacs 30, as it will integrate natively (hence the condition).
+#+begin_src emacs-lisp
+  (if (< emacs-major-version 30)
+      (unless (package-installed-p 'vc-use-package)
+	(package-vc-install "https://github.com/slotThe/vc-use-package"))
+    (require 'vc-use-package))
+#+end_src
+
+** Automatically tangle on save
+
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook
+	    (lambda () (add-hook 'after-save-hook #'org-babel-tangle
+				 :append :local)))
+#+end_src
+* General config
+** no-littering
+no-littering is a useful package that allows to put all of the autosave files and temporary files in one directory (the files ending with ~ for instance).
+#+begin_src emacs-lisp
+  (use-package no-littering)
+#+end_src
+
+** Minimal interface
+We disable a lot of interface elements, to make the editor more minimal looking.
+#+begin_src emacs-lisp
+  (setq inhibit-startup-message t)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (set-fringe-mode 10)
+  (menu-bar-mode -1)
+#+end_src
+
+** Match fish shell's path
+#+begin_src emacs-lisp
+  (defun set-exec-path-from-shell-PATH ()
+    "Set up Emacs' `exec-path' and PATH environment variable to match
+  that used by the user's shell.
+
+  This is particularly useful under Mac OS X and macOS, where GUI
+  apps are not started from a shell."
+    (interactive)
+    (let ((path-from-shell (replace-regexp-in-string
+			    "[ \t\n]*$" "" (shell-command-to-string
+					    "/usr/bin/fish --login -c 'string join : $PATH'"
+						      ))))
+      (setenv "PATH" path-from-shell)
+      (setq exec-path (split-string path-from-shell path-separator))))
+
+  (set-exec-path-from-shell-PATH)
+#+end_src
+
+** Bell
+I don't like any visual or sound bell.
+#+begin_src emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+end_src
+
+** Font
+I use two different fonts in Emacs : my sans serif font for anything where variable fonts wouldn't matter, and monospace for fixed width text (such as code, org blocks and org tables). I like to use the generic sans-serif and monospace fonts, as it allows me to define them system-wide, which I highly prefer.
+
+Besides the font settings, I use the package fixed-pitch, which sets up hooks automatically for all the modes that require fixed width fonts. This allows me to have my sans serif everywhere else but in
+#+begin_src emacs-lisp
+  ;; Set base fonts
+  (set-face-attribute 'default nil :font "sans-serif" :height 125)
+  (set-face-attribute 'fixed-pitch nil :font "monospace" :height 125)
+
+  ;; set monospace for specific org mode elements
+  (custom-theme-set-faces
+   'user
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-table ((t (:inherit fixed-pitch :foreground "#83a598")))))
+
+  (use-package fixed-pitch
+    :vc ( :fetcher github :repo cstby/fixed-pitch-mode))
+#+end_src
+
+*** Ligatures
+#+begin_src emacs-lisp
+  (use-package ligature
+    :config
+    (ligature-set-ligatures 't '("www"))
+    (ligature-set-ligatures '(prog-mode tsx-ts-mode) '("--" "---" "==" "===" "!=" "!==" "=!="
+						       "=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!"
+						       "??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>"
+						       "<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####"
+						       "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<$>" "<$"
+						       "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--"
+						       "-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>"
+						       "==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|"
+						       "<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~"
+						       "~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||"
+						       "|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::="
+						       ":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__" "???"
+						       "<:<" ";;;"))
+    (global-ligature-mode t))
+#+end_src
+
+** Visual mode
+We turn on visual mode, so that lines can wrap nicely and not go beyond my Emacs buffer size.
+#+begin_src emacs-lisp
+  (global-visual-line-mode t)
+#+end_src
+
+** Theme
+I use catppuccin as my theme, as I find it comfortable to work with (the Frappe flavor).
+#+begin_src emacs-lisp
+  (use-package catppuccin-theme
+    :init
+    (setq catppuccin-flavor 'frappe)
+    :config
+    (load-theme 'catppuccin :no-confirm))
+#+end_src
+
+** Modeline
+I use doom-modeline as my modeline, as I find it really clean and minimal.
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1)
+    :config
+    (setq doom-modeline-height 30))
+#+end_src
+
+** Completion
+I use vertico as my completion framework. It's minimal, fast and tells me all I need to know and even sorts by history.
+#+begin_src emacs-lisp
+  (use-package vertico
+    :init
+    (vertico-mode)
+
+    ;; Different scroll margin
+    ;; (setq vertico-scroll-margin 0)
+
+    ;; Show more candidates
+    ;; (setq vertico-count 20)
+
+    ;; Grow and shrink the Vertico minibuffer
+    (setq vertico-resize t)
+
+    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+    (setq vertico-cycle t))
+
+  ;; Persist history over Emacs restarts. Vertico sorts by history position.
+  (use-package savehist
+    :init
+    (savehist-mode))
+
+  ;; A few more useful configurations...
+  (use-package emacs
+    :init
+    ;; Add prompt indicator to `completing-read-multiple'.
+    ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+    (defun crm-indicator (args)
+      (cons (format "[CRM%s] %s"
+		    (replace-regexp-in-string
+		     "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+		     crm-separator)
+		    (car args))
+	    (cdr args)))
+    (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+    ;; Do not allow the cursor in the minibuffer prompt
+    (setq minibuffer-prompt-properties
+	  '(read-only t cursor-intangible t face minibuffer-prompt))
+    (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+    ;; Support opening new minibuffers from inside existing minibuffers.
+    (setq enable-recursive-minibuffers t)
+
+    ;; Emacs 28 and newer: Hide commands in M-x which do not work in the current
+    ;; mode.  Vertico commands are hidden in normal buffers. This setting is
+    ;; useful beyond Vertico.
+    (setq read-extended-command-predicate #'command-completion-default-include-p))
+
+  (use-package orderless
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
+#+end_src
+
+** which-key
+which-key is a nice little package that allows to have a minibuffer showing which keybinds are available under prefixes.
+#+begin_src emacs-lisp
+  (use-package which-key
+    :config
+    (which-key-mode))
+#+end_src
+
+** Discord presence
+#+begin_src emacs-lisp
+  (use-package elcord
+    :config
+    (elcord-mode))
+#+end_src
+
+* Org mode
+** Pretty bullets and headlines
+I use org-superstar-mode, as it makes headlines and bullets look really nice.
+#+begin_src emacs-lisp
+  (use-package org-superstar
+    :hook (org-mode . org-superstar-mode))
+#+end_src
+
+* Programming
+** Eglot
+Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightweight and more straightforward to setup correctly.
+#+begin_src emacs-lisp
+  (use-package eglot
+    :bind (:map eglot-mode-map
+		  ("C-c C-d" . eldoc)
+		  ("C-c C-e" . eglot-rename)
+		  ("C-c C-o" . python-sort-imports)
+		  ("C-c C-f" . eglot-format-buffer))
+    :hook ((tsx-ts-mode . eglot-ensure)
+	   (typescript-ts-mode . eglot-ensure)))
+
+  ;; makes eglot faster using a rust wrapper, needs to be in PATH
+  (use-package eglot-booster
+      :vc (:fetcher github :repo jdtsmith/eglot-booster)
+    :after eglot
+    :config
+    (eglot-booster-mode))
+#+end_src
+
+** Autocompletion
+#+begin_src emacs-lisp
+  (use-package corfu
+    :custom
+    (corfu-auto t)
+    :init
+    (global-corfu-mode)
+    (setq corfu-popupinfo-delay 0.2)
+    (corfu-popupinfo-mode))
+#+end_src
+
+** Snippets
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :diminish yas-minor-mode
+    :hook (prog-mode . yas-minor-mode)
+    :bind (:map yas-minor-mode-map
+		("C-c C-e" . yas-expand)))
+#+end_src
+
+** Magit
+Magit is a git client in Emacs.
+#+begin_src emacs-lisp
+  (use-package magit)
+#+end_src
+
+** Docker
+#+begin_src emacs-lisp
+  (use-package docker
+    :ensure t
+    :bind ("C-c d" . docker))
+#+end_src
+** Languages
+*** tree-sitter
+Tree-sitter is a built-in Emacs package that allows us to have extremely well integrated language grammar. Here, we're setting up the list of sources, most of them being on tree-sitter's official GitHub, as well as hooking up the languages to their different modes.
+#+begin_src emacs-lisp
+  (setq treesit-language-source-alist
+	'((bash "https://github.com/tree-sitter/tree-sitter-bash")
+	  (cmake "https://github.com/uyha/tree-sitter-cmake")
+	  (css "https://github.com/tree-sitter/tree-sitter-css")
+	  (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+	  (go "https://github.com/tree-sitter/tree-sitter-go")
+	  (html "https://github.com/tree-sitter/tree-sitter-html")
+	  (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+	  (json "https://github.com/tree-sitter/tree-sitter-json")
+	  (make "https://github.com/alemuller/tree-sitter-make")
+	  (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+	  (python "https://github.com/tree-sitter/tree-sitter-python")
+	  (toml "https://github.com/tree-sitter/tree-sitter-toml")
+	  (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+	  (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+	  (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+  (setq treesit-font-lock-level 4)
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  #+end_src
+
+*** Alapheia
+#+begin_src emacs-lisp
+  (use-package apheleia
+    :ensure t
+    :config
+    (apheleia-global-mode +1)
+    (setf (alist-get 'prettier apheleia-formatters)
+	  '(npx "prettier" file))
+    (setf (alist-get 'prettier-typescript apheleia-formatters)
+	  '(npx "prettier" file)))
+  (use-package dtrt-indent)
+#+end_src
+
+** expand-region
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :bind ("C-=" . er/expand-region))
+#+end_src
+
+* Mail
+#+begin_src emacs-lisp
+  (autoload 'notmuch "notmuch" "notmuch mail" t)
+  (use-package notmuch)
+#+end_src
