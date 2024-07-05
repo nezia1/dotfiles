@@ -237,7 +237,8 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 		  ("C-c l r" . eglot-rename)
 		  ("C-c l f" . eglot-format-buffer))
     :hook ((tsx-ts-mode . eglot-ensure)
-	   (typescript-ts-mode . eglot-ensure)))
+	   (typescript-ts-mode . eglot-ensure)
+	   (electric-pair-mode)))
 
   (setq-default eglot-workspace-configuration '(:typescript (:format (:indentSize 2
 										  :convertTabsToSpaces t
@@ -308,25 +309,6 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
   #+end_src
-
-*** Alapheia
-#+begin_src emacs-lisp
-  (use-package apheleia
-    :ensure t
-    :config
-    (apheleia-global-mode +1)
-    (setf (alist-get 'prettier apheleia-formatters)
-	  '(npx "prettier" file))
-    (setf (alist-get 'prettier-typescript apheleia-formatters)
-	  '(npx "prettier" file)))
-  (use-package dtrt-indent)
-#+end_src
-
-** expand-region
-#+begin_src emacs-lisp
-  (use-package expand-region
-    :bind ("C-=" . er/expand-region))
-#+end_src
 
 * Mail
 #+begin_src emacs-lisp
