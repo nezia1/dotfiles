@@ -38,7 +38,17 @@ vc-use-package integrates package-vc-install, which allows installing packages f
 ** no-littering
 no-littering is a useful package that allows to put all of the autosave files and temporary files in one directory (the files ending with ~ for instance).
 #+begin_src emacs-lisp
-  (use-package no-littering)
+  (defvar user-temporary-file-directory
+    (concat temporary-file-directory user-login-name "/"))
+  (make-directory user-temporary-file-directory t)
+  (setq backup-by-copying t)
+  (setq backup-directory-alist
+	`(("." . ,user-temporary-file-directory)
+	  (,tramp-file-name-regexp nil)))
+  (setq auto-save-list-file-prefix
+	(concat user-temporary-file-directory ".auto-saves-"))
+  (setq auto-save-file-name-transforms
+	`((".*" ,user-temporary-file-directory t)))
 #+end_src
 
 ** Minimal interface
@@ -238,7 +248,8 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 		  ("C-c l f" . eglot-format-buffer))
     :hook ((tsx-ts-mode . eglot-ensure)
 	   (typescript-ts-mode . eglot-ensure)
-	   (electric-pair-mode)))
+	   (python-ts-mode . eglot-ensure)
+	   (eglot-mode . electric-pair-mode)))
 
   (setq-default eglot-workspace-configuration '(:typescript (:format (:indentSize 2
 										  :convertTabsToSpaces t
@@ -289,25 +300,27 @@ Magit is a git client in Emacs.
 *** tree-sitter
 Tree-sitter is a built-in Emacs package that allows us to have extremely well integrated language grammar. Here, we're setting up the list of sources, most of them being on tree-sitter's official GitHub, as well as hooking up the languages to their different modes.
 #+begin_src emacs-lisp
-  (setq treesit-language-source-alist
-	'((bash "https://github.com/tree-sitter/tree-sitter-bash")
-	  (cmake "https://github.com/uyha/tree-sitter-cmake")
-	  (css "https://github.com/tree-sitter/tree-sitter-css")
-	  (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-	  (go "https://github.com/tree-sitter/tree-sitter-go")
-	  (html "https://github.com/tree-sitter/tree-sitter-html")
-	  (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-	  (json "https://github.com/tree-sitter/tree-sitter-json")
-	  (make "https://github.com/alemuller/tree-sitter-make")
-	  (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-	  (python "https://github.com/tree-sitter/tree-sitter-python")
-	  (toml "https://github.com/tree-sitter/tree-sitter-toml")
-	  (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-	  (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-	  (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
-  (setq treesit-font-lock-level 4)
+   (setq treesit-language-source-alist
+	 '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+	   (cmake "https://github.com/uyha/tree-sitter-cmake")
+	   (css "https://github.com/tree-sitter/tree-sitter-css")
+	   (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+	   (go "https://github.com/tree-sitter/tree-sitter-go")
+	   (html "https://github.com/tree-sitter/tree-sitter-html")
+	   (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+	   (json "https://github.com/tree-sitter/tree-sitter-json")
+	   (make "https://github.com/alemuller/tree-sitter-make")
+	   (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+	   (python "https://github.com/tree-sitter/tree-sitter-python")
+	   (toml "https://github.com/tree-sitter/tree-sitter-toml")
+	   (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+	   (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+	   (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+   (setq treesit-font-lock-level 4)
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-ts-mode))
+
   #+end_src
 
 * Mail
