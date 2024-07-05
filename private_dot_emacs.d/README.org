@@ -207,7 +207,9 @@ which-key is a nice little package that allows to have a minibuffer showing whic
 #+begin_src emacs-lisp
   (use-package which-key
     :config
-    (which-key-mode))
+    (which-key-mode)
+    (which-key-add-key-based-replacements ;; naming prefixes
+      "C-c l" "lsp"))
 #+end_src
 
 ** Discord presence
@@ -229,28 +231,28 @@ I use org-superstar-mode, as it makes headlines and bullets look really nice.
 ** Eglot
 Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightweight and more straightforward to setup correctly.
 #+begin_src emacs-lisp
-    (use-package eglot
-      :bind (:map eglot-mode-map
-		    ("C-c C-d" . eldoc)
-		    ("C-c C-e" . eglot-rename)
-		    ("C-c C-o" . python-sort-imports)
-		    ("C-c C-f" . eglot-format-buffer))
-      :hook ((tsx-ts-mode . eglot-ensure)
-	     (typescript-ts-mode . eglot-ensure)))
+  (use-package eglot
+    :bind (:map eglot-mode-map
+		  ("C-c l h" . eldoc)
+		  ("C-c l r" . eglot-rename)
+		  ("C-c l f" . eglot-format-buffer))
+    :hook ((tsx-ts-mode . eglot-ensure)
+	   (typescript-ts-mode . eglot-ensure)))
 
-    (setq-default eglot-workspace-configuration '(:typescript (:format (:indentSize 2
-										    :convertTabsToSpaces t
-										    :semicolons "remove"))))
-    ;; makes eglot faster using a rust wrapper, needs to be in PATH
-    (use-package eglot-booster
-	:vc (:fetcher github :repo jdtsmith/eglot-booster)
-      :after eglot
-      :config
-      (eglot-booster-mode))
+  (setq-default eglot-workspace-configuration '(:typescript (:format (:indentSize 2
+										  :convertTabsToSpaces t
+										  :semicolons "remove"))))
+  ;; makes eglot faster using a rust wrapper, needs to be in PATH
+  (use-package eglot-booster
+      :vc (:fetcher github :repo jdtsmith/eglot-booster)
+    :after eglot
+    :config
+    (eglot-booster-mode))
 #+end_src
 
 ** Autocompletion
 #+begin_src emacs-lisp
+
   (use-package corfu
     :custom
     (corfu-auto t)
