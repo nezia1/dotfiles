@@ -243,20 +243,22 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 #+begin_src emacs-lisp
   (use-package eglot
     :bind (:map eglot-mode-map
-		  ("C-c l h" . eldoc)
-		  ("C-c l r" . eglot-rename)
-		  ("C-c l f" . eglot-format-buffer))
+		("C-c l h" . eldoc)
+		("C-c l r" . eglot-rename)
+		("C-c l f" . eglot-format-buffer))
     :hook ((tsx-ts-mode . eglot-ensure)
 	   (typescript-ts-mode . eglot-ensure)
 	   (python-ts-mode . eglot-ensure)
-	   (eglot-mode . electric-pair-mode)))
+	   (eglot--managed-mode . electric-pair-mode)
+	   (eglot--managed-mode . (lambda ()
+			   (add-hook 'after-save-hook #'eglot-format-buffer nil t)))))
 
   (setq-default eglot-workspace-configuration '(:typescript (:format (:indentSize 2
 										  :convertTabsToSpaces t
 										  :semicolons "remove"))))
   ;; makes eglot faster using a rust wrapper, needs to be in PATH
   (use-package eglot-booster
-      :vc (:fetcher github :repo jdtsmith/eglot-booster)
+    :vc (:fetcher github :repo jdtsmith/eglot-booster)
     :after eglot
     :config
     (eglot-booster-mode))
