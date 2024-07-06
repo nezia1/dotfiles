@@ -5,8 +5,9 @@
 * Table of Contents                                                     :TOC:
 - [[#packages-initialization][Packages initialization]]
   - [[#vc-use-package][vc-use-package]]
+  - [[#automatically-tangle-on-save][Automatically tangle on save]]
 - [[#general-config][General config]]
-  - [[#no-littering][no-littering]]
+  - [[#move-temporary-files-to-tmpusername][Move temporary files to /tmp/{username}]]
   - [[#minimal-interface][Minimal interface]]
   - [[#match-fish-shells-path][Match fish shell's path]]
   - [[#bell][Bell]]
@@ -26,6 +27,7 @@
   - [[#magit][Magit]]
   - [[#docker][Docker]]
   - [[#languages][Languages]]
+  - [[#copilot][Copilot]]
 - [[#mail][Mail]]
 
 * Packages initialization
@@ -63,8 +65,7 @@ vc-use-package integrates package-vc-install, which allows installing packages f
 #+end_src
 
 * General config
-** no-littering
-no-littering is a useful package that allows to put all of the autosave files and temporary files in one directory (the files ending with ~ for instance).
+** Move temporary files to /tmp/{username}
 
 #+begin_src emacs-lisp
   (defvar user-temporary-file-directory
@@ -283,6 +284,8 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 #+begin_src emacs-lisp
   (use-package eglot
     :defer t
+    :config
+    (eglot-events-buffer-size 0)
     :bind (:map eglot-mode-map
 		("C-c l h" . eldoc)
 		("C-c l r" . eglot-rename)
@@ -292,7 +295,9 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 	   (python-ts-mode . eglot-ensure)
 	   (eglot--managed-mode . electric-pair-mode)
 	   (eglot--managed-mode . (lambda ()
-			   (add-hook 'after-save-hook #'eglot-format-buffer nil t)))))
+				    (add-hook 'after-save-hook #'eglot-format-buffer nil t)))
+	   (eglot--managed-mode . display-line-numbers-mode)))
+
 
   (setq-default eglot-workspace-configuration '(:typescript (:format (:indentSize 2
 										  :convertTabsToSpaces t
@@ -375,6 +380,16 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
   (add-to-list 'auto-mode-alist '("\\.py\\'" . python-ts-mode))
   #+end_src
 
+** Copilot
+#+begin_src emacs-lisp
+  (use-package copilot
+    :vc
+    (:fetcher github :repo copilot-emacs/copilot.el)
+    :hook
+    (eglot--managed-mode . copilot-mode)
+    :bind (:map copilot-completion-map
+		("TAB" . copilot-accept-completion)))
+#+end_src
 * Mail
 #+begin_src emacs-lisp
   (autoload 'notmuch "notmuch" "notmuch mail" t)
