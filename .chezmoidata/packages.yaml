@@ -10,12 +10,15 @@ packages:
       - starship
       - zoxide
       - https://proton.me/download/PassDesktop/linux/x64/ProtonPass.rpm
+    copr: 
+      - atim/starship
     flatpaks:
       - com.getpostman.Postman
       - com.spotify.Client
       - dev.vencord.Vesktop
-    copr: 
-      - atim/starship
+    asdf:
+      - nodejs
+      - python
     arch:
       - afetch
       - alsa-firmware
