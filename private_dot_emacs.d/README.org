@@ -46,9 +46,16 @@ Here, we're initializing MELPA, as well as package.el and use-package.
   #+end_src
 
 ** vc-use-package
-vc-use-package integrates package-vc-install, which allows installing packages from git repositories, into use-package. It won't be needed from Emacs 30, as it will integrate natively (hence the condition).
+vc-use-package integrates package-vc-install, which allows installing packages from git repositories, into use-package. It won't be needed from Emacs 30, as it will integrate natively.
 
 #+begin_src emacs-lisp
+  (if (< emacs-major-version 30)
+      (unless (package-installed-p 'vc-use-package)
+	(package-vc-install "https://github.com/slotThe/vc-use-package"))
+    (require 'vc-use-package))
+#+end_src
+
+** Automatically tangle on save
 #+begin_src emacs-lisp
   (add-hook 'org-mode-hook
 	    (lambda () (add-hook 'after-save-hook #'org-babel-tangle
