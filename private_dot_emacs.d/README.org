@@ -1,9 +1,36 @@
-#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
-#+TITLE: Emacs config
+#+TITLE: Emacs literate configuration
 #+AUTHOR: Anthony Rodriguez
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
+
+* Table of Contents                                                     :TOC:
+- [[#packages-initialization][Packages initialization]]
+  - [[#vc-use-package][vc-use-package]]
+- [[#general-config][General config]]
+  - [[#no-littering][no-littering]]
+  - [[#minimal-interface][Minimal interface]]
+  - [[#match-fish-shells-path][Match fish shell's path]]
+  - [[#bell][Bell]]
+  - [[#font][Font]]
+  - [[#visual-mode][Visual mode]]
+  - [[#theme][Theme]]
+  - [[#modeline][Modeline]]
+  - [[#completion][Completion]]
+  - [[#which-key][which-key]]
+- [[#org-mode][Org mode]]
+  - [[#pretty-bullets-and-headlines][Pretty bullets and headlines]]
+  - [[#toc-org][toc-org]]
+- [[#programming][Programming]]
+  - [[#eglot][Eglot]]
+  - [[#autocompletion][Autocompletion]]
+  - [[#snippets][Snippets]]
+  - [[#magit][Magit]]
+  - [[#docker][Docker]]
+  - [[#languages][Languages]]
+- [[#mail][Mail]]
 
 * Packages initialization
 Here, we're initializing MELPA, as well as package.el and use-package.
+
 #+begin_src emacs-lisp
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -20,23 +47,18 @@ Here, we're initializing MELPA, as well as package.el and use-package.
 
 ** vc-use-package
 vc-use-package integrates package-vc-install, which allows installing packages from git repositories, into use-package. It won't be needed from Emacs 30, as it will integrate natively (hence the condition).
+
 #+begin_src emacs-lisp
-  (if (< emacs-major-version 30)
-      (unless (package-installed-p 'vc-use-package)
-	(package-vc-install "https://github.com/slotThe/vc-use-package"))
-    (require 'vc-use-package))
-#+end_src
-
-** Automatically tangle on save
-
 #+begin_src emacs-lisp
   (add-hook 'org-mode-hook
 	    (lambda () (add-hook 'after-save-hook #'org-babel-tangle
 				 :append :local)))
 #+end_src
+
 * General config
 ** no-littering
 no-littering is a useful package that allows to put all of the autosave files and temporary files in one directory (the files ending with ~ for instance).
+
 #+begin_src emacs-lisp
   (defvar user-temporary-file-directory
     (concat temporary-file-directory user-login-name "/"))
@@ -53,6 +75,7 @@ no-littering is a useful package that allows to put all of the autosave files an
 
 ** Minimal interface
 We disable a lot of interface elements, to make the editor more minimal looking.
+
 #+begin_src emacs-lisp
   (setq inhibit-startup-message t)
   (scroll-bar-mode -1)
@@ -83,6 +106,7 @@ We disable a lot of interface elements, to make the editor more minimal looking.
 
 ** Bell
 I don't like any visual or sound bell.
+
 #+begin_src emacs-lisp
   (setq ring-bell-function 'ignore)
 #+end_src
@@ -90,7 +114,8 @@ I don't like any visual or sound bell.
 ** Font
 I use two different fonts in Emacs : my sans serif font for anything where variable fonts wouldn't matter, and monospace for fixed width text (such as code, org blocks and org tables). I like to use the generic sans-serif and monospace fonts, as it allows me to define them system-wide, which I highly prefer.
 
-Besides the font settings, I use the package fixed-pitch, which sets up hooks automatically for all the modes that require fixed width fonts. This allows me to have my sans serif everywhere else but in
+Besides the font settings, I use the package fixed-pitch, which sets up hooks automatically for all the modes that require fixed width fonts. This allows me to have my sans serif everywhere else.
+
 #+begin_src emacs-lisp
   ;; Set base fonts
   (set-face-attribute 'default nil :font "sans-serif" :height 125)
@@ -130,12 +155,14 @@ Besides the font settings, I use the package fixed-pitch, which sets up hooks au
 
 ** Visual mode
 We turn on visual mode, so that lines can wrap nicely and not go beyond my Emacs buffer size.
+
 #+begin_src emacs-lisp
   (global-visual-line-mode t)
 #+end_src
 
 ** Theme
 I use catppuccin as my theme, as I find it comfortable to work with (the Frappe flavor).
+
 #+begin_src emacs-lisp
   (use-package catppuccin-theme
     :init
@@ -146,6 +173,7 @@ I use catppuccin as my theme, as I find it comfortable to work with (the Frappe 
 
 ** Modeline
 I use doom-modeline as my modeline, as I find it really clean and minimal.
+
 #+begin_src emacs-lisp
   (use-package doom-modeline
     :ensure t
@@ -156,6 +184,7 @@ I use doom-modeline as my modeline, as I find it really clean and minimal.
 
 ** Completion
 I use vertico as my completion framework. It's minimal, fast and tells me all I need to know and even sorts by history.
+
 #+begin_src emacs-lisp
   (use-package vertico
     :init
@@ -214,6 +243,7 @@ I use vertico as my completion framework. It's minimal, fast and tells me all I 
 
 ** which-key
 which-key is a nice little package that allows to have a minibuffer showing which keybinds are available under prefixes.
+
 #+begin_src emacs-lisp
   (use-package which-key
     :config
@@ -225,16 +255,27 @@ which-key is a nice little package that allows to have a minibuffer showing whic
 * Org mode
 ** Pretty bullets and headlines
 I use org-superstar-mode, as it makes headlines and bullets look really nice.
+
 #+begin_src emacs-lisp
   (use-package org-superstar
+    :defer t
     :hook (org-mode . org-superstar-mode))
 #+end_src
 
+** toc-org
+This allows generating the table of contents you can find at the beginning of this file.
+
+#+begin_src emacs-lisp
+  (use-package toc-org
+    :hook (org-mode . toc-org-mode))
+#+end_src
 * Programming
 ** Eglot
 Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightweight and more straightforward to setup correctly.
+
 #+begin_src emacs-lisp
   (use-package eglot
+    :defer t
     :bind (:map eglot-mode-map
 		("C-c l h" . eldoc)
 		("C-c l r" . eglot-rename)
@@ -251,6 +292,7 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 										  :semicolons "remove"))))
   ;; makes eglot faster using a rust wrapper, needs to be in PATH
   (use-package eglot-booster
+    :defer t
     :vc (:fetcher github :repo jdtsmith/eglot-booster)
     :after eglot
     :config
@@ -261,6 +303,7 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 #+begin_src emacs-lisp
 
   (use-package corfu
+    :defer t
     :custom
     (corfu-auto t)
     :init
@@ -272,6 +315,7 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 ** Snippets
 #+begin_src emacs-lisp
   (use-package yasnippet
+    :defer t
     :ensure t
     :diminish yas-minor-mode
     :hook (prog-mode . yas-minor-mode)
@@ -281,19 +325,24 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
 
 ** Magit
 Magit is a git client in Emacs.
+
 #+begin_src emacs-lisp
-  (use-package magit)
+  (use-package magit
+    :defer t)
 #+end_src
 
 ** Docker
 #+begin_src emacs-lisp
   (use-package docker
+    :defer t
     :ensure t
     :bind ("C-c d" . docker))
 #+end_src
+
 ** Languages
 *** tree-sitter
 Tree-sitter is a built-in Emacs package that allows us to have extremely well integrated language grammar. Here, we're setting up the list of sources, most of them being on tree-sitter's official GitHub, as well as hooking up the languages to their different modes.
+
 #+begin_src emacs-lisp
   (setq treesit-font-lock-level 4) ;; more coloring!
   (setq treesit-language-source-alist
@@ -322,5 +371,6 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
 * Mail
 #+begin_src emacs-lisp
   (autoload 'notmuch "notmuch" "notmuch mail" t)
-  (use-package notmuch)
+  (use-package notmuch
+    :defer t)
 #+end_src
