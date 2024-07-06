@@ -222,13 +222,6 @@ which-key is a nice little package that allows to have a minibuffer showing whic
       "C-c l" "lsp"))
 #+end_src
 
-** Discord presence
-#+begin_src emacs-lisp
-  (use-package elcord
-    :config
-    (elcord-mode))
-#+end_src
-
 * Org mode
 ** Pretty bullets and headlines
 I use org-superstar-mode, as it makes headlines and bullets look really nice.
