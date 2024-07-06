@@ -285,7 +285,7 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
   (use-package eglot
     :defer t
     :config
-    (eglot-events-buffer-size 0)
+    (setq eglot-events-buffer-size 0) ;; important performance fix (https://www.gnu.org/software/emacs/manual/html_node/eglot/Performance.html)
     :bind (:map eglot-mode-map
 		("C-c l h" . eldoc)
 		("C-c l r" . eglot-rename)
