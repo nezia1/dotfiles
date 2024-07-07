@@ -125,16 +125,17 @@ I use two different fonts in Emacs : my sans serif font for anything where varia
 Besides the font settings, I use the package fixed-pitch, which sets up hooks automatically for all the modes that require fixed width fonts. This allows me to have my sans serif everywhere else.
 
 #+begin_src emacs-lisp
-  ;; Set base fonts
-  (set-face-attribute 'default nil :font "sans-serif" :height 125)
-  (set-face-attribute 'fixed-pitch nil :font "monospace" :height 125)
-
-  ;; set monospace for specific org mode elements
   (custom-theme-set-faces
    'user
+   ;; global faces
+   '(default ((t (:family "monospace" :height 125))))
+   '(variable-pitch ((t (:family "sans-serif" :height 125))))
+   '(fixed-pitch ((t (:inherit default))))
+   ;; org mode specific faces
    '(org-block ((t (:inherit fixed-pitch))))
    '(org-code ((t (:inherit (shadow fixed-pitch)))))
    '(org-table ((t (:inherit fixed-pitch :foreground "#83a598")))))
+
 
   (use-package fixed-pitch
     :vc ( :fetcher github :repo cstby/fixed-pitch-mode))
@@ -322,6 +323,11 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
     (global-corfu-mode)
     (setq corfu-popupinfo-delay 0.2)
     (corfu-popupinfo-mode))
+
+  (use-package nerd-icons-corfu
+    :after corfu
+    :config
+    (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 #+end_src
 
 ** Snippets
@@ -370,14 +376,17 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
 	  (markdown "https://github.com/ikatyang/tree-sitter-markdown")
 	  (python "https://github.com/tree-sitter/tree-sitter-python")
 	  (toml "https://github.com/tree-sitter/tree-sitter-toml")
+	  (templ "https://github.com/vrischmann/tree-sitter-templ")
 	  (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
 	  (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
 	  (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
   ;; mode bindings to file extensions
-  (add-to-list 'auto-mode-alist '("\\.ts\\'" . tsx-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-ts-mode))
+  (setq auto-mode-alist
+	(append '(("\\.ts\\'" . tsx-ts-mode)
+		  ("\\.tsx\\'" . tsx-ts-mode)
+		  ("\\.py\\'" . python-ts-mode))
+		auto-mode-alist))
   #+end_src
 
 ** Copilot
