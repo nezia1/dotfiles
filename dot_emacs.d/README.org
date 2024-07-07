@@ -129,8 +129,8 @@ Besides the font settings, I use the package fixed-pitch, which sets up hooks au
    'user
    ;; global faces
    '(default ((t (:family "monospace" :height 125))))
-   '(variable-pitch ((t (:family "sans-serif" :height 125))))
-   '(fixed-pitch ((t (:inherit default))))
+   '(variable-pitch ((t (:family "DejaVu Sans" :height 125))))
+   '(fixed-pitch ((t (:family "monospace" :height 125))))
    ;; org mode specific faces
    '(org-block ((t (:inherit fixed-pitch))))
    '(org-code ((t (:inherit (shadow fixed-pitch)))))
@@ -262,6 +262,11 @@ which-key is a nice little package that allows to have a minibuffer showing whic
 #+end_src
 
 * Org mode
+#+begin_src emacs-lisp
+  (use-package org
+    :hook
+    (org-mode . variable-pitch-mode))
+#+end_src
 ** Pretty bullets and headlines
 I use org-superstar-mode, as it makes headlines and bullets look really nice.
 
