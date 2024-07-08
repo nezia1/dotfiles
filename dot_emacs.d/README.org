@@ -9,12 +9,12 @@
 - [[#general-config][General config]]
   - [[#move-temporary-files-to-tmpusername][Move temporary files to /tmp/{username}]]
   - [[#minimal-interface][Minimal interface]]
+  - [[#mode-line][Mode line]]
   - [[#match-fish-shells-path][Match fish shell's path]]
   - [[#bell][Bell]]
   - [[#font][Font]]
   - [[#visual-mode][Visual mode]]
   - [[#theme][Theme]]
-  - [[#modeline][Modeline]]
   - [[#completion][Completion]]
   - [[#which-key][which-key]]
 - [[#org-mode][Org mode]]
@@ -91,6 +91,16 @@ We disable a lot of interface elements, to make the editor more minimal looking.
   (tooltip-mode -1)
   (set-fringe-mode 10)
   (menu-bar-mode -1)
+#+end_src
+
+** Mode line
+
+#+begin_src emacs-lisp
+  (use-package moody
+    :config
+    (moody-replace-mode-line-front-space)
+    (moody-replace-mode-line-buffer-identification)
+    (moody-replace-vc-mode))
 #+end_src
 
 ** Match fish shell's path
@@ -180,23 +190,6 @@ I use catppuccin as my theme, as I find it comfortable to work with (the Frappe 
     (load-theme 'catppuccin :no-confirm))
 #+end_src
 
-** Modeline
-minions allows to collapse all minor modes in a menu.
-#+begin_src emacs-lisp
-  (use-package minions
-  :config
-  (minions-mode))
-#+end_src
-
-
-
-#+begin_src emacs-lisp
-  (use-package moody
-    :config
-    (moody-replace-mode-line-front-space)
-    (moody-replace-mode-line-buffer-identification)
-    (moody-replace-vc-mode))
-#+end_src
 ** Completion
 I use vertico as my completion framework. It's minimal, fast and tells me all I need to know and even sorts by history.
 
