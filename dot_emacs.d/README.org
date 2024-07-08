@@ -410,6 +410,7 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
     :bind (:map copilot-completion-map
 		("TAB" . copilot-accept-completion)))
 #+end_src
+
 * Mail
 #+begin_src emacs-lisp
   (autoload 'notmuch "notmuch" "notmuch mail" t)
