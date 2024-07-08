@@ -181,16 +181,22 @@ I use catppuccin as my theme, as I find it comfortable to work with (the Frappe 
 #+end_src
 
 ** Modeline
-I use doom-modeline as my modeline, as I find it really clean and minimal.
-
+minions allows to collapse all minor modes in a menu.
 #+begin_src emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    :init (doom-modeline-mode 1)
-    :config
-    (setq doom-modeline-height 30))
+  (use-package minions
+  :config
+  (minions-mode))
 #+end_src
 
+
+
+#+begin_src emacs-lisp
+  (use-package moody
+    :config
+    (moody-replace-mode-line-front-space)
+    (moody-replace-mode-line-buffer-identification)
+    (moody-replace-vc-mode))
+#+end_src
 ** Completion
 I use vertico as my completion framework. It's minimal, fast and tells me all I need to know and even sorts by history.
 
