@@ -19,8 +19,8 @@ sudo dnf install -y {{ .packages.linux.fedora | join " "}}
 
 # install asdf plugins
 {{ range .packages.linux.asdf -}}
-asdf install {{ . | quote }} latest
-asdf global {{ . | quote }} latest
+asdf install {{ . }} latest
+asdf global {{ . }} latest
 {{ end }}
 {{ end }}
 {{ else }}
