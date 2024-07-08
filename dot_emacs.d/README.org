@@ -305,6 +305,7 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
     :hook ((tsx-ts-mode . eglot-ensure)
 	   (typescript-ts-mode . eglot-ensure)
 	   (python-ts-mode . eglot-ensure)
+	   (go-ts-mode . eglot-ensure)
 	   (eglot--managed-mode . electric-pair-mode)
 	   (eglot--managed-mode . (lambda ()
 				    (add-hook 'after-save-hook #'eglot-format-buffer nil t)))
@@ -380,6 +381,7 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
 	  (css "https://github.com/tree-sitter/tree-sitter-css")
 	  (elisp "https://github.com/Wilfred/tree-sitter-elisp")
 	  (go "https://github.com/tree-sitter/tree-sitter-go")
+	  (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
 	  (html "https://github.com/tree-sitter/tree-sitter-html")
 	  (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
 	  (json "https://github.com/tree-sitter/tree-sitter-json")
@@ -396,7 +398,8 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
   (setq auto-mode-alist
 	(append '(("\\.ts\\'" . tsx-ts-mode)
 		  ("\\.tsx\\'" . tsx-ts-mode)
-		  ("\\.py\\'" . python-ts-mode))
+		  ("\\.py\\'" . python-ts-mode)
+		  ("\\.go\\'" . go-ts-mode))
 		auto-mode-alist))
   #+end_src
 
