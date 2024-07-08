@@ -11,7 +11,7 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 
 # enable coprs 
 {{ range .packages.linux.copr -}}
-sudo copr enable {{ . | quote }} -y
+sudo dnf copr -y enable {{ . | quote }} 
 {{ end }}
 
 # install packages
