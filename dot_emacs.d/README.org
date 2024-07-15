@@ -27,7 +27,6 @@
   - [[#magit][Magit]]
   - [[#docker][Docker]]
   - [[#languages][Languages]]
-  - [[#copilot][Copilot]]
 - [[#mail][Mail]]
 
 * Packages initialization
@@ -395,17 +394,6 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
 		  ("\\.go\\'" . go-ts-mode))
 		auto-mode-alist))
   #+end_src
-
-** Copilot
-#+begin_src emacs-lisp
-  (use-package copilot
-    :vc
-    (:fetcher github :repo copilot-emacs/copilot.el)
-    :hook
-    (eglot--managed-mode . copilot-mode)
-    :bind (:map copilot-completion-map
-		("TAB" . copilot-accept-completion)))
-#+end_src
 
 * Mail
 #+begin_src emacs-lisp
