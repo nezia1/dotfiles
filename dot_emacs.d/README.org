@@ -5,7 +5,6 @@
 * Table of Contents                                                     :TOC:
 - [[#packages-initialization][Packages initialization]]
   - [[#vc-use-package][vc-use-package]]
-  - [[#automatically-tangle-on-save][Automatically tangle on save]]
 - [[#general-config][General config]]
   - [[#move-temporary-files-to-tmpusername][Move temporary files to /tmp/{username}]]
   - [[#minimal-interface][Minimal interface]]
@@ -54,13 +53,6 @@ vc-use-package integrates package-vc-install, which allows installing packages f
       (unless (package-installed-p 'vc-use-package)
 	(package-vc-install "https://github.com/slotThe/vc-use-package"))
     (require 'vc-use-package))
-#+end_src
-
-** Automatically tangle on save
-#+begin_src emacs-lisp
-  (add-hook 'org-mode-hook
-	    (lambda () (add-hook 'after-save-hook #'org-babel-tangle
-				 :append :local)))
 #+end_src
 
 * General config
@@ -401,3 +393,8 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
   (use-package notmuch
     :defer t)
 #+end_src
+
+;; Local Variables: 
+;; eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Reload?")(load-file user-init-file))) nil t) 
+;; eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t) 
+;; End:
