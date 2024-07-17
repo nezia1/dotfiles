@@ -1,5 +1,5 @@
 ;; Enable local variables
-(setq enable-local-variables :safe)
+(setq enable-local-variables :all)
 
 ;; Paths to config.org and the tangled init.el
 (defvar org-config-file (expand-file-name "README.org" user-emacs-directory))
