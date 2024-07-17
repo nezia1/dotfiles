@@ -363,7 +363,8 @@ Popper is a package that allows us to have popup buffers. This is really useful 
     :ensure t ; or :straight t
     :bind (("C-c p t"   . popper-toggle)
 	   ("C-c p c"   . popper-cycle)
-	   ("C-c p w" . popper-toggle-type))
+	   ("C-c p w" . popper-toggle-type)
+	   ("C-c p k" . popper-kill-latest-popup))
     :init
     (setq popper-reference-buffers
 	  '("\\*Messages\\*"
