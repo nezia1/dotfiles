@@ -375,6 +375,8 @@ Popper is a package that allows us to have popup buffers. This is really useful 
 	    "^\\*shell.*\\*$"  shell-mode  
 	    "^\\*term.*\\*$"   term-mode
 	    "^\\*vterm.*\\*$"  vterm-mode))
+    (which-key-add-key-based-replacements
+      "C-c p" "popper")
     (popper-mode)
     (popper-echo-mode))
 #+end_src
