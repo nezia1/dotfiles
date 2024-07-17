@@ -1,6 +1,0 @@
-#!/bin/sh
-{{ range .vscode.extensions }}
-codium --install-extension {{ . | quote }} --force &
-{{ end }}
-
-wait
