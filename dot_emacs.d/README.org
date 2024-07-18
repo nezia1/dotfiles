@@ -27,7 +27,6 @@
   - [[#docker][Docker]]
   - [[#popper][popper]]
   - [[#languages][Languages]]
-- [[#mail][Mail]]
 
 * Packages initialization
 Here, we're initializing MELPA, as well as package.el and use-package.
@@ -415,13 +414,6 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
 		  ("\\.go\\'" . go-ts-mode))
 		auto-mode-alist))
   #+end_src
-
-* Mail
-#+begin_src emacs-lisp
-  (autoload 'notmuch "notmuch" "notmuch mail" t)
-  (use-package notmuch
-    :defer t)
-#+end_src
 
 ;; Local Variables: 
 ;; eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Reload?")(load-file user-init-file))) nil t) 
