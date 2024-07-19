@@ -90,8 +90,7 @@ We disable a lot of interface elements, to make the editor more minimal looking.
   (use-package moody
     :config
     (moody-replace-mode-line-front-space)
-    (moody-replace-mode-line-buffer-identification)
-    (moody-replace-vc-mode))
+    (moody-replace-mode-line-buffer-identification))
 #+end_src
 
 ** Match fish shell's path
@@ -414,6 +413,17 @@ Tree-sitter is a built-in Emacs package that allows us to have extremely well in
 		  ("\\.go\\'" . go-ts-mode))
 		auto-mode-alist))
   #+end_src
+
+*** Eat
+
+Eat (Emulate a Terminal) is an emacs terminal emulator. It also integrates with eshell, and is needed in order to render full-screen terminal applications, which eshell struggles to do.
+
+#+begin_src emacs-lisp
+  (use-package eat
+    :hook
+    ((eshell-load . eat-eshell-mode)
+     (eshell-load . eat-eshell-mode)))
+#+end_src
 
 ;; Local Variables: 
 ;; eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Reload?")(load-file user-init-file))) nil t) 
