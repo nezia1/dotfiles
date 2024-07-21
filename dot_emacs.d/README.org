@@ -32,17 +32,17 @@
 Here, we're initializing MELPA, as well as package.el and use-package.
 
 #+begin_src emacs-lisp
-  (require 'package)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-  ;; and `package-pinned-packages`. Most users will not need or want to do this.
-  ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+    (require 'package)
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+    ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+    ;; and `package-pinned-packages`. Most users will not need or want to do this.
+    ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-  (unless package-archive-contents
+  ;; Refresh package contents only if the archive contents are empty
+  (unless (and package-archive-contents (not (equal package-archive-contents '())))
     (package-refresh-contents))
-
-  (require 'use-package)
-  (setq use-package-always-ensure t)
+    (require 'use-package)
+    (setq use-package-always-ensure t)
   #+end_src
 
 ** vc-use-package
@@ -281,6 +281,7 @@ Eglot is a built in LSP client for Emacs. I prefer it to LSP as it's more lightw
     :defer t
     :config
     (setq eglot-events-buffer-size 0) ;; important performance fix (https://www.gnu.org/software/emacs/manual/html_node/eglot/Performance.html)
+    (advice-add 'jsonrpc--log-event :override #'ignore)
     :bind (:map eglot-mode-map
 		("C-c l h" . eldoc)
 		("C-c l r" . eglot-rename)
