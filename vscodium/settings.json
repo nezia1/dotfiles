@@ -44,5 +44,6 @@
         "backspace",
         "delete"
     ],
-    "keyboard.dispatch": "keyCode"
+    "keyboard.dispatch": "keyCode",
+    "editor.wordWrap": "bounded"
 }
