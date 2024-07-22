@@ -14,3 +14,6 @@
 [submodule "dot_config/nvim/pack/plugins/start/lsp_signature"]
 	path = dot_config/nvim/pack/plugins/start/lsp_signature
 	url = https://github.com/ray-x/lsp_signature.nvim
+[submodule "dot_config/nvim/pack/plugins/start/auto-pairs"]
+	path = dot_config/nvim/pack/plugins/start/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs
