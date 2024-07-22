@@ -3,6 +3,9 @@ vim.cmd.colorscheme "catppuccin-frappe"
 vim.g.mapleader = " "
 vim.wo.relativenumber = true
 
+-- CHADTree
+vim.api.nvim_set_keymap('n', '<leader>v', '<cmd>CHADopen<CR>', { noremap = true, silent = true })
+
 -- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -70,5 +73,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Formatting
-vim.api.nvim_set_keymap('n', '<leader>qf', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+-- Function to format the current buffer on save
+local function lsp_format_on_save(bufnr)
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format({ async = false })
+    end,
+  })
+end
+
+-- Create an autocmd for LspAttach event
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    -- Set up the buffer-local autocmd for formatting on save
+    lsp_format_on_save(bufnr)
+  end,
+})
+
