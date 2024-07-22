@@ -1,3 +1,6 @@
 [submodule "dot_config/nvim/pack/plugins/start/catppuccin"]
 	path = dot_config/nvim/pack/plugins/start/catppuccin
 	url = https://github.com/catppuccin/nvim
+[submodule "dot_config/nvim/pack/plugins/start/telescope"]
+	path = dot_config/nvim/pack/plugins/start/telescope
+	url = https://github.com/nvim-telescope/telescope.nvim
