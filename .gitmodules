@@ -20,3 +20,6 @@
 [submodule "dot_config/nvim/pack/plugins/start/chadtree"]
 	path = dot_config/nvim/pack/plugins/start/chadtree
 	url = https://github.com/ms-jpq/chadtree
+[submodule "dot_config/nvim/pack/plugins/start/nvim-treesitter"]
+	path = dot_config/nvim/pack/plugins/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
