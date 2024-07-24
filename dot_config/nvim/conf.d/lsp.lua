@@ -76,4 +76,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     lsp_format_on_save(bufnr)
   end,
 })
-
