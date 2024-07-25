@@ -20,3 +20,6 @@
 [submodule "dot_config/nvim/pack/plugins/start/nvim-treesitter"]
 	path = dot_config/nvim/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "dot_config/nvim/pack/plugins/start/plenary"]
+	path = dot_config/nvim/pack/plugins/start/plenary
+	url = https://github.com/nvim-lua/plenary.nvim
