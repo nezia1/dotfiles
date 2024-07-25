@@ -8,9 +8,10 @@ packages:
       - keychain
       - neovim
       - starship
+      - zed
       - zoxide
       - https://proton.me/download/PassDesktop/linux/x64/ProtonPass.rpm
-    copr: 
+    copr:
       - atim/starship
     flatpaks:
       - com.getpostman.Postman
@@ -116,4 +117,3 @@ packages:
       - zip
       - zsh
       - zsh-antidote
-
