@@ -2,7 +2,6 @@ packages:
   linux:
     fedora:
       - bat
-      - codium
       - fish
       - fzf
       - keychain
