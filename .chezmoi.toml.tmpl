@@ -1,5 +1,5 @@
 [edit]
-	command = "code --wait"
+	command = "zed -w"
 [data]
 	is_wsl = {{ (.chezmoi.kernel.osrelease | regexMatch "-microsoft-standard$") }}
 	flavor = "{{ env "FLAVOR" }}"
