@@ -14,5 +14,6 @@
     "light": "Catppuccin Latte",
     "dark": "Catppuccin Frappé"
   },
-  "vim_mode": true
+  "vim_mode": true,
+  "relative_line_numbers": true
 }
