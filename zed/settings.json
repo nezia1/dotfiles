@@ -15,5 +15,7 @@
     "dark": "Catppuccin Frappé"
   },
   "vim_mode": true,
-  "relative_line_numbers": true
+  "relative_line_numbers": true,
+  "soft_wrap": "preferred_line_length",
+  "preferred_line_length": 160
 }
