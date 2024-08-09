@@ -1,0 +1,8 @@
+#!/bin/bash
+
+{{ if and (eq .chezmoi.os "linux") (not .is_wsl) -}}
+
+dconf load /org/gnome/ < {{ joinPath .chezmoi.sourceDir "dconf.ini" | quote }}
+
+{{ end }}
+
