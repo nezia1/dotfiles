@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "terminal": {
+    "dock": "bottom"
+  },
   "ui_font_size": 17,
   "buffer_font_size": 16,
   "theme": {
@@ -17,5 +20,22 @@
   "vim_mode": true,
   "relative_line_numbers": true,
   "soft_wrap": "preferred_line_length",
-  "preferred_line_length": 160
+  "preferred_line_length": 160,
+  "project_panel": {
+    "dock": "right"
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "assistant": {
+    "version": "2",
+    "dock": "left"
+  },
+  "chat_panel": {
+    "button": false
+  },
+  "collaboration_panel": {
+    "dock": "right",
+    "button": false
+  }
 }
