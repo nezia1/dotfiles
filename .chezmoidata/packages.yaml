@@ -5,12 +5,14 @@ packages:
       - fish
       - fzf
       - keychain
+      - lazygit
       - neovim
       - starship
       - zed
       - zoxide
       - https://proton.me/download/PassDesktop/linux/x64/ProtonPass.rpm
     copr:
+      - atim/lazygit
       - atim/starship
     flatpaks:
       - com.getpostman.Postman
