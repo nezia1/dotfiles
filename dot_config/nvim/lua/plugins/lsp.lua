@@ -31,7 +31,7 @@ return {
 			"hrsh7th/cmp-cmdline",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
+			"honza/vim-snippets",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		opts = function(_, opts)
@@ -43,7 +43,8 @@ return {
 				    nil
 			end
 
-			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_snipmate").lazy_load()
+
 			-- Setup cmp with options
 			opts.snippet = {
 				expand = function(args)
