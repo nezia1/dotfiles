@@ -11,10 +11,11 @@ return {
 		require('telescope').load_extension('projects')
 	end,
 	keys = {
-		{ '<leader>ff', function() require 'telescope.builtin'.find_files() end,             mode = 'n' },
-		{ '<leader>fg', function() require('telescope.builtin').live_grep() end,             mode = 'n' },
-		{ '<leader>fb', function() require('telescope.builtin').buffers() end,               mode = 'n' },
-		{ '<leader>fh', function() require('telescope.builtin').help_tags() end,             mode = 'n' },
-		{ '<leader>fp', function() require('telescope').extensions.projects.projects {} end, mode = 'n' }
+		{ '<leader>ff', function() require 'telescope.builtin'.find_files() end,             desc = 'Find files',  mode = 'n' },
+		{ '<leader>fg', function() require('telescope.builtin').live_grep() end,             desc = 'Live grep',   mode = 'n' },
+		{ '<leader>fb', function() require('telescope.builtin').buffers() end,               desc = 'Buffers',     mode = 'n' },
+		{ '<leader>fh', function() require('telescope.builtin').help_tags() end,             desc = 'Help tags',   mode = 'n' },
+		{ '<leader>fp', function() require('telescope').extensions.projects.projects {} end, desc = 'Projects',    mode = 'n' },
+		{ '<leader>fd', "<cmd>Telescope diagnostics<CR>",                                    desc = 'Diagnostics', mode = 'n' }
 	},
 }
