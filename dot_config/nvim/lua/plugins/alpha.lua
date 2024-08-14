@@ -10,6 +10,7 @@ return {
 		local frappe = require("catppuccin.palettes").get_palette "frappe"
 
 		vim.api.nvim_set_hl(0, 'DashboardHeader', { fg = frappe.lavender })
+
 		dashboard.section.header.val = {
 			[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
 			[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
