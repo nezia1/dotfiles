@@ -6,6 +6,7 @@ packages:
       - fzf
       - keychain
       - lazygit
+      - neovide
       - neovim
       - starship
       - zed
