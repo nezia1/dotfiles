@@ -4,8 +4,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
 			ensure_installed = { "gopls", "lua_ls" },
-		}
-
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -30,8 +29,9 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-vsnip",
-			"hrsh7th/vim-vsnip",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		opts = function(_, opts)
@@ -43,42 +43,49 @@ return {
 				    nil
 			end
 
+			require("luasnip.loaders.from_vscode").lazy_load()
 			-- Setup cmp with options
 			opts.snippet = {
 				expand = function(args)
-					vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+					require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
 				end,
 			}
+			local luasnip = require('luasnip')
 
 			opts.mapping = cmp.mapping.preset.insert({
 				['<C-b>'] = cmp.mapping.scroll_docs(-4),
 				['<C-f>'] = cmp.mapping.scroll_docs(4),
 				['<C-Space>'] = cmp.mapping.complete(),
 				['<C-e>'] = cmp.mapping.abort(),
-				['<tab>'] = cmp.mapping(function(fallback)
+				['<CR>'] = cmp.mapping.confirm({ select = true }), -- Enter key to confirm completion
+				['<Tab>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
-						cmp.select_next_item()
+						cmp.select_next_item() -- Navigate to the next item in the list
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump() -- Expand or jump to the next snippet placeholder
 					elseif has_words_before() then
-						cmp.complete()
+						cmp.complete() -- Trigger completion if a word is before the cursor
 					else
-						fallback()
+						fallback() -- Insert a tab character if nothing else applies
 					end
 				end, { "i", "s" }),
 				['<S-Tab>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
-						cmp.select_prev_item()
+						cmp.select_prev_item() -- Navigate to the previous item in the list
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1) -- Jump to the previous snippet placeholder
 					else
-						fallback()
+						fallback() -- Insert a tab character if nothing else applies
 					end
 				end, { "i", "s" }),
 			})
 
 			opts.sources = cmp.config.sources({
 				{ name = 'nvim_lsp' },
-				{ name = 'vsnip' }, -- For vsnip users.
+				{ name = 'luasnip' }, -- For luasnip users.
 			}, {
 				{ name = 'buffer' },
-				{ name = 'nvim_lsp_signature_help' }
+				{ name = 'nvim_lsp_signature_help' },
 			})
 
 			return opts
