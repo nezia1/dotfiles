@@ -1,8 +1,14 @@
 [Appearance]
+BoldIntense=false
+BorderWhenActive=false
 ColorScheme=Catppuccin-Frappe
-Font=Fira Code Retina,11,-1,5,53,0,0,0,0,0,Regular
+Font=Monospace,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+UseFontLineChararacters=true
 
 [General]
-Command=/usr/bin/fish
+Command=tmux
 Name=nezia
 Parent=FALLBACK/
+
+[Terminal Features]
+BlinkingCursorEnabled=false
