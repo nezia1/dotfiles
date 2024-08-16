@@ -12,7 +12,6 @@ dev-container-install.sh
 .config/dunst
 .config/gtk-3.0
 .config/hypr
-.config/kitty
 .config/qt5ct
 .config/swaylock
 .config/systemd
