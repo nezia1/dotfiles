@@ -28,8 +28,8 @@ To apply the configuration on a machine, use the following steps:
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/nezia1/nixos-config.git
-cd nixos-config
+git clone https://github.com/nezia1/dotfiles.git .dotfiles
+cd .dotfiles 
 ```
 
 2. Switch to the desired configuration:

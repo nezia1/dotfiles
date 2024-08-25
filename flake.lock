@@ -288,11 +288,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-krjVFFsJfKvYRvOoBkZ8xr+OEZ5nfmgf4oxmE/h6Q9c=",
-        "path": "/nix/store/l21z352sl72xph23gccnqaply5lh785p-source/shells",
+        "path": "/nix/store/0blxgxs9nfzfi2fj1gy59l8660kldyci-source/shells",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/l21z352sl72xph23gccnqaply5lh785p-source/shells",
+        "path": "/nix/store/0blxgxs9nfzfi2fj1gy59l8660kldyci-source/shells",
         "type": "path"
       }
     },
