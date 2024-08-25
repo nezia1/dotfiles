@@ -59,6 +59,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
                 home-manager.users.nezia = import ./home/desktop;
+                home-manager.extraSpecialArgs = { inherit inputs; };
               }
               { _module.args = { inherit hostname username; }; }
             ];
