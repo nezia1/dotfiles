@@ -1,8 +1,0 @@
-[edit]
-	command = "nvim"
-[data]
-	is_wsl = {{ (.chezmoi.kernel.osrelease | regexMatch "-microsoft-standard$") }}
-	flavor = "{{ env "FLAVOR" }}"
-[git]
-	autoCommit = true
-	autoPush = true
