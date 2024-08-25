@@ -37,25 +37,17 @@
         }
         { _module.args = { inherit hostname username; }; }
       ];
+
+    configureSystem = hostname: homeConfig: nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = commonModules hostname ++ [
+          { home-manager.users.${username} = import homeConfig; }
+        ];
+      };
     in {
       nixosConfigurations = {
-        vamos = 
-          let hostname = "vamos";
-          in nixpkgs.lib.nixosSystem {
-              system = system;
-              modules = commonModules hostname ++ [
-                { home-manager.users.nezia = import ./home/laptop; }
-              ];
-            };
-
-        solaire = let
-          hostname = "solaire";
-        in nixpkgs.lib.nixosSystem {
-            system = system;
-            modules = commonModules hostname ++ [
-              { home-manager.users.nezia = import ./home/desktop; }
-            ];
-          };
+        vamos = configureSystem "vamos" ./home/laptop;
+        solaire = configureSystem "solaire" ./home/desktop;
       };
     };
 }
