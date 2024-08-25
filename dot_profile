@@ -1,3 +1,0 @@
-export EDITOR=nvim
-export VISUAL="codium --wait"
-. "$HOME/.cargo/env"
