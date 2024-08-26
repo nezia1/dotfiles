@@ -13,9 +13,21 @@
     size = 24;
   };
   stylix.fonts = {
+    serif = {
+      package = pkgs.noto-fonts;
+      name = "Noto Serif";
+    };
+    sansSerif = {
+      package = pkgs.noto-fonts;
+      name = "Noto Sans";
+    };
     monospace = {
       package = pkgs.nerdfonts.override { fonts = [ "Monaspace" ]; };
       name = "MonaspiceNe Nerd Font Mono";
+    };
+    emoji = {
+      package = pkgs.noto-fonts-color-emoji;
+      name = "Noto Color Emoji";
     };
     sizes = {
       terminal = 14;
