@@ -18,9 +18,13 @@
       url = "path:./shells";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixvim, sops-nix, shells, ... }@inputs: 
+  outputs = { nixpkgs, home-manager, nixvim, sops-nix, stylix, ... }@inputs: 
     let
       username = "nezia";
       system = "x86_64-linux";
@@ -28,6 +32,7 @@
       commonModules = hostname: [
         ./hosts/${hostname}
         sops-nix.nixosModules.sops
+        stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
