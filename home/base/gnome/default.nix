@@ -21,9 +21,12 @@
   programs.gnome-terminal = {
     enable = true;
     showMenubar = false;
-    profile."7dfaed12-b68d-4459-8cb9-ecd3d49f3634" = {
+    profile."2e695b31-b387-4c21-84db-6203b9d8cf52" = {
+      visibleName = "nezia";
       default = true;
-      customCommand = "tmux new-session -A -s main";
+      audibleBell = false;
+      customCommand = "tmux new -A -s main";
+      font = "MonaspiceNe Nerd Font 14";
     };
   };
 }
