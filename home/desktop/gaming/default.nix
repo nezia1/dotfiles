@@ -7,4 +7,5 @@
     bottles
     lutris
   ];
+  programs.mangohud.enable = true;
 }

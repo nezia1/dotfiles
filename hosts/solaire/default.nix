@@ -49,6 +49,9 @@
   programs.steam = {
     enable = true;
     package = with pkgs; steam.override { extraPkgs = pkgs: [ attr ]; };
+    gamescopeSession.enable = true;
   };
+
+  programs.gamemode.enable = true;
 }
 
