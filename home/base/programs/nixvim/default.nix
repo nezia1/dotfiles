@@ -7,15 +7,16 @@
     viAlias = true;
     vimAlias = true;
 
-    performance.byteCompileLua.enable = true;
-
-    clipboard.providers.wl-copy.enable = true;
-    
-    globals.mapleader = " ";
     colorschemes.catppuccin = {
       enable = true;
       settings = { flavour = "frappe"; };
     };
+
+    performance.byteCompileLua.enable = true;
+
+    clipboard.providers.wl-copy.enable = true;
+
+    globals.mapleader = " ";
 
     opts = { 
       smartindent = false;
@@ -71,7 +72,7 @@
       {
         action = ''
           <cmd>lua vim.lsp.buf.code_action({ apply = true })<CR>
-          '';
+        '';
         key = "<leader>lc";
         options = {
           desc = "Apply code actions";
@@ -80,7 +81,7 @@
       {
         action = ''
           <cmd>lua vim.lsp.buf.format()<CR>
-          '';
+        '';
         key = "<leader>lf";
         options = {
           desc = "Format buffer";
@@ -157,8 +158,27 @@
       treesitter = {
         enable = true;
         settings = {
-          highlight.enable = true;
-          indent.enable = true;
+          auto_install = true;
+          highlight = {
+            additional_vim_regex_highlighting = true;
+            custom_captures = { };
+            enable = true;
+          };
+          incremental_selection = {
+            enable = true;
+            keymaps = {
+              init_selection = false;
+              node_decremental = "grm";
+              node_incremental = "grn";
+              scope_incremental = "grc";
+            };
+          };
+          indent = {
+            enable = true;
+          };
+          parser_install_dir = {
+            __raw = "vim.fs.joinpath(vim.fn.stdpath('data'), 'treesitter')";
+          };
         };
       };
       treesitter-context.enable = true;
