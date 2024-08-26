@@ -1,5 +1,11 @@
 { ... }:
 
 {
-  imports = [ ./fish.nix ./starship.nix ./zoxide.nix ./direnv.nix ];
+  imports = [ 
+    ./fish.nix 
+    ./starship.nix 
+    ./zoxide.nix 
+    ./direnv.nix 
+    ./zellij.nix
+  ];
 }
