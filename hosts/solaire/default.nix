@@ -7,6 +7,7 @@
     ../../modules/system.nix 
     ../../modules/gnome.nix 
     ../../modules/syncthing
+    ../../modules/stylix.nix
   ];
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -40,10 +41,6 @@
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.beta;
-  };
-
-  environment.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = "0";
   };
 
   programs.steam = {
