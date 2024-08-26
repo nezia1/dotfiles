@@ -25,7 +25,6 @@
       visibleName = "nezia";
       default = true;
       audibleBell = false;
-      customCommand = "tmux new -A -s main";
       font = "MonaspiceNe Nerd Font 14";
     };
   };

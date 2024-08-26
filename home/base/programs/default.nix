@@ -5,7 +5,7 @@
     ./git.nix 
     ./gnupg.nix
     ./nixvim 
-    ./tmux.nix
+    ./zellij.nix
     ./browsers.nix
     ./miscellaneous.nix
   ];
