@@ -25,6 +25,7 @@
       visibleName = "nezia";
       default = true;
       audibleBell = false;
+      boldIsBright = true;
       font = "MonaspiceNe Nerd Font 14";
     };
   };

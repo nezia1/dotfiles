@@ -7,11 +7,6 @@
     viAlias = true;
     vimAlias = true;
 
-    colorschemes.catppuccin = {
-      enable = true;
-      settings = { flavour = "frappe"; };
-    };
-
     performance.byteCompileLua.enable = true;
 
     clipboard.providers.wl-copy.enable = true;
