@@ -16,16 +16,7 @@
     };
 
     environment.gnome.excludePackages =
-      (with pkgs; [ gnome-console gnome-photos gnome-tour gedit cheese epiphany geary yelp ])
-      ++ (with pkgs.gnome; [
-        gnome-music
-        tali
-        iagno
-        hitori
-        atomix
-        gnome-contacts
-        gnome-initial-setup
-      ]);
+      (with pkgs; [ gnome-console gnome-photos gnome-music gnome-tour iagno hitori atomix gnome-contacts gnome-initial-setup gedit cheese tali epiphany geary yelp ]);
 
     environment.systemPackages = with pkgs; [ 
       gnome-tweaks 
