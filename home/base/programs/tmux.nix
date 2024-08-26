@@ -42,4 +42,5 @@
       tmuxPlugins.yank
     ];
   };
+  programs.fzf.tmux.enableShellIntegration = true;
 }
