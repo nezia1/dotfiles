@@ -30,6 +30,11 @@
       system = "x86_64-linux";
 
       commonModules = hostname: [
+        ./modules/sops.nix
+        ./modules/system.nix 
+        ./modules/gnome.nix
+        ./modules/syncthing
+        ./modules/stylix.nix
         ./hosts/${hostname}
         sops-nix.nixosModules.sops
         stylix.nixosModules.stylix
@@ -43,7 +48,7 @@
         { _module.args = { inherit hostname username; }; }
       ];
 
-    configureSystem = hostname: homeConfig: nixpkgs.lib.nixosSystem {
+      configureSystem = hostname: homeConfig: nixpkgs.lib.nixosSystem {
         system = system;
         modules = commonModules hostname ++ [
           { home-manager.users.${username} = import homeConfig; }

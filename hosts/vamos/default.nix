@@ -3,11 +3,6 @@
 {
   imports = [ 
     ./hardware-configuration.nix 
-    ../../modules/sops.nix
-    ../../modules/system.nix 
-    ../../modules/gnome.nix
-    ../../modules/syncthing
-    ../../modules/stylix.nix
   ];
 
   services.fprintd.enable = true;
