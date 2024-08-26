@@ -228,6 +228,7 @@
         enableTelescope = true;
       };
 
+      direnv.enable = true;
       which-key = {
         enable = true;
         settings = {
