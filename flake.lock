@@ -494,11 +494,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-tqJYXR0mlrRwAOCqQDl2rdJWntnpWYVhMGyvaqvgUJE=",
-        "path": "./shells",
+        "path": "shells",
         "type": "path"
       },
       "original": {
-        "path": "./shells",
+        "path": "shells",
         "type": "path"
       }
     },

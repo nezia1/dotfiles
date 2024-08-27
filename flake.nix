@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     shells = {
-      url = "path:./shells";
+      url = "path:shells";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
