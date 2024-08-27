@@ -1,3 +1,4 @@
+
 {
   description = "nezia's nixos configuration";
   inputs = {
@@ -22,9 +23,13 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixvim, sops-nix, stylix, ... }@inputs: 
+  outputs = { nixpkgs, nixos-hardware, home-manager, nixvim, sops-nix, stylix, ... }@inputs: 
     let
       username = "nezia";
       system = "x86_64-linux";
@@ -51,9 +56,8 @@
 
       configureSystem = hostname: homeConfig: nixpkgs.lib.nixosSystem {
         system = system;
-        modules = commonModules hostname ++ [
-          { home-manager.users.${username} = import homeConfig; }
-        ];
+        modules = commonModules hostname ++ [ { home-manager.users."${username}" = import homeConfig; } ]  
+          ++ (if hostname == "vamos" then [ nixos-hardware.nixosModules.framework-13-7040-amd ] else []);
       };
     in {
       nixosConfigurations = {

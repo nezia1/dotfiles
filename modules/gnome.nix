@@ -20,6 +20,7 @@
 
     environment.systemPackages = with pkgs; [ 
       gnome-tweaks 
+      gnome-power-manager
     ];
   };
 }

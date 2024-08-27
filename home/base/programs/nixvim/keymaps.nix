@@ -17,6 +17,13 @@
       };
     }
     {
+      action = "<cmd>Telescope buffers<CR>";
+      key = "<leader>fb";
+      options = {
+        desc = "Find buffers";
+      };
+    }
+    {
       action = "<cmd>Neotree toggle<CR>";
       key = "<leader>ft";
       options = {

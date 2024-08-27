@@ -18,6 +18,8 @@
   # automount
   services.udisks2.enable = true;
 
+  services.fwupd.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
 
