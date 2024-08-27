@@ -196,13 +196,36 @@
             "<C-e>" = "cmp.mapping.close()";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<S-Tab>" =
-              "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<S-Tab>" = ''
+              cmp.mapping(function (fallback)
+                local luasnip = require('luasnip')
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end, {'i', 's'})
+            '';
+            "<Tab>" = ''
+              cmp.mapping(function (fallback)
+                local luasnip = require('luasnip')
+                if luasnip.expandable() then
+                    luasnip.expand()
+                elseif cmp.visible() then
+                    cmp.select_next_item()
+                elseif luasnip.jumpable(1) then
+                    luasnip.jump(1)
+                else
+                    fallback()
+                end
+              end, {'i', 's'})
+            '';
           };
 
           sources =
-            [ { name = "nvim_lsp"; } { name = "path"; } { name = "buffer"; } ];
+            [ { name = "nvim_lsp"; } { name = "path"; } { name = "buffer"; } { name = "luasnip"; } ];
         };
       };
       cmp-nvim-lsp.enable = true;
@@ -210,6 +233,9 @@
       telescope = {
         enable = true;
       };
+
+      luasnip.enable = true;
+      friendly-snippets.enable = true;
 
       neo-tree = {
         enable = true;
