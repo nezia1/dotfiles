@@ -46,6 +46,12 @@
 
   programs.gamemode.enable = true;
 
+  hardware.keyboard.qmk.enable = true;
+    environment.systemPackages = with pkgs; [
+     via
+  ];
+  services.udev.packages = [ pkgs.via ];
+
   stylix.image = ../../wallpapers/lucy-edgerunners-wallpaper.jpg;
 }
 
