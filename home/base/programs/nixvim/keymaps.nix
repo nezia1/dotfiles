@@ -41,5 +41,23 @@
         desc = "Format buffer";
       };
     }
+    {
+      action = ''
+        <cmd>Telescope lsp_definitions<CR>
+      '';
+      key = "gd";
+      options = {
+        desc = "Go to definitions";
+      };
+    }
+    {
+      action = ''
+        <cmd>Telescope lsp_references<CR>
+      '';
+      key = "gr";
+      options = {
+        desc = "Go to references";
+      };
+    }
   ];
 }

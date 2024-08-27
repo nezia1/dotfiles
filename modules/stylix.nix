@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   stylix.enable = true;
-  stylix.image = ../lucy.jpg;
   stylix.polarity = "dark";
+  stylix.image = lib.mkDefault ../wallpapers/nix-wallpaper-nineish-catppuccin-frappe-alt.svg;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
   stylix.autoEnable = true;
 

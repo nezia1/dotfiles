@@ -45,5 +45,7 @@
   };
 
   programs.gamemode.enable = true;
+
+  stylix.image = ../../wallpapers/lucy-edgerunners-wallpaper.jpg;
 }
 
