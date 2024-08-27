@@ -30,12 +30,13 @@
       system = "x86_64-linux";
 
       commonModules = hostname: [
+        ./modules/system
         ./modules/sops.nix
-        ./modules/system.nix 
         ./modules/gnome.nix
         ./modules/syncthing
         ./modules/stylix.nix
         ./hosts/${hostname}
+
         sops-nix.nixosModules.sops
         stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
