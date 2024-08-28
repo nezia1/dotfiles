@@ -22,8 +22,8 @@
       name = "Noto Sans";
     };
     monospace = {
-      package = pkgs.nerdfonts.override { fonts = [ "Monaspace" ]; };
-      name = "MonaspiceNe Nerd Font Mono";
+      package = pkgs.intel-one-mono;
+      name = "Intel One Mono";
     };
     emoji = {
       package = pkgs.noto-fonts-color-emoji;

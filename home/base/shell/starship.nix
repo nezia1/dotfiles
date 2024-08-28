@@ -14,9 +14,9 @@
       # Starship modules
       character = {
         # Note the use of Catppuccin color 'peach'
-        success_symbol = "[[󰄛](green) ❯](peach)";
-        error_symbol = "[[󰄛](red) ❯](peach)";
-        vimcmd_symbol = "[󰄛 ❮](subtext1)"; 
+        success_symbol = "[[󰄛 ](green) ❯](peach)";
+        error_symbol = "[[󰄛 ](red) ❯](peach)";
+        vimcmd_symbol = "[󰄛  ❮](subtext1)"; 
       };
 
       git_branch = {
