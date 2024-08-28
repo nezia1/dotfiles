@@ -12,6 +12,7 @@
     ./plugins/neo-tree.nix
     ./plugins/which-key.nix
     ./plugins/project-nvim.nix
+    ./plugins/smart-splits.nix
     ./plugins/misc.nix
   ];
 

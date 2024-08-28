@@ -16,7 +16,7 @@ in
       fish_vi_key_bindings # Enable Vi mode
       fish_config theme choose "Catppuccin Frappe"
     '';
-    shellAbbrs = { cd = "z"; ngc = "sudo nix-collect-garbage -d"; tmux = "tmux new -A -s main"; };
+    shellAbbrs = { cd = "z"; ngc = "sudo nix-collect-garbage -d"; };
     plugins = [ { name = "fzf"; src = pkgs.fishPlugins.fzf.src; } ];
   };
 
