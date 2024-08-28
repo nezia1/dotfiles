@@ -36,6 +36,10 @@ in {
             path = "${homeDir}/Projects";
             devices = builtins.attrNames otherDevices;
           };
+          "Notes" = {
+            path = "${homeDir}/Notes";
+            devices = builtins.attrNames otherDevices;
+          };
         };
       };
     };
