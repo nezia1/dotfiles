@@ -13,6 +13,7 @@
     ./plugins/which-key.nix
     ./plugins/project-nvim.nix
     ./plugins/smart-splits.nix
+    ./plugins/telescope.nix
     ./plugins/misc.nix
   ];
 

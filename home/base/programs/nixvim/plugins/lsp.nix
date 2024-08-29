@@ -11,15 +11,6 @@
             custom_captures = { };
             enable = true;
           };
-          incremental_selection = {
-            enable = true;
-            keymaps = {
-              init_selection = false;
-              node_decremental = "grm";
-              node_incremental = "grn";
-              scope_incremental = "grc";
-            };
-          };
           indent = {
             enable = true;
           };
@@ -36,6 +27,53 @@
           gopls.enable = true;
           nixd.enable = true;
           lua-ls.enable = true;
+        };
+        keymaps = {
+          lspBuf = {
+            K = "hover";
+            gr = {
+              action = "references";
+              desc = "Go to references"; 
+            };
+            gi = { 
+              action = "implementation";
+              desc = "Go to implementation";
+            };
+            gt = {
+              action = "type_definition";
+              desc = "Go to type definition";
+            };
+          };
+          extra = [
+            {
+              action = "<CMD>LspStop<Enter>";
+              key = "<leader>lx";
+              options = {
+                desc = "Stop LSP";
+              };
+            }
+            {
+              action = "<CMD>LspStart<Enter>";
+              key = "<leader>ls";
+              options = {
+                desc = "Start LSP";
+              };
+            }
+            {
+              action = "<CMD>LspRestart<Enter>";
+              key = "<leader>lr";
+              options = {
+                desc = "Restart LSP";
+              };
+            }
+            {
+              action = "<CMD>Telescope lsp_definitions<Enter>";
+              key = "gd";
+              options = {
+                desc = "Go to definitions";
+              };
+            }
+          ];
         };
       };
       cmp = {

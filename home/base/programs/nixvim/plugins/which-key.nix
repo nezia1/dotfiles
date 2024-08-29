@@ -20,7 +20,7 @@
       spec = [
         {
           __unkeyed = "<leader>f";
-          group = "Find";
+          group = "Telescope";
         }
         {
           __unkeyed = "<leader>l";
