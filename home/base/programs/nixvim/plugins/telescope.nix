@@ -19,19 +19,19 @@
       "<leader>ff" = {
         action = "find_files";
         options = {
-          desc = "Find files";
+          desc = "Files";
         };
       };
       "<leader>fp" = {
         action = "projects";
         options = {
-          desc = "Find projects";
+          desc = "Projects";
         };
       };
       "<leader>fb" = {
         action = "buffers";
         options = {
-          desc = "Find buffers";
+          desc = "Buffers";
         };
       };
     };
