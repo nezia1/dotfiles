@@ -8,4 +8,6 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  services.flatpak.enable = true;
 }
