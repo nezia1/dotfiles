@@ -1,4 +1,3 @@
-
 {
   description = "nezia's nixos configuration";
   inputs = {

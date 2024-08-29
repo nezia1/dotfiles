@@ -1,23 +1,10 @@
-{ pkgs, ... }:
+{ ... }:
 
-
-# Workaround for libdecor not being fully implemented yet when using wayland - https://github.com/wez/wezterm/issues/1969#issuecomment-1597817011
-let
-  wrappedWezterm = pkgs.symlinkJoin {
-    name = "wezterm";
-    paths = [ pkgs.wezterm ];
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/wezterm \
-        --set WAYLAND_DISPLAY "wayland-1" \
-        --set GTK_THEME "adwaita"
-    '';
-  };
-  in
 {
+  # WebGpu / Nvidia bug (also crashes on AMD drivers): https://github.com/wez/wezterm/issues/6050
+  # Rendering broken in master: https://github.com/NixOS/nixpkgs/issues/336069
   programs.wezterm = {
     enable = true;
-    package = wrappedWezterm;
     extraConfig = ''
       local w = require('wezterm')
 
@@ -70,8 +57,8 @@ let
       end
 
       return {
-      front_end = "WebGpu",
-          enable_wayland = true,
+          front_end = "WebGpu",
+          enable_wayland = false,
           hide_tab_bar_if_only_one_tab = true,
           show_new_tab_button_in_tab_bar = false,
           harfbuzz_features = { "ss01", "ss03" },
