@@ -1,8 +1,23 @@
-{ ... }:
+{ pkgs, ... }:
 
+
+# Workaround for libdecor not being fully implemented yet when using wayland - https://github.com/wez/wezterm/issues/1969#issuecomment-1597817011
+let
+  wrappedWezterm = pkgs.symlinkJoin {
+    name = "wezterm";
+    paths = [ pkgs.wezterm ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/wezterm \
+        --set WAYLAND_DISPLAY "wayland-1" \
+        --set GTK_THEME "adwaita"
+    '';
+  };
+  in
 {
   programs.wezterm = {
     enable = true;
+    package = wrappedWezterm;
     extraConfig = ''
       local w = require('wezterm')
 
@@ -55,10 +70,10 @@
       end
 
       return {
-          front_end = "WebGpu",
+      front_end = "WebGpu",
+          enable_wayland = true,
           hide_tab_bar_if_only_one_tab = true,
           show_new_tab_button_in_tab_bar = false,
-          enable_wayland = false,
           harfbuzz_features = { "ss01", "ss03" },
 
           leader = { key = " ", mods = "CTRL", timeout_milliseconds = 1000 },
