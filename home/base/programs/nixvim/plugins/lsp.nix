@@ -14,13 +14,56 @@
           indent = {
             enable = true;
           };
+          folding = true;
           parser_install_dir = {
             __raw = "vim.fs.joinpath(vim.fn.stdpath('data'), 'treesitter')";
           };
         };
       };
-      treesitter-context.enable = true;
-      indent-blankline.enable = true;
+      treesitter-context = {
+        enable = true;
+        settings = {
+          line_numbers = true;
+          max_lines = 0;
+          min_window_height = 0;
+          mode = "cursor";
+          multiline_threshold = 5;
+          separator = "-";
+          trim_scope = "inner";
+          zindex = 20;
+        };
+      };
+
+      indent-blankline = {
+        enable = true;
+        settings = 
+          {
+            exclude = {
+              buftypes = [
+                "terminal"
+                "quickfix"
+              ];
+              filetypes = [
+                ""
+                "checkhealth"
+                "help"
+                "lspinfo"
+                "packer"
+                "TelescopePrompt"
+                "TelescopeResults"
+                "yaml"
+              ];
+            };
+            indent = {
+              char = "│";
+            };
+            scope = {
+              show_end = false;
+              show_exact_scope = true;
+              show_start = false;
+            };
+          };
+      };
       lsp = {
         enable = true;
         servers = {
