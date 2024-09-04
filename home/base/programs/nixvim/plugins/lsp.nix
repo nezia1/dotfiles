@@ -118,6 +118,13 @@
             }
           ];
         };
+        postConfig = ''
+          local pmenu_bg = vim.api.nvim_get_hl_by_name("Pmenu", true).background
+          local pmenu_fg = vim.api.nvim_get_hl_by_name("Pmenu", true).foreground
+
+          vim.api.nvim_set_hl(0, "NormalFloat", { bg = pmenu_bg, fg = pmenu_fg })
+          vim.api.nvim_set_hl(0, "FloatBorder", { bg = pmenu_bg, fg = pmenu_fg })
+          '';
       };
       cmp = {
         enable = true;
