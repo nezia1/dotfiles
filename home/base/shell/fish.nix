@@ -15,9 +15,20 @@ in
       set fish_greeting # Disable greeting
       fish_vi_key_bindings # Enable Vi mode
       fish_config theme choose "Catppuccin Frappe"
+
+      set --global hydro_fetch true
+      set --global hydro_multiline true
+      set --global hydro_color_pwd blue
+      set --global hydro_color_git yellow
+      set --global hydro_color_error red
+      set --global hydro_color_prompt magenta
+      set --global hydro_color_duration cyan
     '';
     shellAbbrs = { cd = "z"; ngc = "sudo nix-collect-garbage -d"; };
-    plugins = [ { name = "fzf"; src = pkgs.fishPlugins.fzf.src; } ];
+    plugins = [ 
+      { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+      { name = "hydro"; src = pkgs.fishPlugins.hydro.src; }
+    ];
   };
 
   programs.bash = {
