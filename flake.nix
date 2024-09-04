@@ -23,6 +23,12 @@
       url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprpaper.url = "github:hyprwm/hyprpaper";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
@@ -30,7 +36,6 @@
     let
       username = "nezia";
       system = "x86_64-linux";
-
       commonModules = hostname: [
         ./modules
         ./hosts/common
@@ -47,7 +52,7 @@
           ];
           home-manager.extraSpecialArgs = { inherit inputs; };
         }
-        { _module.args = { inherit hostname username; }; }
+        { _module.args = { inherit hostname username inputs; }; }
       ];
 
       configureSystem = hostname: homeConfig: nixpkgs.lib.nixosSystem {
