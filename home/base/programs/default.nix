@@ -4,8 +4,8 @@
   imports = [ 
     ./git.nix 
     ./gnupg.nix
-    ./nixvim 
     ./wezterm.nix
+    ./nixvim 
     ./browsers.nix
     ./miscellaneous.nix
   ];

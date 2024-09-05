@@ -23,6 +23,10 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wezterm = {
+      url = "github:wez/wezterm/main?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
@@ -32,6 +36,7 @@
       system = "x86_64-linux";
 
       commonModules = hostname: [
+        ./modules
         ./hosts/common
         ./hosts/${hostname}
 
