@@ -9,9 +9,6 @@
       signByDefault = true;
       key = "EE3BE97C040A86CE";
     };
-    extraConfig = {
-      pull.rebase = true;
-    };
   };
 
   programs.lazygit = {
