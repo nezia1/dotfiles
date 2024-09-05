@@ -3,7 +3,7 @@
 {
   stylix.enable = true;
   stylix.polarity = "dark";
-  stylix.image = lib.mkDefault ../wallpapers/nix-wallpaper-nineish-catppuccin-frappe.svg;
+  stylix.image = lib.mkDefault ../../wallpapers/nix-wallpaper-nineish-catppuccin-frappe.svg;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
   stylix.autoEnable = true;
 
