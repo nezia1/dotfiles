@@ -1,4 +1,7 @@
 _:
 {
-  imports = [ ./nvidia.nix ];
+  imports = [ 
+    ./nvidia.nix 
+    ./gnome.nix
+  ];
 }

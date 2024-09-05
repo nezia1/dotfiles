@@ -1,13 +1,20 @@
-{ pkgs, ... }:
-
-{
-  config = {
+{ config, lib, pkgs, ... }:
+let 
+  cfg = config.modules.gnome;
+in 
+  {
+  options = {
+    modules.gnome = {
+      enable = lib.mkEnableOption "Enable Gnome";
+    };
+  };
+  config = lib.mkIf cfg.enable {
     services.xserver = {
       enable = true;
       displayManager.gdm.enable = true;
       desktopManager.gnome = {
         enable = true;
-        extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
+        extraGSettingsOverridePackages = [ pkgs.mutter ];
         extraGSettingsOverrides = ''
    [org.gnome.mutter]
    experimental-features=['scale-monitor-framebuffer']
@@ -24,3 +31,4 @@
     ];
   };
 }
+
