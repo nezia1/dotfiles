@@ -5,9 +5,6 @@
     ./hardware-configuration.nix 
   ];
 
-  modules.nvidia.enable = true;
-  modules.gaming.enable = true;
-
   hardware.uni-sync = {
     enable = true;
     devices = [
@@ -35,6 +32,12 @@
       }
     ];
   };
+
+  modules.gnome.enable = true;
+  modules.stylix.enable = true;
+  modules.nvidia.enable = true;
+  modules.gaming.enable = true;
+
   stylix.image = ../../wallpapers/lucy-edgerunners-wallpaper.jpg;
 }
 
