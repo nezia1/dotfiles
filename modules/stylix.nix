@@ -28,8 +28,8 @@ in
           name = "Noto Sans";
         };
         monospace = lib.mkDefault {
-          package = pkgs.intel-one-mono;
-          name = "Intel One Mono";
+          package = pkgs.nerdfonts.override { fonts = [ "IntelOneMono" ]; };
+          name = "IntoneMono Nerd Font";
         };
         emoji = {
           package = pkgs.noto-fonts-color-emoji;
