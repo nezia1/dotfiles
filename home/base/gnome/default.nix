@@ -17,13 +17,5 @@
   home.packages = with pkgs.gnomeExtensions; [
     appindicator
   ];
-  gtk = {
-    enable = true;
-    catppuccin = {
-      enable = true;
-      flavor = "frappe";
-      gnomeShellTheme = true;
-    };
-  };
 }
 

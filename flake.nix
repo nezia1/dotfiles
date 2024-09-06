@@ -10,7 +10,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    stylix.url = "github:danth/stylix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +26,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, nixvim, sops-nix, catppuccin, ... }@inputs: 
+  outputs = { nixpkgs, home-manager, nixvim, sops-nix, stylix, ... }@inputs: 
     let
       username = "nezia";
       system = "x86_64-linux";
@@ -37,13 +37,12 @@
         ./hosts/${hostname}
 
         sops-nix.nixosModules.sops        
-        catppuccin.nixosModules.catppuccin
+        stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.sharedModules = [ 
-            catppuccin.homeManagerModules.catppuccin
             nixvim.homeManagerModules.nixvim 
           ];
           home-manager.extraSpecialArgs = { inherit inputs; };
@@ -53,8 +52,8 @@
 
       configureSystem = hostname: homeConfig: nixpkgs.lib.nixosSystem {
         system = system;
-        modules = commonModules hostname ++ [ { home-manager.users."${username}" = import homeConfig; } ]  
-          ++ (if hostname == "vamos" then [ nixos-hardware.nixosModules.framework-13-7040-amd ] else []);
+        modules = commonModules hostname ++ [ { home-manager.users."${username}" = import homeConfig; } ];
+        specialArgs = {inherit inputs; };
       };
     in {
       nixosConfigurations = {

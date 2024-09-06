@@ -10,6 +10,10 @@
 
     performance.byteCompileLua.enable = true;
 
+    colorschemes.catppuccin = {
+      enable = true;
+      settings.flavour = "frappe";
+    };
     clipboard.providers.wl-copy.enable = true;
 
     globals.mapleader = " ";
