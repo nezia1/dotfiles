@@ -3,7 +3,7 @@ _:
   imports = [ 
     ./git.nix 
     ./gnupg.nix
-    # ./wezterm.nix
+    ./wezterm.nix
     ./nixvim 
     ./browsers.nix
     ./miscellaneous.nix

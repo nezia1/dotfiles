@@ -8,7 +8,6 @@ _:
     ./packages.nix
     ./printing.nix
     ./misc.nix
-    ./cachix.nix
     ./nh.nix
   ];
 }

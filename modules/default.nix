@@ -7,5 +7,6 @@ _:
     ./gnome.nix
     ./gaming.nix
     ./stylix.nix
+    ./hyprland.nix
   ];
 }

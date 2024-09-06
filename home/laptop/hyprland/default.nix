@@ -1,13 +1,16 @@
 { inputs, pkgs, ... }:
 {
+  imports = [
+    ./waybar.nix
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     settings = {
       "$mod" = "SUPER";
-      "$terminal" = "wezterm";
+      "$terminal" = "kitty";
       "$menu" = "fuzzel";
-      "monitor" = "eDP-1, 2256x1504@60, 0x0, 1.5";
+      "monitor" = "eDP-1, 2256x1504@60, 0x0, 1.6";
       input.touchpad.natural_scroll = true;
       gestures.workspace_swipe = true;
       xwayland.force_zero_scaling = true;
