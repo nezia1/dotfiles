@@ -27,6 +27,7 @@
         audibleBell = false;
         allowBold = true;
         visibleName = "nezia";
+        font = "IntoneMono NF 14";
       };
     };
   };

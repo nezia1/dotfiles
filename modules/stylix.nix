@@ -37,8 +37,8 @@ in
         };
         sizes = lib.mkDefault {
           terminal = 14;
-          applications = 14;
-          desktop = 12;
+          applications = 11;
+          desktop = 10;
         };
       };
       targets = {
