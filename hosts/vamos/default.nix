@@ -22,5 +22,6 @@
     };
   };
   modules.hyprland.enable = true;
+  modules.greetd.enable = true;
 }
 

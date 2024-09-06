@@ -40,6 +40,7 @@
     };
     wantedBy = ["multi-user.target"];
   };
+  modules.gnome.enable = true;
   modules.nvidia.enable = true;
   modules.gaming.enable = true;
 

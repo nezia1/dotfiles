@@ -8,5 +8,6 @@ _:
     ./gaming.nix
     ./stylix.nix
     ./hyprland.nix
+    ./greetd.nix
   ];
 }
