@@ -1,12 +1,12 @@
 { inputs, pkgs, ... }:
 {
+  imports = [./hyprlock.nix];
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     settings = {
       "$mod" = "SUPER";
-      "$terminal" = "kitty";
-      "$menu" = "fuzzel";
+      "$terminal" = "kitty"; "$menu" = "fuzzel";
       "monitor" = "eDP-1, 2256x1504@60, 0x0, 1.6";
       input.touchpad.natural_scroll = true;
       gestures.workspace_swipe = true;
@@ -50,6 +50,7 @@
   };
 
   programs.fuzzel.enable = true;
+
   home.packages = with inputs.hyprland-contrib.packages.${pkgs.system}; [
     grimblast
   ];
