@@ -38,8 +38,7 @@
         end
 
         return {
-          front_end = "WebGpu",
-          enable_wayland = false,
+          enable_wayland = true,
           hide_tab_bar_if_only_one_tab = true,
           show_new_tab_button_in_tab_bar = false,
           harfbuzz_features = { "ss01", "ss03" },

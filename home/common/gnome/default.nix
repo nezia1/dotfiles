@@ -18,5 +18,16 @@
   home.packages = with pkgs.gnomeExtensions; [
     appindicator
   ];
+  programs.gnome-terminal = {
+    enable = true;
+    profile = {
+      "4621184a-b921-42cf-80a0-7784516606f2" = {
+        default = true;
+        audibleBell = false;
+        allowBold = true;
+        visibleName = "nezia";
+      };
+    };
+  };
 }
 

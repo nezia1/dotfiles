@@ -29,6 +29,14 @@ in
       gnome-tweaks 
       gnome-power-manager
     ];
+    stylix.fonts = {
+      sansSerif = {
+        package = pkgs.inter;
+        name = "Intel Variable";
+      };
+      serif = config.stylix.fonts.sansSerif;
+      sizes.desktop = 9;
+    };
   };
 }
 
