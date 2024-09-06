@@ -14,8 +14,9 @@ in
       polarity = "dark";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
       cursor = {
-        name = "catppuccin-frappe-lavender-cursors";
-        package = pkgs.catppuccin-cursors.frappeLavender;
+        package = pkgs.adwaita-icon-theme;
+        name = "Adwaita";
+        size = 24;
       };
       fonts = {
         serif = {
@@ -39,6 +40,10 @@ in
           applications = 12;
           desktop = 12;
         };
+      };
+      targets = {
+        gtk.enable = false;
+        gnome.enable = false;
       };
       image = lib.mkDefault ../wallpapers/nix-wallpaper-nineish-catppuccin-frappe-alt.svg;
     };

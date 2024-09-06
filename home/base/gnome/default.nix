@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  stylix.targets.gtk.enable = false;
   dconf = {
     enable = true;
     settings = {
