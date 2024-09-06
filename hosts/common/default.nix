@@ -4,7 +4,7 @@
     ./system 
     ./syncthing 
     ./sops.nix
-    ./stylix.nix
+    ./theme.nix
   ];
   modules.gnome.enable = true;
 }
