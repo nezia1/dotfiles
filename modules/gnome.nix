@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let 
   cfg = config.modules.gnome;
+  stylixEnabled = config.modules.stylix.enable or false;
 in 
   {
   options = {
@@ -29,13 +30,16 @@ in
       gnome-tweaks 
       gnome-power-manager
     ];
-    stylix.fonts = {
-      sansSerif = {
-        package = pkgs.inter;
-        name = "Intel Variable";
+    stylix = lib.mkIf stylixEnabled {
+      # disable plymouth to look more consistent with a gtk desktop
+      targets.plymouth.enable = false;
+      fonts = {
+        sansSerif = {
+          package = pkgs.inter;
+          name = "Intel Variable";
+        };
+        serif = config.stylix.fonts.sansSerif;
       };
-      serif = config.stylix.fonts.sansSerif;
-      sizes.desktop = 9;
     };
   };
 }
