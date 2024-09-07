@@ -1,5 +1,4 @@
-{ ... }:
-
+_:
 {
   imports = [ 
     ./core.nix
@@ -16,5 +15,4 @@
     ./plugins/telescope.nix
     ./plugins/misc.nix
   ];
-
 }
