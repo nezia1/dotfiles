@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, username, ... }:
 let 
   cfg = config.modules.gnome;
   stylixEnabled = config.modules.stylix.enable or false;
@@ -31,14 +31,52 @@ in
       gnome-power-manager
     ];
     stylix = lib.mkIf stylixEnabled {
-      # disable plymouth to look more consistent with a gtk desktop
-      targets.plymouth.enable = false;
+      targets = {
+        plymouth.enable = false;
+        gtk.enable = false;
+        gnome.enable = false;
+      };
       fonts = {
         sansSerif = {
           package = pkgs.inter;
           name = "Intel Variable";
         };
         serif = config.stylix.fonts.sansSerif;
+      };
+    };
+    home-manager.users.${username} = {
+      stylix = lib.mkIf stylixEnabled {
+        targets.gtk.enable = false;
+      };
+      dconf = {
+        enable = true;
+        settings = {
+          "org/gnome/shell" = {
+            disable-user-extensions = false; # enables user extensions
+            enabled-extensions = [
+              pkgs.gnomeExtensions.appindicator.extensionUuid
+            ];
+          };
+          "org/gnome/desktop/input-sources" = {
+            xkb-options = [ "compose:ralt" ];
+          };
+        };
+      };
+      home.packages = with pkgs.gnomeExtensions; [
+        appindicator
+      ];
+      programs.gnome-terminal = {
+        enable = true;
+        showMenubar = false;
+        profile = {
+          "4621184a-b921-42cf-80a0-7784516606f2" = {
+            default = true;
+            audibleBell = false;
+            allowBold = true;
+            visibleName = "${username}";
+            font = "IntoneMono NF 14";
+          };
+        };
       };
     };
   };
