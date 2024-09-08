@@ -33,11 +33,8 @@
     ];
   };
 
-  modules.gnome.enable = true;
-  modules.stylix.enable = true;
   modules.nvidia.enable = true;
   modules.gaming.enable = true;
-  modules.pipewire.enable = true;
 
   stylix.image = ../../wallpapers/lucy-edgerunners-wallpaper.jpg;
 }

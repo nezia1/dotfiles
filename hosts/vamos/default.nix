@@ -22,7 +22,5 @@
       };
     };
   };
-  modules.gnome.enable = true;
-  modules.stylix.enable = true;
 }
 
