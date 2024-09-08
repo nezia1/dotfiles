@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, username, ... }:
 let 
   cfg = config.modules.docker;
 in
@@ -12,6 +12,6 @@ in
         setSocketVariable = true;
       };
     };
-    users.users.nezia.extraGroups = [ "docker" ];
+    users.users.${username}.extraGroups = [ "docker" ];
   };
 }
