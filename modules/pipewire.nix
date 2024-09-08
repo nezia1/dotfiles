@@ -5,6 +5,7 @@ let
 in 
   {
   options.modules.pipewire.enable = lib.mkEnableOption "pipewire module";
+  options.modules.pipewire.latencyFix.enable = lib.mkEnableOption "enable latency fixes";
   config = lib.mkIf cfg.enable {
     hardware.pulseaudio.enable = false;
     # rtkit is optional but recommended
@@ -18,7 +19,7 @@ in
       #jack.enable = true;
     };
 
-    services.pipewire.extraConfig.pipewire."92-low-latency" = {
+    services.pipewire.extraConfig.pipewire."92-low-latency" = lib.mkIf cfg.latencyFix.enable {
       "context.properties" = {
         "default.clock.rate" = 48000;
         "default.clock.quantum" = 32;
