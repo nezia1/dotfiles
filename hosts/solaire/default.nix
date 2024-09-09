@@ -33,6 +33,13 @@
     ];
   };
 
+  systemd.services.uni-sync = {
+    enable = true;
+    serviceConfig = {
+      ExecStart = "${pkgs.uni-sync}/bin/uni-sync";
+    };
+    wantedBy = ["multi-user.target"];
+  };
   modules.nvidia.enable = true;
   modules.gaming.enable = true;
 
