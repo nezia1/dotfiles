@@ -60,6 +60,9 @@ in
           "org/gnome/desktop/input-sources" = {
             xkb-options = [ "compose:ralt" ];
           };
+          "org/gnome/desktop/interface" = {
+            enable-hot-corners = false;
+          };
         };
       };
       home.packages = with pkgs.gnomeExtensions; [
@@ -81,4 +84,3 @@ in
     };
   };
 }
-
