@@ -69,7 +69,11 @@ in
 
             enabled = ["org.gnome.Nautilus.desktop" "org.gnome.Settings.desktop"];
           };
+          "org/freedesktop/tracker/mine/files" = {
+            index-recursive-directories=["&DESKTOP" "&DOCUMENTS" "&MUSIC" "&PICTURES" "&VIDEOS" "/home/${username}/Notes" "/home/${username}/Projects"];
+          };
         };
+
       };
       home.packages = with pkgs.gnomeExtensions; [
         appindicator
