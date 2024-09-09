@@ -11,6 +11,7 @@
     xdotool
     xorg.xwininfo
     yad
+    r2modman
   ];
   programs.mangohud.enable = true;
 }
