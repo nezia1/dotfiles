@@ -55,6 +55,7 @@ in
             disable-user-extensions = false; # enables user extensions
             enabled-extensions = [
               pkgs.gnomeExtensions.appindicator.extensionUuid
+              pkgs.gnomeExtensions.blur-my-shell.extensionUuid
             ];
           };
           "org/gnome/desktop/input-sources" = {
@@ -67,6 +68,7 @@ in
       };
       home.packages = with pkgs.gnomeExtensions; [
         appindicator
+        blur-my-shell
       ];
       programs.gnome-terminal = {
         enable = true;
