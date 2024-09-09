@@ -35,7 +35,6 @@
 
   modules.nvidia.enable = true;
   modules.gaming.enable = true;
-  modules.pipewire.latencyFix.enable = true;
 
   stylix.image = ../../wallpapers/lucy-edgerunners-wallpaper.jpg;
 }
