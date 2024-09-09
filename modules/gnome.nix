@@ -64,6 +64,11 @@ in
           "org/gnome/desktop/interface" = {
             enable-hot-corners = false;
           };
+          "org/gnome/desktop/search-providers" = {
+            disabled=["org.gnome.Terminal.desktop" "org.gnome.Software.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.clocks.desktop" "org.gnome.Characters.desktop" "org.gnome.Calendar.desktop" "org.gnome.Calculator.desktop"];
+
+            enabled = ["org.gnome.Nautilus.desktop" "org.gnome.Settings.desktop"];
+          };
         };
       };
       home.packages = with pkgs.gnomeExtensions; [
