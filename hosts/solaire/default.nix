@@ -40,6 +40,8 @@
     };
     wantedBy = ["multi-user.target"];
   };
+
+  modules.stylix.enable = true;
   modules.gnome.enable = true;
   modules.nvidia.enable = true;
   modules.gaming.enable = true;

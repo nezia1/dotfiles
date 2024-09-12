@@ -1,25 +1,9 @@
-{ inputs, config, lib, pkgs, ... }:
+{ config, lib, pkgs, username, ... }:
 let 
   cfg = config.modules.greetd;
 
-  inherit (inputs.hyprland.packages.${pkgs.system}) hyprland;
-  greeter = lib.getExe config.programs.regreet.package;
-  Hyprland = lib.getExe' hyprland "Hyprland";
-  hyprctl = lib.getExe' hyprland "hyprctl";
-  hyprlandConfig = pkgs.writeText "greetd-hyprland-config" ''
-    misc {
-        force_default_wallpaper=0
-        focus_on_activate=1
-    }
+  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
 
-    animations {
-        enabled=0
-        first_launch_animation=0
-    }
-
-    exec-once=${greeter}; ${hyprctl} dispatch exit
-    exec-once=${hyprctl} dispatch focuswindow ${greeter}
-  '';
 in 
   {
   options = {
@@ -31,12 +15,11 @@ in
     programs.regreet.enable = true;
     services.greetd = {
       enable = true;
-      settings = rec {
-        initial_session = {
-          command = "${Hyprland} --config ${hyprlandConfig}";
-          user = "nezia";
+      settings = {
+        default_session = {
+          command = "${tuigreet} --time --time-format '%a, %d %b %Y • %T' --asterisks --remember --cmd Hyprland";
+          user = username;
         };
-        default_session = initial_session;
       };
     };
     security.pam.services.hyprlock = {};
