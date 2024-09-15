@@ -15,10 +15,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    shells = {
-      url = "path:shells";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
