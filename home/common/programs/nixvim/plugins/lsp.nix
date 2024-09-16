@@ -70,6 +70,7 @@
           gopls.enable = true;
           nixd.enable = true;
           lua-ls.enable = true;
+          clangd.enable = true;
         };
         keymaps = {
           lspBuf = {
