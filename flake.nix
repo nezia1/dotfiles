@@ -19,6 +19,7 @@
       url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
@@ -41,7 +42,7 @@
           home-manager.sharedModules = [ 
             nixvim.homeManagerModules.nixvim 
           ];
-          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.extraSpecialArgs = { inherit inputs system; };
         }
         { _module.args = { inherit hostname username; }; }
       ];
