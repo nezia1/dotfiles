@@ -21,10 +21,11 @@ in
 
     services.pipewire.extraConfig.pipewire."92-low-latency" = lib.mkIf cfg.latencyFix.enable {
       "context.properties" = {
-        "default.clock.rate" = 48000;
-        "default.clock.quantum" = 32;
-        "default.clock.min-quantum" = 32;
-        "default.clock.max-quantum" = 32;
+        "default.clock.rate"          = 48000;
+        "default.clock.allowed-rates" = [ 48000 ];
+        "default.clock.quantum" = 2048;
+        "default.clock.min-quantum"   = 1024;
+
       };
     };
   };
