@@ -6,6 +6,7 @@
     protonup-qt 
     bottles
     lutris
+    path-of-building
     # steamtinkerlaunch dependencies
     unzip
     xdotool
