@@ -6,6 +6,7 @@ _:
     ./nvidia.nix 
     ./gnome.nix
     ./gaming.nix
+    ./wezterm.nix
     ./stylix.nix
   ];
 }
