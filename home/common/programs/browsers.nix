@@ -1,6 +1,5 @@
-{ inputs, system, ... }:
-
+_:
 {
   programs.chromium.enable = true;
-  home.packages = [ inputs.zen-browser.packages."${system}".specific ];
+  programs.firefox.enable = true;
 }
