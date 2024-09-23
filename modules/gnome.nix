@@ -57,6 +57,7 @@ in
             enabled-extensions = [
               pkgs.gnomeExtensions.appindicator.extensionUuid
               pkgs.gnomeExtensions.blur-my-shell.extensionUuid
+              pkgs.gnomeExtensions.emoji-copy.extensionUuid
             ];
           };
           "org/gnome/desktop/input-sources" = {
@@ -79,6 +80,7 @@ in
       home.packages = with pkgs.gnomeExtensions; [
         appindicator
         blur-my-shell
+        emoji-copy
       ];
       programs.gnome-terminal = {
         enable = true;
