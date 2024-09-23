@@ -1,6 +1,13 @@
 { ... }:
 {
   programs.nixvim = {
+    opts = {
+      tabstop = 4;
+      shiftwidth = 4;
+      softtabstop = 0;
+      expandtab = true;
+      smartindent = true;
+    };
     plugins = {
       treesitter = {
         enable = true;
@@ -11,9 +18,7 @@
             custom_captures = { };
             enable = true;
           };
-          indent = {
-            enable = true;
-          };
+          indent.enable = false;
           folding = true;
           parser_install_dir = {
             __raw = "vim.fs.joinpath(vim.fn.stdpath('data'), 'treesitter')";
@@ -37,14 +42,14 @@
       indent-blankline = {
         enable = true;
         settings = 
-          {
-            exclude = {
-              buftypes = [
-                "terminal"
+        {
+          exclude = {
+            buftypes = [
+              "terminal"
                 "quickfix"
-              ];
-              filetypes = [
-                ""
+            ];
+            filetypes = [
+              ""
                 "checkhealth"
                 "help"
                 "lspinfo"
@@ -52,17 +57,17 @@
                 "TelescopePrompt"
                 "TelescopeResults"
                 "yaml"
-              ];
-            };
-            indent = {
-              char = "│";
-            };
-            scope = {
-              show_end = false;
-              show_exact_scope = true;
-              show_start = false;
-            };
+            ];
           };
+          indent = {
+            char = "│";
+          };
+          scope = {
+            show_end = false;
+            show_exact_scope = true;
+            show_start = false;
+          };
+        };
       };
       lsp = {
         enable = true;
@@ -70,7 +75,13 @@
           gopls.enable = true;
           nixd.enable = true;
           lua-ls.enable = true;
-          clangd.enable = true;
+          clangd = {
+            enable = true;
+            cmd = [
+              "clangd"
+                "--fallback-style=webkit"
+            ];
+          };
         };
         keymaps = {
           lspBuf = {
@@ -89,34 +100,34 @@
             };
           };
           extra = [
-            {
-              action = "<CMD>LspStop<Enter>";
-              key = "<leader>lx";
-              options = {
-                desc = "Stop LSP";
-              };
-            }
-            {
-              action = "<CMD>LspStart<Enter>";
-              key = "<leader>ls";
-              options = {
-                desc = "Start LSP";
-              };
-            }
-            {
-              action = "<CMD>LspRestart<Enter>";
-              key = "<leader>lr";
-              options = {
-                desc = "Restart LSP";
-              };
-            }
-            {
-              action = "<CMD>Telescope lsp_definitions<Enter>";
-              key = "gd";
-              options = {
-                desc = "Go to definitions";
-              };
-            }
+          {
+            action = "<CMD>LspStop<Enter>";
+            key = "<leader>lx";
+            options = {
+              desc = "Stop LSP";
+            };
+          }
+          {
+            action = "<CMD>LspStart<Enter>";
+            key = "<leader>ls";
+            options = {
+              desc = "Start LSP";
+            };
+          }
+          {
+            action = "<CMD>LspRestart<Enter>";
+            key = "<leader>lr";
+            options = {
+              desc = "Restart LSP";
+            };
+          }
+          {
+            action = "<CMD>Telescope lsp_definitions<Enter>";
+            key = "gd";
+            options = {
+              desc = "Go to definitions";
+            };
+          }
           ];
         };
         postConfig = ''
@@ -139,30 +150,30 @@
             "<CR>" = "cmp.mapping.confirm({ select = true })";
             "<S-Tab>" = ''
               cmp.mapping(function (fallback)
-                local luasnip = require('luasnip')
-                if cmp.visible() then
-                    cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
-                else
-                    fallback()
-                end
-            end, {'i', 's'})
-            '';
+                  local luasnip = require('luasnip')
+                  if cmp.visible() then
+                  cmp.select_prev_item()
+                  elseif luasnip.jumpable(-1) then
+                  luasnip.jump(-1)
+                  else
+                  fallback()
+                  end
+                  end, {'i', 's'})
+              '';
             "<Tab>" = ''
               cmp.mapping(function (fallback)
-                local luasnip = require('luasnip')
-                if luasnip.expandable() then
-                    luasnip.expand()
-                elseif cmp.visible() then
-                    cmp.select_next_item()
-                elseif luasnip.jumpable(1) then
-                    luasnip.jump(1)
-                else
-                    fallback()
-                end
-              end, {'i', 's'})
-            '';
+                  local luasnip = require('luasnip')
+                  if luasnip.expandable() then
+                  luasnip.expand()
+                  elseif cmp.visible() then
+                  cmp.select_next_item()
+                  elseif luasnip.jumpable(1) then
+                  luasnip.jump(1)
+                  else
+                  fallback()
+                  end
+                  end, {'i', 's'})
+              '';
           };
 
           sources =

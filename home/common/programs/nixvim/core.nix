@@ -19,7 +19,6 @@
     globals.mapleader = " ";
 
     opts = { 
-      smartindent = false;
       relativenumber = true;
       clipboard = "unnamedplus";
     };
