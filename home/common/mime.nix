@@ -10,6 +10,7 @@
       "x-scheme-handler/about"        = [ "firefox.desktop" ];
       "x-scheme-handler/unknown"      = [ "firefox.desktop" ];
       "application/pdf"               = [ "org.gnome.Evince.desktop" ];
+      "audio/wav"                     = [ "rhythmbox" ];
     };
   };
 }

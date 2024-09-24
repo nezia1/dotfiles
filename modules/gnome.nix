@@ -24,12 +24,12 @@ in
     };
 
     environment.gnome.excludePackages =
-      (with pkgs; [ gnome-console gnome-photos gnome-music gnome-tour gnome-software iagno hitori atomix gnome-contacts gnome-initial-setup gedit cheese tali epiphany geary yelp ]);
+      (with pkgs; [ gnome-console gnome-photos gnome-tour gnome-software iagno hitori atomix gnome-contacts gnome-initial-setup gnome-music gedit cheese tali epiphany geary yelp ]);
 
     environment.systemPackages = with pkgs; [ 
-      gnome-music
       gnome-tweaks 
       gnome-power-manager
+      rhythmbox
     ];
     stylix = lib.mkIf stylixEnabled {
       targets = {
