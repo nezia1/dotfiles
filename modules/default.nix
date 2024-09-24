@@ -8,5 +8,6 @@ _:
     ./gaming.nix
     ./wezterm.nix
     ./stylix.nix
+    ./neovim.nix
   ];
 }
