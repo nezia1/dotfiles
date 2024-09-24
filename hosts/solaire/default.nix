@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -38,11 +36,17 @@
     serviceConfig = {
       ExecStart = "${pkgs.uni-sync}/bin/uni-sync";
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
-  modules.nvidia.enable = true;
-  modules.gaming.enable = true;
-  modules.pipewire.latencyFix.enable = true;
+  modules = {
+    nvidia.enable = true;
+    gaming.enable = true;
+    pipewire = {
+      enable = true;
+      latencyFix.enable = true;
+    };
+    neovim.enable = true;
+  };
 
   stylix.image = ../../wallpapers/lucy-edgerunners-wallpaper.jpg;
 }
