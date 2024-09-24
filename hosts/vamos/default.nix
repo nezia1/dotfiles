@@ -1,6 +1,4 @@
-{ inputs, ... }:
-
-{
+{inputs, ...}: {
   imports = [
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
@@ -12,7 +10,7 @@
     enable = true;
     keyboards = {
       default = {
-        ids = [ "*" ];
+        ids = ["*"];
         settings = {
           main = {
             capslock = "overload(control, esc)";
@@ -21,5 +19,8 @@
       };
     };
   };
-  modules.neovim.enable = true;
+  modules = {
+    neovim.enable = true;
+    wezterm.enable = true;
+  };
 }

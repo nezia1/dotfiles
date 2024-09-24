@@ -1,61 +1,58 @@
 {
   description = "nezia's nixos configuration";
 
-  outputs =
-    {
-      nixpkgs,
-      home-manager,
-      nixvim,
-      nvf,
-      sops-nix,
-      stylix,
-      ...
-    }@inputs:
-    let
-      username = "nezia";
-      system = "x86_64-linux";
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nixvim,
+    sops-nix,
+    stylix,
+    ...
+  } @ inputs: let
+    username = "nezia";
+    system = "x86_64-linux";
 
-      commonModules = hostname: [
-        ./modules
-        ./hosts/common
-        ./hosts/${hostname}
+    commonModules = hostname: [
+      ./modules
+      ./hosts/common
+      ./hosts/${hostname}
 
-        sops-nix.nixosModules.sops
-        stylix.nixosModules.stylix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.sharedModules = [
+      sops-nix.nixosModules.sops
+      stylix.nixosModules.stylix
+      home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          sharedModules = [
             nixvim.homeManagerModules.nixvim
           ];
-          home-manager.extraSpecialArgs = {
+          extraSpecialArgs = {
             inherit inputs system;
           };
-        }
-        {
-          _module.args = {
-            inherit hostname username;
-          };
-        }
-      ];
-
-      configureSystem =
-        hostname: homeConfig:
-        nixpkgs.lib.nixosSystem {
-          system = system;
-          modules = commonModules hostname ++ [ { home-manager.users."${username}" = import homeConfig; } ];
-          specialArgs = {
-            inherit inputs;
-          };
         };
-    in
-    {
-      nixosConfigurations = {
-        vamos = configureSystem "vamos" ./home/laptop;
-        solaire = configureSystem "solaire" ./home/desktop;
+      }
+      {
+        _module.args = {
+          inherit hostname username;
+        };
+      }
+    ];
+
+    configureSystem = hostname: homeConfig:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = commonModules hostname ++ [{home-manager.users."${username}" = import homeConfig;}];
+        specialArgs = {
+          inherit inputs;
+        };
       };
+  in {
+    nixosConfigurations = {
+      vamos = configureSystem "vamos" ./home/laptop;
+      solaire = configureSystem "solaire" ./home/desktop;
     };
+  };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

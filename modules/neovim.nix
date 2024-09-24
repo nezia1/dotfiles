@@ -5,11 +5,9 @@
   pkgs,
   username,
   ...
-}:
-let
+}: let
   cfg = config.modules.neovim;
-in
-{
+in {
   options.modules.neovim.enable = lib.mkEnableOption "neovim";
 
   config = lib.mkIf cfg.enable {
@@ -18,7 +16,7 @@ in
     };
 
     home-manager.users.${username} = {
-      imports = [ inputs.nvf.homeManagerModules.default ];
+      imports = [inputs.nvf.homeManagerModules.default];
 
       programs.nvf = {
         enable = true;
@@ -39,24 +37,39 @@ in
             ''
           ];
 
+          maps = {
+            normal = {
+              "<leader>m" = {
+                silent = true;
+                action = "<cmd>make<CR>";
+              }; # Same as nnoremap <leader>m <silent> <cmd>make<CR>
+              "<leader>t" = {
+                silent = true;
+                action = "<cmd>Neotree toggle<CR>";
+              };
+            };
+          };
           theme = {
             enable = true;
             name = "catppuccin";
             style = "frappe";
           };
 
-          maps = {
-            normal = {
-              "<leader>t" = {
-                action = "<CMD>Neotree toggle<CR>";
-                silent = true;
-              };
-            };
+          visuals = {
+            enable = true;
+            nvimWebDevicons.enable = true;
           };
+
+          ui = {
+            noice.enable = true;
+          };
+
           statusline.lualine = {
             enable = true;
             theme = "catppuccin";
           };
+
+          git.enable = true;
 
           lsp = {
             enable = true;
@@ -110,14 +123,7 @@ in
           };
 
           binds.whichKey.enable = true;
-          visuals.nvimWebDevicons.enable = true;
-
-          filetree.neo-tree = {
-            enable = true;
-            setupOpts = {
-              git_status_async = true;
-            };
-          };
+          filetree.neo-tree.enable = true;
 
           telescope.enable = true;
         };
