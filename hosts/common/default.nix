@@ -1,8 +1,7 @@
-_:
-{
+_: {
   imports = [
-    ./system 
-    ./syncthing 
+    ./system
+    ./syncthing
     ./sops.nix
   ];
 

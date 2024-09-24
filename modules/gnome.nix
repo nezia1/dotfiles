@@ -1,9 +1,15 @@
-{ config, lib, pkgs, username, ... }:
-let 
+{
+  config,
+  lib,
+  pkgs,
+  username,
+  ...
+}:
+let
   cfg = config.modules.gnome;
   stylixEnabled = config.modules.stylix.enable or false;
-in 
-  {
+in
+{
   options = {
     modules.gnome = {
       enable = lib.mkEnableOption "Enable Gnome";
@@ -17,17 +23,36 @@ in
         enable = true;
         extraGSettingsOverridePackages = [ pkgs.mutter ];
         extraGSettingsOverrides = ''
-   [org.gnome.mutter]
-   experimental-features=['scale-monitor-framebuffer']
+          [org.gnome.mutter]
+          experimental-features=['scale-monitor-framebuffer']
         '';
       };
     };
 
-    environment.gnome.excludePackages =
-      (with pkgs; [ gnome-console gnome-photos gnome-tour gnome-software iagno hitori atomix gnome-contacts gnome-initial-setup gnome-music gedit cheese tali epiphany geary yelp ]);
+    environment.gnome.excludePackages = (
+      with pkgs;
+      [
+        gnome-console
+        gnome-photos
+        gnome-tour
+        gnome-software
+        iagno
+        hitori
+        atomix
+        gnome-contacts
+        gnome-initial-setup
+        gnome-music
+        gedit
+        cheese
+        tali
+        epiphany
+        geary
+        yelp
+      ]
+    );
 
-    environment.systemPackages = with pkgs; [ 
-      gnome-tweaks 
+    environment.systemPackages = with pkgs; [
+      gnome-tweaks
       gnome-power-manager
       rhythmbox
     ];
@@ -67,12 +92,31 @@ in
             enable-hot-corners = false;
           };
           "org/gnome/desktop/search-providers" = {
-            disabled=["org.gnome.Terminal.desktop" "org.gnome.Software.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.clocks.desktop" "org.gnome.Characters.desktop" "org.gnome.Calendar.desktop" "org.gnome.Calculator.desktop"];
+            disabled = [
+              "org.gnome.Terminal.desktop"
+              "org.gnome.Software.desktop"
+              "org.gnome.seahorse.Application.desktop"
+              "org.gnome.clocks.desktop"
+              "org.gnome.Characters.desktop"
+              "org.gnome.Calendar.desktop"
+              "org.gnome.Calculator.desktop"
+            ];
 
-            enabled = ["org.gnome.Nautilus.desktop" "org.gnome.Settings.desktop"];
+            enabled = [
+              "org.gnome.Nautilus.desktop"
+              "org.gnome.Settings.desktop"
+            ];
           };
           "org/freedesktop/tracker/mine/files" = {
-            index-recursive-directories=["&DESKTOP" "&DOCUMENTS" "&MUSIC" "&PICTURES" "&VIDEOS" "/home/${username}/Notes" "/home/${username}/Projects"];
+            index-recursive-directories = [
+              "&DESKTOP"
+              "&DOCUMENTS"
+              "&MUSIC"
+              "&PICTURES"
+              "&VIDEOS"
+              "/home/${username}/Notes"
+              "/home/${username}/Projects"
+            ];
           };
         };
 

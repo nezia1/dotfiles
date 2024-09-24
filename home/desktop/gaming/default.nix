@@ -2,8 +2,8 @@
 
 {
 
-  home.packages = with pkgs; [ 
-    protonup-qt 
+  home.packages = with pkgs; [
+    protonup-qt
     bottles
     lutris
     path-of-building

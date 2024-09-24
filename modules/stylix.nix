@@ -1,8 +1,13 @@
-{ config, lib, pkgs, ... }:
-let 
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
   cfg = config.modules.stylix;
-in 
-  {
+in
+{
   options = {
     modules.stylix = {
       enable = lib.mkEnableOption "Enable the stylix module";

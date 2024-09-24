@@ -7,7 +7,7 @@
     escapeTime = 10;
     clock24 = true;
     keyMode = "vi";
-    mouse =  true;
+    mouse = true;
     baseIndex = 1;
     extraConfig = ''
       set-option -a terminal-features "''${TERM}:RGB"

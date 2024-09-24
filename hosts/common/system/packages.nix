@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    vim 
+    vim
     git
     wget
     curl

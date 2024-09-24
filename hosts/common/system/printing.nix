@@ -10,14 +10,20 @@
     openFirewall = true;
   };
 
-  services.printing.drivers = [ pkgs.gutenprint pkgs.hplip ];
+  services.printing.drivers = [
+    pkgs.gutenprint
+    pkgs.hplip
+  ];
 
   hardware.sane.enable = true; # enables support for SANE scanners
-  hardware.sane.extraBackends = [ 
-    pkgs.sane-airscan     # generic
-    pkgs.hplip            # HP
-    pkgs.epkowa           # Epson
-    pkgs.utsushi          # other printers
+  hardware.sane.extraBackends = [
+    pkgs.sane-airscan # generic
+    pkgs.hplip # HP
+    pkgs.epkowa # Epson
+    pkgs.utsushi # other printers
   ];
-  services.udev.packages = [ pkgs.sane-airscan pkgs.utsushi ];
+  services.udev.packages = [
+    pkgs.sane-airscan
+    pkgs.utsushi
+  ];
 }

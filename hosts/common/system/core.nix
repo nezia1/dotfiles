@@ -1,7 +1,7 @@
 { hostname, ... }:
 
 {
-  networking.hostName = hostname; 
+  networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
   services.xserver.xkb = {
@@ -12,7 +12,10 @@
   users.users.nezia = {
     isNormalUser = true;
     description = "Anthony Rodriguez";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # automount
@@ -23,7 +26,10 @@
   nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
 
-  system.stateVersion = "24.05"; 
+  system.stateVersion = "24.05";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }

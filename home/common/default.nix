@@ -1,10 +1,9 @@
-_:
-{
+_: {
   imports = [
     ./core.nix
     ./automount.nix
     ./mime.nix
-    ./shell 
+    ./shell
     ./programs
   ];
 }

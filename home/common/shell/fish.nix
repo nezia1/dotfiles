@@ -1,4 +1,4 @@
-{ pkgs,  ... }:
+{ pkgs, ... }:
 
 let
   catppuccin-fish = pkgs.fetchFromGitHub {
@@ -8,7 +8,7 @@ let
     hash = "sha256-shQxlyoauXJACoZWtRUbRMxmm10R8vOigXwjxBhG8ng=";
   };
 in
-  {
+{
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -16,9 +16,15 @@ in
       fish_vi_key_bindings # Enable Vi mode
       fish_config theme choose "Catppuccin Frappe"
     '';
-    shellAbbrs = { cd = "z"; ngc = "sudo nix-collect-garbage -d"; };
-    plugins = [ 
-      { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+    shellAbbrs = {
+      cd = "z";
+      ngc = "sudo nix-collect-garbage -d";
+    };
+    plugins = [
+      {
+        name = "fzf";
+        src = pkgs.fishPlugins.fzf.src;
+      }
     ];
   };
 
@@ -35,4 +41,3 @@ in
 
   xdg.configFile."fish/themes/Catppuccin Frappe.theme".source = "${catppuccin-fish}/themes/Catppuccin Frappe.theme";
 }
-

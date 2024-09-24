@@ -1,8 +1,13 @@
-{ lib, config, pkgs, ... }:
-let 
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+let
   cfg = config.modules.gaming;
 in
-  {
+{
   options = {
     modules.gaming = {
       enable = lib.mkEnableOption "Enable the gaming module";
@@ -30,4 +35,3 @@ in
     services.udev.packages = [ pkgs.via ];
   };
 }
-

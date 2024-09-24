@@ -14,8 +14,8 @@
     plymouth = {
       enable = true;
       extraConfig = ''
-      [Daemon]
-      DeviceScale=2
+        [Daemon]
+        DeviceScale=2
       '';
     };
     consoleLogLevel = 0;

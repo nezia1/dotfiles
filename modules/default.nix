@@ -1,9 +1,8 @@
-_:
-{
-  imports = [ 
+_: {
+  imports = [
     ./docker.nix
     ./pipewire.nix
-    ./nvidia.nix 
+    ./nvidia.nix
     ./gnome.nix
     ./gaming.nix
     ./wezterm.nix

@@ -1,10 +1,9 @@
-_: 
-{
+_: {
 
-  imports = [ 
+  imports = [
     ./core.nix
-    ./boot.nix 
-    ./locale.nix 
+    ./boot.nix
+    ./locale.nix
     ./packages.nix
     ./printing.nix
     ./misc.nix

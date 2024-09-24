@@ -1,9 +1,9 @@
 { config, lib, ... }:
 
-let 
+let
   cfg = config.modules.pipewire;
-in 
-  {
+in
+{
   options.modules.pipewire.enable = lib.mkEnableOption "pipewire module";
   options.modules.pipewire.latencyFix.enable = lib.mkEnableOption "enable latency fixes";
   config = lib.mkIf cfg.enable {
@@ -21,10 +21,10 @@ in
 
     services.pipewire.extraConfig.pipewire."92-low-latency" = lib.mkIf cfg.latencyFix.enable {
       "context.properties" = {
-        "default.clock.rate"          = 48000;
+        "default.clock.rate" = 48000;
         "default.clock.allowed-rates" = [ 48000 ];
         "default.clock.quantum" = 2048;
-        "default.clock.min-quantum"   = 1024;
+        "default.clock.min-quantum" = 1024;
 
       };
     };

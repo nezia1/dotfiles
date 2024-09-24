@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  imports = [ 
-    ./hardware-configuration.nix 
+  imports = [
+    ./hardware-configuration.nix
   ];
 
   hardware.uni-sync = {
@@ -38,7 +38,7 @@
     serviceConfig = {
       ExecStart = "${pkgs.uni-sync}/bin/uni-sync";
     };
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
   };
   modules.nvidia.enable = true;
   modules.gaming.enable = true;
@@ -46,4 +46,3 @@
 
   stylix.image = ../../wallpapers/lucy-edgerunners-wallpaper.jpg;
 }
-

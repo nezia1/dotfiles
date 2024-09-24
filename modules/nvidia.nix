@@ -1,15 +1,15 @@
 { config, lib, ... }:
-let 
+let
   cfg = config.modules.nvidia;
-in 
-  {
+in
+{
   options = {
     modules.nvidia = {
       enable = lib.mkEnableOption "Enable the Nvidia module";
     };
   };
   config = lib.mkIf cfg.enable {
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
 
       # Modesetting is required.
