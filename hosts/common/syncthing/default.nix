@@ -3,14 +3,11 @@
   username,
   hostname,
   ...
-}:
-
-let
+}: let
   homeDir = "/home/${username}";
   devices = import ./devices.nix;
-  otherDevices = builtins.removeAttrs devices [ hostname ];
-in
-{
+  otherDevices = builtins.removeAttrs devices [hostname];
+in {
   services = {
     syncthing = {
       enable = true;

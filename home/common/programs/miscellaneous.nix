@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.fzf.enable = true;
   programs.fastfetch.enable = true;
   home.packages = with pkgs; [

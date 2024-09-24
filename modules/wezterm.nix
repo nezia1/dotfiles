@@ -4,11 +4,9 @@
   inputs,
   username,
   ...
-}:
-let
+}: let
   cfg = config.modules.wezterm;
-in
-{
+in {
   options = {
     modules.wezterm = {
       enable = lib.mkEnableOption "enable wezterm";

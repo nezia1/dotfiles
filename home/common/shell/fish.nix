@@ -1,14 +1,11 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   catppuccin-fish = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "fish";
     rev = "a3b9eb5eaf2171ba1359fe98f20d226c016568cf";
     hash = "sha256-shQxlyoauXJACoZWtRUbRMxmm10R8vOigXwjxBhG8ng=";
   };
-in
-{
+in {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''

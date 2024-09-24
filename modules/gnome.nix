@@ -4,12 +4,10 @@
   pkgs,
   username,
   ...
-}:
-let
+}: let
   cfg = config.modules.gnome;
   stylixEnabled = config.modules.stylix.enable or false;
-in
-{
+in {
   options = {
     modules.gnome = {
       enable = lib.mkEnableOption "Enable Gnome";
@@ -21,7 +19,7 @@ in
       displayManager.gdm.enable = true;
       desktopManager.gnome = {
         enable = true;
-        extraGSettingsOverridePackages = [ pkgs.mutter ];
+        extraGSettingsOverridePackages = [pkgs.mutter];
         extraGSettingsOverrides = ''
           [org.gnome.mutter]
           experimental-features=['scale-monitor-framebuffer']
@@ -30,8 +28,7 @@ in
     };
 
     environment.gnome.excludePackages = (
-      with pkgs;
-      [
+      with pkgs; [
         gnome-console
         gnome-photos
         gnome-tour
@@ -86,7 +83,7 @@ in
             ];
           };
           "org/gnome/desktop/input-sources" = {
-            xkb-options = [ "compose:ralt" ];
+            xkb-options = ["compose:ralt"];
           };
           "org/gnome/desktop/interface" = {
             enable-hot-corners = false;
@@ -119,7 +116,6 @@ in
             ];
           };
         };
-
       };
       home.packages = with pkgs.gnomeExtensions; [
         appindicator

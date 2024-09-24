@@ -1,5 +1,4 @@
 _: {
-
   imports = [
     ./core.nix
     ./boot.nix

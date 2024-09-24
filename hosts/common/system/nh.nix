@@ -1,6 +1,4 @@
-{ username, ... }:
-
-{
+{username, ...}: {
   programs.nh = {
     enable = true;
     clean.enable = true;
@@ -10,5 +8,4 @@
   environment.sessionVariables = {
     FLAKE = "/home/${username}/.dotfiles";
   };
-
 }

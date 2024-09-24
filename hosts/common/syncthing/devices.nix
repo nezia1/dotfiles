@@ -1,4 +1,4 @@
-# TODO: add to sops directly instead of relying on another nix file 
+# TODO: add to sops directly instead of relying on another nix file
 {
   "vamos" = {
     id = "UO6JWVU-MTLZGVQ-Z3QAFYH-6PW2QR6-SBOVM6P-S6JXR2S-A7VYAU2-RLRXEQY";

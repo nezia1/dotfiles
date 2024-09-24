@@ -3,11 +3,9 @@
   lib,
   username,
   ...
-}:
-let
+}: let
   cfg = config.modules.docker;
-in
-{
+in {
   options.modules.docker.enable = lib.mkEnableOption "docker module";
   config = lib.mkIf cfg.enable {
     virtualisation.docker = {
@@ -17,6 +15,6 @@ in
         setSocketVariable = true;
       };
     };
-    users.users.${username}.extraGroups = [ "docker" ];
+    users.users.${username}.extraGroups = ["docker"];
   };
 }

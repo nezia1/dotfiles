@@ -3,11 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.modules.stylix;
-in
-{
+in {
   options = {
     modules.stylix = {
       enable = lib.mkEnableOption "Enable the stylix module";
@@ -33,7 +31,7 @@ in
           name = "Noto Sans";
         };
         monospace = lib.mkDefault {
-          package = pkgs.nerdfonts.override { fonts = [ "IntelOneMono" ]; };
+          package = pkgs.nerdfonts.override {fonts = ["IntelOneMono"];};
           name = "IntoneMono Nerd Font";
         };
         emoji = {
