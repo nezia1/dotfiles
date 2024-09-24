@@ -3,11 +3,9 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.modules.gaming;
-in
-{
+in {
   options = {
     modules.gaming = {
       enable = lib.mkEnableOption "Enable the gaming module";
@@ -15,23 +13,23 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.steam = {
-      enable = true;
-      package = with pkgs; steam.override { extraPkgs = pkgs: [ attr ]; };
-      gamescopeSession.enable = true;
-    };
+    programs = {
+      steam = {
+        enable = true;
+        gamescopeSession.enable = true;
+      };
 
-    programs.gamemode.enable = true;
-
-    programs.coolercontrol = {
-      enable = true;
-      nvidiaSupport = true;
+      gamemode.enable = true;
+      coolercontrol = {
+        enable = true;
+        nvidiaSupport = true;
+      };
     };
 
     hardware.keyboard.qmk.enable = true;
     environment.systemPackages = with pkgs; [
       via
     ];
-    services.udev.packages = [ pkgs.via ];
+    services.udev.packages = [pkgs.via];
   };
 }
