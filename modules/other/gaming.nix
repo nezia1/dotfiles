@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  username,
   ...
 }: let
   cfg = config.modules.gaming;
@@ -18,7 +19,6 @@ in {
         enable = true;
         gamescopeSession.enable = true;
       };
-
       gamemode.enable = true;
       coolercontrol = {
         enable = true;
@@ -31,5 +31,22 @@ in {
       via
     ];
     services.udev.packages = [pkgs.via];
+
+    home-manager.users.${username} = {
+      home.packages = with pkgs; [
+        protonup-qt
+        bottles
+        lutris
+        path-of-building
+        r2modman
+
+        # steamtinkerlaunch dependencies
+        unzip
+        xdotool
+        xorg.xwininfo
+        yad
+      ];
+      programs.mangohud.enable = true;
+    };
   };
 }
