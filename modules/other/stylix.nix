@@ -48,7 +48,7 @@ in {
         gtk.enable = false;
         gnome.enable = false;
       };
-      image = lib.mkDefault ../wallpapers/nix-wallpaper-nineish-catppuccin-frappe-alt.svg;
+      image = lib.mkDefault ../../wallpapers/nix-wallpaper-nineish-catppuccin-frappe-alt.svg;
     };
   };
 }
