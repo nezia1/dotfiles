@@ -4,31 +4,33 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "thunderbolt"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [
-    "amdgpu"
-    "dm-snapshot"
-  ];
-  boot.kernelModules = [
-    "kvm-amd"
-    "cryptd"
-  ];
-  boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/39d0e0c6-ea32-4ee4-ac76-b28fbff687f8";
-  boot.extraModulePackages = [];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "thunderbolt"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [
+        "amdgpu"
+        "dm-snapshot"
+      ];
+      luks.devices."crypt".device = "/dev/disk/by-uuid/39d0e0c6-ea32-4ee4-ac76-b28fbff687f8";
+    };
+    kernelModules = [
+      "kvm-amd"
+      "cryptd"
+    ];
+    extraModulePackages = [];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/4ef04567-9633-45b9-addc-55c3020f45b7";

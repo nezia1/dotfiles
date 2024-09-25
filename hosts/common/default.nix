@@ -4,9 +4,10 @@ _: {
     ./syncthing
     ./sops.nix
   ];
-
-  modules.gnome.enable = true;
-  modules.stylix.enable = true;
-  modules.docker.enable = true;
-  modules.pipewire.enable = true;
+  modules = {
+    gnome.enable = true;
+    stylix.enable = true;
+    docker.enable = true;
+    pipewire.enable = true;
+  };
 }

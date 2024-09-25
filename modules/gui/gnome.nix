@@ -27,26 +27,24 @@ in {
       };
     };
 
-    environment.gnome.excludePackages = (
-      with pkgs; [
-        gnome-console
-        gnome-photos
-        gnome-tour
-        gnome-software
-        iagno
-        hitori
-        atomix
-        gnome-contacts
-        gnome-initial-setup
-        gnome-music
-        gedit
-        cheese
-        tali
-        epiphany
-        geary
-        yelp
-      ]
-    );
+    environment.gnome.excludePackages = with pkgs; [
+      gnome-console
+      gnome-photos
+      gnome-tour
+      gnome-software
+      iagno
+      hitori
+      atomix
+      gnome-contacts
+      gnome-initial-setup
+      gnome-music
+      gedit
+      cheese
+      tali
+      epiphany
+      geary
+      yelp
+    ];
 
     environment.systemPackages = with pkgs; [
       gnome-tweaks

@@ -1,17 +1,23 @@
 {pkgs, ...}: {
-  # setup printing service
-  services.printing.enable = true;
+  services = {
+    # setup printing service
+    printing.enable = true;
 
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    printing.drivers = [
+      pkgs.gutenprint
+      pkgs.hplip
+    ];
+    udev.packages = [
+      pkgs.sane-airscan
+      pkgs.utsushi
+    ];
   };
-
-  services.printing.drivers = [
-    pkgs.gutenprint
-    pkgs.hplip
-  ];
 
   hardware.sane.enable = true; # enables support for SANE scanners
   hardware.sane.extraBackends = [
@@ -19,9 +25,5 @@
     pkgs.hplip # HP
     pkgs.epkowa # Epson
     pkgs.utsushi # other printers
-  ];
-  services.udev.packages = [
-    pkgs.sane-airscan
-    pkgs.utsushi
   ];
 }

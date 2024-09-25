@@ -20,7 +20,7 @@ in {
     plugins = [
       {
         name = "fzf";
-        src = pkgs.fishPlugins.fzf.src;
+        inherit (pkgs.fishPlugins.fzf) src;
       }
     ];
   };
