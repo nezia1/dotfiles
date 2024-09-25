@@ -78,6 +78,7 @@ in {
               pkgs.gnomeExtensions.appindicator.extensionUuid
               pkgs.gnomeExtensions.blur-my-shell.extensionUuid
               pkgs.gnomeExtensions.emoji-copy.extensionUuid
+              pkgs.gnomeExtensions.clipboard-history.extensionUuid
             ];
           };
           "org/gnome/desktop/input-sources" = {
@@ -118,6 +119,7 @@ in {
       home.packages = with pkgs.gnomeExtensions; [
         appindicator
         blur-my-shell
+        clipboard-history
         emoji-copy
       ];
       programs.gnome-terminal = {
