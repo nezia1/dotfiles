@@ -3,14 +3,19 @@
 
   outputs = {
     nixpkgs,
+    systems,
     home-manager,
-    nixvim,
     sops-nix,
     stylix,
+    treefmt-nix,
     ...
   } @ inputs: let
     username = "nezia";
     system = "x86_64-linux";
+    # small tool to iterate over each systems
+    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+    # eval the treefmt modules from ./treefmt.nix
+    treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
 
     commonModules = hostname: [
       ./modules
@@ -24,9 +29,6 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          sharedModules = [
-            nixvim.homeManagerModules.nixvim
-          ];
           extraSpecialArgs = {
             inherit inputs system;
           };
@@ -52,14 +54,11 @@
       vamos = configureSystem "vamos" ./home/laptop;
       solaire = configureSystem "solaire" ./home/desktop;
     };
+    formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
   };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -78,6 +77,7 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    treefmt-nix.url = "github:numtide/treefmt-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 }
