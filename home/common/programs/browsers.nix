@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   programs.chromium.enable = true;
-  programs.firefox.enable = true;
+  home.packages = [pkgs.floorp];
 }
