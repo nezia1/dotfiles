@@ -1,6 +1,7 @@
-_: {
+{self, ...}: {
   imports = [
     ./terminal
+    self.nixosModules.theme
   ];
   home = {
     username = "nezia";

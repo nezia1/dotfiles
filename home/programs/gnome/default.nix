@@ -15,13 +15,19 @@
           pkgs.gnomeExtensions.clipboard-history.extensionUuid
         ];
       };
+
       "org/gnome/desktop/input-sources" = {
         xkb-options = ["compose:ralt"];
       };
+
       "org/gnome/desktop/interface" = {
         enable-hot-corners = false;
         color-scheme = "prefer-dark";
       };
+      "org/gnome/desktop/background" = {
+        picture-uri-dark = "file://" + builtins.toString config.theme.wallpaper;
+      };
+
       "org/gnome/desktop/search-providers" = {
         disabled = [
           "org.gnome.Terminal.desktop"
@@ -32,12 +38,12 @@
           "org.gnome.Calendar.desktop"
           "org.gnome.Calculator.desktop"
         ];
-
         enabled = [
           "org.gnome.Nautilus.desktop"
           "org.gnome.Settings.desktop"
         ];
       };
+
       "org/freedesktop/tracker/mine/files" = {
         index-recursive-directories = [
           "&DESKTOP"
