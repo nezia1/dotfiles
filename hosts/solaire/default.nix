@@ -2,51 +2,6 @@
   imports = [
     ./hardware-configuration.nix
   ];
-
-  hardware.uni-sync = {
-    enable = true;
-    devices = [
-      {
-        device_id = "VID:3314/PID:41218/SN:6243168001";
-        sync_rgb = true;
-        channels = [
-          {
-            mode = "Manual";
-            speed = 60;
-          }
-          {
-            mode = "Manual";
-            speed = 60;
-          }
-          {
-            mode = "Manual";
-            speed = 60;
-          }
-          {
-            mode = "Manual";
-            speed = 60;
-          }
-        ];
-      }
-    ];
-  };
-
-  systemd.services.uni-sync = {
-    enable = true;
-    serviceConfig = {
-      ExecStart = "${pkgs.uni-sync}/bin/uni-sync";
-    };
-    wantedBy = ["multi-user.target"];
-  };
-  modules = {
-    nvidia.enable = true;
-    gaming.enable = true;
-    pipewire = {
-      enable = true;
-      latencyFix.enable = true;
-    };
-    neovim.enable = true;
-  };
-
-  stylix.image = ../../wallpapers/lucy-edgerunners-wallpaper.jpg;
+  networking.hostName = "solaire";
+  environment.variables.FLAKE = "/home/nezia/.dotfiles";
 }

@@ -1,0 +1,10 @@
+{
+  vamos = [
+    ../.
+    ./vamos
+  ];
+  solaire = [
+    ../.
+    ./solaire
+  ];
+}
