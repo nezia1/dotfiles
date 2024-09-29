@@ -7,13 +7,10 @@
 
       imports = [
         ./hosts
+        ./modules
       ];
 
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
+      perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {
           packages = [
             pkgs.alejandra
