@@ -47,11 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
     nvf = {
       url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-colors.url = "github:misterio77/nix-colors";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
 

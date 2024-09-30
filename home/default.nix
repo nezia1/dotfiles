@@ -1,7 +1,12 @@
-{self, ...}: {
+{
+  self,
+  nix-colors,
+  ...
+}: {
   imports = [
     ./terminal
     self.nixosModules.theme
+    nix-colors.homeManagerModules.default
   ];
   home = {
     username = "nezia";

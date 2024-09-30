@@ -8,7 +8,10 @@
     homeImports = import "${self}/home/profiles";
     mod = "${self}/system";
     inherit (import mod) laptop desktop;
-    specialArgs = {inherit inputs self;};
+    specialArgs = {
+      inherit inputs self;
+      inherit (inputs) nix-colors;
+    };
   in {
     vamos = nixosSystem {
       inherit specialArgs;
