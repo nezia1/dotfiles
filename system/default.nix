@@ -17,7 +17,7 @@ let
     ];
 
   laptop =
-    desktop
+    common
     ++ [
       ./hardware/power.nix
       ./hardware/fprintd.nix
