@@ -1,3 +1,14 @@
-{
-  nixpkgs.config.allowUnfree = true;
+_: {
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      (_: prev: {
+        lib =
+          prev.lib
+          // import ../../lib {
+            inherit (prev) lib pkgs;
+          };
+      })
+    ];
+  };
 }
