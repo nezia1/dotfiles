@@ -1,15 +1,17 @@
-{inputs, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   imports = [
-    ../../programs/editors/neovim.nix
+    "${self}/home/services/udiskie.nix"
 
-    ../../programs
-    ../../programs/plasma
+    "${self}/home/programs"
+    "${self}/home/programs/plasma"
 
-    ../../services/udiskie.nix
+    "${self}/home/terminal/emulators/konsole.nix"
 
-    ../../terminal/emulators/konsole.nix
-    # ../../terminal/emulators/wezterm.nix
-    # ../../terminal/emulators/foot.nix
+    "${self}/home/programs/editors/neovim.nix"
 
     inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
