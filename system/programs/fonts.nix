@@ -4,18 +4,15 @@
       noto-fonts
       noto-fonts-emoji
       intel-one-mono
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      (nerdfonts.override {fonts = ["IntelOneMono"];})
     ];
     enableDefaultPackages = false;
 
-    fontconfig.defaultFonts = let
-      addAll = builtins.mapAttrs (_: v: ["Symbols Nerd Font"] ++ v ++ ["Noto Color Emoji"]);
-    in
-      addAll {
-        serif = ["Noto Serif"];
-        sansSerif = ["Inter"];
-        monospace = ["Intel One Mono"];
-        emoji = [];
-      };
+    fontconfig.defaultFonts = {
+      serif = ["Noto Serif"];
+      sansSerif = ["Inter"];
+      monospace = ["IntoneMono NF"];
+      emoji = ["Noto Color Emoji"];
+    };
   };
 }
