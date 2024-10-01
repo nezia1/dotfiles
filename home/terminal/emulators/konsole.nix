@@ -2,9 +2,13 @@
   lib,
   config,
   inputs,
+  pkgs,
   ...
 }: {
-  programs.konsole = {
+  programs.konsole = let
+    inherit (config.theme) scheme;
+    schemeData = inputs.basix.schemeData.base16.${scheme};
+  in {
     enable = true;
     defaultProfile = "default";
     profiles = {
@@ -13,6 +17,7 @@
           name = "monospace";
           size = 14;
         };
+        colorScheme = schemeData.name;
       };
     };
 
@@ -24,6 +29,10 @@
       "KonsoleWindow" = {
         "ShowMenuBarByDefault" = "false";
       };
+    };
+
+    customColorSchemes = {
+      "${schemeData.name}" = pkgs.lib.mkKonsoleColorScheme schemeData;
     };
   };
 }
