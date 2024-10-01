@@ -51,7 +51,13 @@
       url = "github:notashelf/nvf";
     };
 
-    nix-colors.url = "github:misterio77/nix-colors";
+    basix.url = "github:notashelf/basix";
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
 

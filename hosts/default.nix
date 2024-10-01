@@ -10,7 +10,6 @@
     inherit (import mod) laptop desktop;
     specialArgs = {
       inherit inputs self;
-      inherit (inputs) nix-colors;
     };
   in {
     vamos = nixosSystem {
@@ -20,7 +19,7 @@
         ++ [
           ./vamos
 
-          "${mod}/programs/gnome.nix"
+          "${mod}/programs/kde.nix"
 
           {
             home-manager = {
