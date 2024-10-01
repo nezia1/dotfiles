@@ -4,8 +4,6 @@
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       fish_vi_key_bindings # Enable Vi mode
-      set -U fish_color_command green
-      set -U fish_color_param white
     '';
     shellAbbrs = {
       cd = "z";
