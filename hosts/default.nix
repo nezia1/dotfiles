@@ -39,7 +39,7 @@
         ++ [
           ./solaire
 
-          "${mod}/programs/gnome.nix"
+          "${mod}/programs/kde.nix"
           "${mod}/hardware/nvidia.nix"
 
           {
