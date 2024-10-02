@@ -26,7 +26,7 @@
           self.nixosModules.theme
 
           {
-            theme.wallpaper = lib.mkDefault ../wallpapers/nix-wallpaper-nineish-catppuccin-frappe-alt.svg;
+            theme.wallpaper = lib.mkDefault ../wallpapers/lucy-edgerunners-wallpaper.jpg;
             theme.scheme = lib.mkDefault "catppuccin-frappe";
           }
 

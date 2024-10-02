@@ -1,4 +1,5 @@
 {
+  self,
   inputs,
   config,
   lib,
@@ -15,6 +16,8 @@ in {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
   };
+
+  services.mako = {enable = true;};
 
   programs.niri = {
     settings = {

@@ -59,6 +59,8 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    ags.url = "github:Aylur/ags";
+
     niri = {
       url = "github:sodiboo/niri-flake";
     };
