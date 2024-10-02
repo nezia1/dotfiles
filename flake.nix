@@ -59,6 +59,10 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";

@@ -19,7 +19,10 @@
         ++ [
           ./vamos
 
-          "${mod}/programs/kde.nix"
+          ../system/services/greetd.nix
+
+          # "${mod}/programs/kde.nix"
+          "${mod}/programs/niri"
 
           {
             home-manager = {
