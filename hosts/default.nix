@@ -1,6 +1,7 @@
 {
   self,
   inputs,
+  lib,
   ...
 }: {
   flake.nixosConfigurations = let
@@ -19,10 +20,15 @@
         ++ [
           ./vamos
 
-          ../system/services/greetd.nix
-
-          # "${mod}/programs/kde.nix"
+          ../system/services/regreet.nix
           "${mod}/programs/niri"
+
+          self.nixosModules.theme
+
+          {
+            theme.wallpaper = lib.mkDefault ../wallpapers/nix-wallpaper-nineish-catppuccin-frappe-alt.svg;
+            theme.scheme = lib.mkDefault "catppuccin-frappe";
+          }
 
           {
             home-manager = {
@@ -45,6 +51,7 @@
           "${mod}/programs/kde.nix"
           "${mod}/hardware/nvidia.nix"
 
+          self.nixosModules.theme
           {
             home-manager = {
               users.nezia.imports = homeImports.solaire;

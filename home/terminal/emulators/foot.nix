@@ -1,6 +1,6 @@
 {
   inputs,
-  config,
+  nixosConfig,
   ...
 }: {
   programs.foot = {
@@ -11,7 +11,7 @@
         font = "monospace:size=14";
       };
       colors = let
-        inherit (config.theme) scheme;
+        inherit (nixosConfig.theme) scheme;
         schemeData = inputs.basix.schemeData.base16.${scheme};
       in {
         background = schemeData.palette.base00;

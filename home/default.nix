@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./terminal
-    self.nixosModules.theme
   ];
   home = {
     username = "nezia";
@@ -14,7 +13,4 @@
   };
 
   programs.home-manager.enable = true;
-
-  theme.wallpaper = lib.mkDefault ../wallpapers/nix-wallpaper-nineish-catppuccin-frappe-alt.svg;
-  theme.scheme = lib.mkDefault "catppuccin-frappe";
 }
