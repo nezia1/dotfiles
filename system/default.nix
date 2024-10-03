@@ -21,6 +21,7 @@ let
     ++ [
       ./hardware/fprintd.nix
       ./services/power.nix
+      ./services/brightness.nix
       ./services/keyd.nix
     ];
 in {
