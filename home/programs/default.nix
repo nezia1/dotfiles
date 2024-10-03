@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./browsers.nix
+    ./gtk.nix
   ];
 
   programs.fzf.enable = true;
