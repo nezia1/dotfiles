@@ -10,13 +10,6 @@
   terminal = lib.getExe pkgs.foot;
   schemeData = inputs.basix.schemeData.base16.${config.theme.scheme};
 in {
-  # TODO: put this into the theme module to avoid repeating in greeter config
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-  };
-
   services.mako = {enable = true;};
 
   programs.niri = {
