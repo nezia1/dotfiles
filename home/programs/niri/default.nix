@@ -1,6 +1,4 @@
 {
-  self,
-  inputs,
   config,
   lib,
   pkgs,
@@ -8,10 +6,8 @@
 }: let
   appLauncher = lib.getExe pkgs.fuzzel;
   terminal = lib.getExe pkgs.foot;
-  schemeData = inputs.basix.schemeData.base16.${config.theme.scheme};
+  # schemeData = inputs.basix.schemeData.base16.${config.theme.scheme};
 in {
-  services.mako = {enable = true;};
-
   programs.niri = {
     settings = {
       environment."NIXOS_OZONE_WL" = "1";
@@ -153,6 +149,14 @@ in {
         };
         "XF86AudioMicMute" = {
           action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
+          allow-when-locked = true;
+        };
+        "XF86MonBrightnessUp" = {
+          action.spawn = ["brillo" "-q" "-u 300000" "-A 5"];
+          allow-when-locked = true;
+        };
+        "XF86MonBrightnessDown" = {
+          action.spawn = ["brillo" "-q" "-u 300000" "-U 5"];
           allow-when-locked = true;
         };
       };
