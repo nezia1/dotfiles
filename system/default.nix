@@ -19,8 +19,8 @@ let
   laptop =
     common
     ++ [
-      ./hardware/power.nix
       ./hardware/fprintd.nix
+      ./services/power.nix
       ./services/keyd.nix
     ];
 in {
