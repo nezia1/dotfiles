@@ -56,6 +56,7 @@
 
           "${mod}/programs/kde.nix"
           "${mod}/hardware/nvidia.nix"
+          "${mod}/programs/games.nix"
 
           self.nixosModules.theme
           {
