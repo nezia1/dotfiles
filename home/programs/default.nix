@@ -14,5 +14,6 @@
     vesktop
     wl-clipboard
     stremio
+    fractal
   ];
 }
