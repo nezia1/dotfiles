@@ -1,6 +1,8 @@
 {
   inputs,
   nixosConfig,
+  config,
+  lib,
   ...
 }: {
   programs.foot = {
@@ -9,6 +11,7 @@
       main = {
         term = "xterm-256color";
         font = "monospace:size=14";
+        shell = "${lib.getExe config.programs.nushell.package}";
       };
       colors = let
         schemeData = inputs.basix.schemeData.base16.${nixosConfig.style.scheme};
