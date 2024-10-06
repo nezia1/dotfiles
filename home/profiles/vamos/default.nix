@@ -9,6 +9,7 @@
     "${self}/home/programs/fuzzel.nix"
     "${self}/home/programs/swaybg.nix"
     "${self}/home/programs/swaylock.nix"
+    "${self}/home/programs/swayidle.nix"
 
     "${self}/home/terminal/emulators/foot.nix"
 

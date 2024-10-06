@@ -1,7 +1,11 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   appLauncher = "fuzzel";
   terminal = "foot";
-  screenLocker = "swaylock";
 in {
   programs.niri.settings.binds = {
     "Mod+D".action.spawn = appLauncher;
@@ -114,8 +118,10 @@ in {
     "Alt+Print".action = config.lib.niri.actions.screenshot-window;
 
     # System
-    "Mod+Shift+P".action = config.lib.niri.actions.power-off-monitors;
-    "Mod+Alt+L".action.spawn = screenLocker;
+    "Mod+Alt+L".action.spawn = [
+      "${lib.getExe' pkgs.systemd "loginctl"}"
+      "lock-session"
+    ];
 
     # Media keys
     "XF86AudioRaiseVolume" = {
