@@ -17,4 +17,8 @@
       };
     };
   };
+  security.pam.services.greetd = {
+    enableGnomeKeyring = true;
+    fprintAuth = false;
+  };
 }
