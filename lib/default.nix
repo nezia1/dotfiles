@@ -3,6 +3,13 @@
   lib,
   ...
 }: let
+  # convert rrggbb hex to rgba(r, g, b, a) CSS format
+  rgba = c: let
+    r = toString (hexToDec (builtins.substring 0 2 c));
+    g = toString (hexToDec (builtins.substring 2 2 c));
+    b = toString (hexToDec (builtins.substring 4 2 c));
+  in "rgba(${r}, ${g}, ${b}, .5)";
+
   # Helper function to convert hex color to decimal RGB values
   hexToDec = v: let
     hexToInt = {
@@ -30,21 +37,12 @@
       "F" = 15;
     };
     chars = lib.strings.stringToCharacters v;
-    charsLen = builtins.length chars;
   in
-    lib.lists.foldl (a: v: a + v) 0
-    (lib.lists.imap0 (k: v: hexToInt."${v}" * (pow 16 (charsLen - k - 1))) chars);
+    lib.foldl' (a: v: a + v) 0
+    (lib.imap (k: v: hexToInt."${v}" * (pow 16 (builtins.length chars - k - 1))) chars);
 
   # Power function for exponentiation
-  pow = let
-    pow' = base: exponent: value:
-      if exponent == 0
-      then 1
-      else if exponent <= 1
-      then value
-      else pow' base (exponent - 1) (value * base);
-  in
-    base: exponent: pow' base exponent base;
+  pow = base: exponent: lib.foldl' (acc: _: acc * base) 1 (lib.range 1 exponent);
 
   # Converts hex color to KDE color format
   colorToKde = name: hexColor: let
@@ -74,25 +72,22 @@
       base0E = ["Color5" "Color5Intense"];
     };
 
-    # Generate KDE color sections using the mapped colors
     colorSections = lib.concatStringsSep "\n" (lib.attrsets.mapAttrsToList
-      (
-        name: value:
-          lib.concatMapStrings (slot: colorToKde slot value) (colorMap.${name} or [])
-      )
+      (name: value:
+        lib.concatMapStrings (slot: colorToKde slot value) (colorMap.${name} or []))
       palette);
   in
-    lib.strings.concatStringsSep "\n" (
-      [
-        "[General]"
-        "\nDescription=${scheme.name}"
-        "\nOpacity=1"
-        "\nWallpaper="
-      ]
-      ++ [colorSections]
-    );
+    lib.concatStringsSep "\n" [
+      "[General]"
+      "Description=${scheme.name}"
+      "Opacity=1"
+      "Wallpaper="
+      colorSections
+    ];
 
-  # Main function to create the KDE colorscheme file
+  # Create a KDE konsole color scheme from base16 colors
   mkKonsoleColorScheme = scheme:
     pkgs.writeText "${scheme.name}.colorscheme" (schemeToKonsole scheme);
-in {inherit mkKonsoleColorScheme;}
+in {
+  inherit mkKonsoleColorScheme rgba;
+}
