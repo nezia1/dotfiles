@@ -11,8 +11,7 @@
         font = "monospace:size=14";
       };
       colors = let
-        inherit (nixosConfig.theme) scheme;
-        schemeData = inputs.basix.schemeData.base16.${scheme};
+        schemeData = inputs.basix.schemeData.base16.${nixosConfig.style.scheme};
       in {
         background = schemeData.palette.base00;
         foreground = schemeData.palette.base05;

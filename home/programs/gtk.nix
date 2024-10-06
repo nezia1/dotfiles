@@ -1,12 +1,11 @@
 {
   pkgs,
   config,
+  nixosConfig,
   ...
 }: {
   home.pointerCursor = {
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
+    inherit (nixosConfig.style.cursorTheme) name package size;
     gtk.enable = true;
     x11.enable = true;
   };
@@ -30,21 +29,11 @@
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      inherit (nixosConfig.style.gtk.iconTheme) name package;
     };
 
-    theme = let
-      accent = "lavender";
-      variant = "frappe";
-      size = "standard";
-    in {
-      name = "catppuccin-${variant}-${accent}-${size}";
-      package = pkgs.catppuccin-gtk.override {
-        # https://github.com/NixOS/nixpkgs/blob/nixos-23.05/pkgs/data/themes/catppuccin-gtk/default.nix
-        accents = [accent];
-        inherit variant size;
-      };
+    theme = {
+      inherit (nixosConfig.style.gtk.theme) name package;
     };
   };
 }

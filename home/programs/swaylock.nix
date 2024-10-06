@@ -4,7 +4,7 @@
   nixosConfig,
   ...
 }: let
-  inherit (inputs.basix.schemeData.base16.${nixosConfig.theme.scheme}) palette;
+  inherit (inputs.basix.schemeData.base16.${nixosConfig.style.scheme}) palette;
 in {
   # requires `security.pam.services.swaylock = { };` at the system level or else
   # unlock will not work.

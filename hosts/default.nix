@@ -23,13 +23,15 @@
           ../system/services/regreet.nix
           "${mod}/programs/niri"
 
-          self.nixosModules.theme
+          self.nixosModules.style
 
           {
-            theme.wallpaper = lib.mkDefault ../wallpapers/lucy-edgerunners-wallpaper.jpg;
-            theme.scheme = lib.mkDefault "catppuccin-frappe";
+            style = {
+              gtk.enable = true;
+              wallpaper = lib.mkDefault ../wallpapers/lucy-edgerunners-wallpaper.jpg;
+              scheme = lib.mkDefault "catppuccin-frappe";
+            };
           }
-
           {
             home-manager = {
               users.nezia.imports = homeImports.vamos;

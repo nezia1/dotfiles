@@ -11,7 +11,7 @@
       PartOf = ["graphical-session.target"];
     };
     Service = {
-      ExecStart = builtins.trace nixosConfig.theme.wallpaper "${lib.getExe pkgs.swaybg} -i ${nixosConfig.theme.wallpaper} -m fill";
+      ExecStart = "${lib.getExe pkgs.swaybg} -i ${nixosConfig.style.wallpaper} -m fill";
       Restart = "on-failure";
     };
     Install.WantedBy = ["graphical-session.target"];
