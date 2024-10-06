@@ -1,7 +1,7 @@
 {
   imports = [
-    ./fish.nix
     ./starship.nix
     ./zoxide.nix
+    ./nushell.nix
   ];
 }
