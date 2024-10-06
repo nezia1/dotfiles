@@ -11,14 +11,21 @@
     x11.enable = true;
   };
 
-  gtk = {
+  gtk = let
+    commonGtkConfig = {
+      gtk-decoration-layout = ":menu";
+    };
+  in {
     enable = true;
 
     font = {
       name = "Inter";
       package = pkgs.inter;
-      size = 9;
+      size = 11;
     };
+
+    gtk3.extraConfig = commonGtkConfig;
+    gtk4.extraConfig = commonGtkConfig;
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
