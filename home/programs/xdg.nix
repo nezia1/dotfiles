@@ -18,6 +18,16 @@
         "image/svg" = [" org.gnome.Loupe.desktop"];
         "image/jpeg" = ["org.gnome.Loupe.desktop"];
         "image/gif" = [" org.gnome.Loupe.desktop"];
+        "video/mp4" = ["io.github.celluloid_player.Celluloid.desktop"];
+        "video/avi" = ["io.github.celluloid_player.Celluloid.desktop"];
+        "video/mkv" = ["io.github.celluloid_player.Celluloid.desktop"];
+      };
+    };
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      extraConfig = {
+        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
       };
     };
   };
