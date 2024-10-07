@@ -24,6 +24,10 @@ in {
       layout = {
         border.active = pkgs.lib.rgba schemeData.palette.base0E;
       };
+      input.keyboard.xkb = {
+        layout = "us";
+        options = "compose:ralt";
+      };
     };
   };
 }
