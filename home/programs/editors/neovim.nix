@@ -98,6 +98,7 @@
         nix.enable = true;
         clang.enable = true;
         python.enable = true;
+        ts.enable = true;
       };
 
       treesitter = {

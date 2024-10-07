@@ -19,9 +19,11 @@ let
   laptop =
     common
     ++ [
-      ./hardware/power.nix
       ./hardware/fprintd.nix
+      ./services/power.nix
+      ./services/brightness.nix
       ./services/keyd.nix
+      ./services/logind.nix
     ];
 in {
   inherit desktop laptop;

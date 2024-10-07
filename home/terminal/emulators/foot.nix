@@ -1,6 +1,8 @@
 {
   inputs,
+  nixosConfig,
   config,
+  lib,
   ...
 }: {
   programs.foot = {
@@ -9,10 +11,10 @@
       main = {
         term = "xterm-256color";
         font = "monospace:size=14";
+        shell = "${lib.getExe config.programs.fish.package}";
       };
       colors = let
-        inherit (config.theme) scheme;
-        schemeData = inputs.basix.schemeData.base16.${scheme};
+        schemeData = inputs.basix.schemeData.base16.${nixosConfig.style.scheme};
       in {
         background = schemeData.palette.base00;
         foreground = schemeData.palette.base05;

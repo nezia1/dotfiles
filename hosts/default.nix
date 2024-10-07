@@ -1,6 +1,7 @@
 {
   self,
   inputs,
+  lib,
   ...
 }: {
   flake.nixosConfigurations = let
@@ -19,8 +20,18 @@
         ++ [
           ./vamos
 
-          "${mod}/programs/kde.nix"
+          ../system/services/regreet.nix
+          "${mod}/programs/niri"
 
+          self.nixosModules.style
+
+          {
+            style = {
+              gtk.enable = true;
+              wallpaper = lib.mkDefault ../wallpapers/lucy-edgerunners-wallpaper.jpg;
+              scheme = lib.mkDefault "catppuccin-frappe";
+            };
+          }
           {
             home-manager = {
               users.nezia.imports = homeImports.vamos;
@@ -42,6 +53,7 @@
           "${mod}/programs/kde.nix"
           "${mod}/hardware/nvidia.nix"
 
+          self.nixosModules.theme
           {
             home-manager = {
               users.nezia.imports = homeImports.solaire;

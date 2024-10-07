@@ -1,17 +1,22 @@
 {pkgs, ...}: {
   imports = [
     ./browsers.nix
+    ./gtk.nix
+    ./media
+    ./xdg.nix
   ];
 
-  programs.fzf.enable = true;
-  programs.fastfetch.enable = true;
+  programs = {
+    fzf.enable = true;
+    fastfetch.enable = true;
+    yazi.enable = true;
+  };
   home.packages = with pkgs; [
     imhex
     obsidian
     proton-pass
-    spotify
     vesktop
     wl-clipboard
-    stremio
+    cinny-desktop
   ];
 }

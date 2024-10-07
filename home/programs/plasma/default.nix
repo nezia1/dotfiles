@@ -1,9 +1,13 @@
 {
+  inputs,
   config,
   pkgs,
   ...
 }: {
-  programs.plasma = {
+  imports = [
+    inputs.plasma-manager.homeManagerModules.plasma-manager
+  ];
+  rograms.plasma = {
     enable = true;
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";

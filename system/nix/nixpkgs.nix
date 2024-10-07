@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
@@ -10,5 +10,6 @@ _: {
           };
       })
     ];
+    config.permittedInsecurePackages = ["cinny-4.2.1" "cinny-unwrapped-4.2.1"];
   };
 }
