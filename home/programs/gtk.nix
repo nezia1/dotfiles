@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   config,
   nixosConfig,
@@ -11,8 +12,10 @@
   };
 
   gtk = let
+    isDark = inputs.basix.schemeData.base16.${nixosConfig.style.scheme}.variant == "dark";
     commonGtkConfig = {
       gtk-decoration-layout = ":menu";
+      gtk-application-prefer-dark-theme = isDark;
     };
   in {
     enable = true;
