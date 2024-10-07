@@ -14,6 +14,7 @@
         "x-scheme-handler/unknown" = ["firefox.desktop"];
         "x-scheme-handler/chrome" = ["chromium-browser.desktop"];
         "inode/directory" = ["yazi.desktop"];
+        "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
         "image/png" = ["org.gnome.Loupe.desktop"];
         "image/svg" = [" org.gnome.Loupe.desktop"];
         "image/jpeg" = ["org.gnome.Loupe.desktop"];
