@@ -1,5 +1,7 @@
 {
   inputs,
+  lib,
+  pkgs,
   nixosConfig,
   ...
 }: let
@@ -51,7 +53,25 @@ in {
         center-focused-column = "always";
         always-center-single-column = true;
       };
-      spawn-at-startup = [{command = ["xwayland-satellite"];}];
+    };
+  };
+
+  # copied from https://github.com/linyinfeng/dotfiles/blob/c00fe3b1562ad947672863a43e455bc2f01a56b6/home-manager/profiles/niri/default.nix#L594-L611
+  systemd.user.services.xwayland-satellite = {
+    Unit = {
+      PartOf = ["graphical-session.target"];
+      After = ["graphical-session.target"];
+      Requisite = ["graphical-session.target"];
+    };
+    Install = {
+      WantedBy = ["niri.service"];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${lib.getExe pkgs.xwayland-satellite} :0";
+      NotifyAccess = "all";
+      StandardOutput = "journal";
+      Restart = "on-failure";
     };
   };
 }
