@@ -1,7 +1,7 @@
 {
   self,
+  pkgs,
   inputs,
-  lib,
   ...
 }: {
   flake.nixosConfigurations = let
@@ -25,13 +25,17 @@
 
           self.nixosModules.style
 
-          {
-            style = {
+          ({pkgs, ...}: {
+            style = let
+              wallpaper = pkgs.fetchurl {
+                url = "https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nixos-wallpaper-catppuccin-macchiato.png?raw=true";
+                hash = "sha256-SkXrLbHvBOItJ7+8vW+6iXV+2g0f8bUJf9KcCXYOZF0=";
+              };
+            in {
               gtk.enable = true;
-              wallpaper = lib.mkDefault ../wallpapers/lucy-edgerunners-wallpaper.jpg;
-              scheme = lib.mkDefault "catppuccin-frappe";
+              inherit wallpaper;
             };
-          }
+          })
           {
             home-manager = {
               users.nezia.imports = homeImports.vamos;
