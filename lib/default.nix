@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  # convert rrggbb hex to rgba(r, g, b, a) CSS format
+  # convert rrggbb hex to rgba(r, g, b, a)
   rgba = c: let
     r = toString (hexToDec (builtins.substring 0 2 c));
     g = toString (hexToDec (builtins.substring 2 2 c));
