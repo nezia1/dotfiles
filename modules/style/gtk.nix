@@ -16,7 +16,7 @@ in {
       name = mkOption {
         type = str;
         description = "Name for the GTK theme";
-        default = "catppuccin-frappe-lavender-standard";
+        default = "catppuccin-macchiato-lavender-standard";
       };
       package = mkOption {
         type = package;
@@ -24,7 +24,7 @@ in {
 
         default = pkgs.catppuccin-gtk.override {
           # https://github.com/NixOS/nixpkgs/blob/nixos-23.05/pkgs/data/themes/catppuccin-gtk/default.nix
-          variant = "frappe";
+          variant = "macchiato";
           accents = ["lavender"];
           size = "standard";
         };
@@ -42,7 +42,7 @@ in {
         description = "The GTK icon theme to be used";
         default = pkgs.catppuccin-papirus-folders.override {
           accent = "lavender";
-          flavor = "frappe";
+          flavor = "macchiato";
         };
       };
     };

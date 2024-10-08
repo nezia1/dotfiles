@@ -2,10 +2,10 @@
   inputs,
   lib,
   pkgs,
-  nixosConfig,
+  osConfig,
   ...
 }: let
-  colors = inputs.basix.schemeData.base16.${nixosConfig.style.scheme}.palette;
+  colors = inputs.basix.schemeData.base16.${osConfig.style.scheme}.palette;
 in {
   imports = [./binds.nix];
   programs.niri = {

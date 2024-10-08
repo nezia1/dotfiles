@@ -13,7 +13,8 @@ in {
         Name of the tinted-scheming color scheme to use.
       '';
       type = string;
-      example = lib.literalExpression "catppuccin-frappe";
+      example = lib.literalExpression "catppuccin-macchiato";
+      default = "catppuccin-macchiato";
     };
     wallpaper = mkOption {
       description = ''

@@ -40,7 +40,7 @@
       theme = {
         enable = true;
         name = "catppuccin";
-        style = "frappe";
+        style = "macchiato";
       };
 
       visuals = {
@@ -55,7 +55,7 @@
 
       statusline.lualine = {
         enable = true;
-        theme = "catppuccin";
+        theme = "auto";
       };
 
       git.enable = true;
