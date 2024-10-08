@@ -13,6 +13,7 @@
   };
   home.packages = with pkgs; [
     imhex
+    logisim-evolution
     obsidian
     proton-pass
     vesktop
