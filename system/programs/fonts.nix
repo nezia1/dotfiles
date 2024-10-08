@@ -2,8 +2,9 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts
+      noto-fonts-cjk
       noto-fonts-emoji
-      intel-one-mono
+      noto-fonts-extra
       (nerdfonts.override {fonts = ["IntelOneMono"];})
     ];
     enableDefaultPackages = false;
