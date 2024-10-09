@@ -6,119 +6,119 @@
 }: let
   appLauncher = "fuzzel";
   terminal = "foot";
+  prefix = "Alt";
 in {
   programs.niri.settings.binds = {
-    "Mod+D".action.spawn = appLauncher;
-    "Mod+Return".action.spawn = terminal;
-    "Mod+Shift+E".action.quit.skip-confirmation = true;
-    "Mod+Shift+Slash".action = config.lib.niri.actions.show-hotkey-overlay;
-    "Mod+Q".action = config.lib.niri.actions.close-window;
-    "Mod+F".action = config.lib.niri.actions.maximize-column;
-    "Mod+Shift+F".action = config.lib.niri.actions.fullscreen-window;
-    "Mod+C".action = config.lib.niri.actions.center-column;
+    "${prefix}+D".action.spawn = appLauncher;
+    "${prefix}+Return".action.spawn = terminal;
+    "${prefix}+Shift+E".action.quit.skip-confirmation = true;
+    "${prefix}+Shift+Slash".action = config.lib.niri.actions.show-hotkey-overlay;
+    "${prefix}+Q".action = config.lib.niri.actions.close-window;
+    "${prefix}+F".action = config.lib.niri.actions.maximize-column;
+    "${prefix}+Shift+F".action = config.lib.niri.actions.fullscreen-window;
+    "${prefix}+C".action = config.lib.niri.actions.center-column;
 
     # Focus
-    "Mod+Left".action = config.lib.niri.actions.focus-column-left;
-    "Mod+Down".action = config.lib.niri.actions.focus-window-down;
-    "Mod+Up".action = config.lib.niri.actions.focus-window-up;
-    "Mod+Right".action = config.lib.niri.actions.focus-column-right;
-    "Mod+H".action = config.lib.niri.actions.focus-column-left;
-    "Mod+J".action = config.lib.niri.actions.focus-window-down;
-    "Mod+K".action = config.lib.niri.actions.focus-window-up;
-    "Mod+L".action = config.lib.niri.actions.focus-column-right;
-    "Mod+Home".action = config.lib.niri.actions.focus-column-first;
-    "Mod+End".action = config.lib.niri.actions.focus-column-last;
+    "${prefix}+Left".action = config.lib.niri.actions.focus-column-left;
+    "${prefix}+Down".action = config.lib.niri.actions.focus-window-down;
+    "${prefix}+Up".action = config.lib.niri.actions.focus-window-up;
+    "${prefix}+Right".action = config.lib.niri.actions.focus-column-right;
+    "${prefix}+H".action = config.lib.niri.actions.focus-column-left;
+    "${prefix}+J".action = config.lib.niri.actions.focus-window-down;
+    "${prefix}+K".action = config.lib.niri.actions.focus-window-up;
+    "${prefix}+L".action = config.lib.niri.actions.focus-column-right;
+    "${prefix}+Home".action = config.lib.niri.actions.focus-column-first;
+    "${prefix}+End".action = config.lib.niri.actions.focus-column-last;
 
     # Move
-    "Mod+Ctrl+Left".action = config.lib.niri.actions.move-column-left;
-    "Mod+Ctrl+Down".action = config.lib.niri.actions.move-window-down;
-    "Mod+Ctrl+Up".action = config.lib.niri.actions.move-window-up;
-    "Mod+Ctrl+Right".action = config.lib.niri.actions.move-column-right;
-    "Mod+Ctrl+H".action = config.lib.niri.actions.move-column-left;
-    "Mod+Ctrl+J".action = config.lib.niri.actions.move-window-down;
-    "Mod+Ctrl+K".action = config.lib.niri.actions.move-window-up;
-    "Mod+Ctrl+L".action = config.lib.niri.actions.move-column-right;
-    "Mod+Ctrl+Home".action = config.lib.niri.actions.move-column-to-first;
-    "Mod+Ctrl+End".action = config.lib.niri.actions.move-column-to-last;
+    "${prefix}+Ctrl+Left".action = config.lib.niri.actions.move-column-left;
+    "${prefix}+Ctrl+Down".action = config.lib.niri.actions.move-window-down;
+    "${prefix}+Ctrl+Up".action = config.lib.niri.actions.move-window-up;
+    "${prefix}+Ctrl+Right".action = config.lib.niri.actions.move-column-right;
+    "${prefix}+Ctrl+H".action = config.lib.niri.actions.move-column-left;
+    "${prefix}+Ctrl+J".action = config.lib.niri.actions.move-window-down;
+    "${prefix}+Ctrl+K".action = config.lib.niri.actions.move-window-up;
+    "${prefix}+Ctrl+L".action = config.lib.niri.actions.move-column-right;
+    "${prefix}+Ctrl+Home".action = config.lib.niri.actions.move-column-to-first;
+    "${prefix}+Ctrl+End".action = config.lib.niri.actions.move-column-to-last;
 
     # Monitor focus
-    "Mod+Shift+Left".action = config.lib.niri.actions.focus-monitor-left;
-    "Mod+Shift+Down".action = config.lib.niri.actions.focus-monitor-down;
-    "Mod+Shift+Up".action = config.lib.niri.actions.focus-monitor-up;
-    "Mod+Shift+Right".action = config.lib.niri.actions.focus-monitor-right;
-    "Mod+Shift+H".action = config.lib.niri.actions.focus-monitor-left;
-    "Mod+Shift+J".action = config.lib.niri.actions.focus-monitor-down;
-    "Mod+Shift+K".action = config.lib.niri.actions.focus-monitor-up;
-    "Mod+Shift+L".action = config.lib.niri.actions.focus-monitor-right;
+    "${prefix}+Shift+Left".action = config.lib.niri.actions.focus-monitor-left;
+    "${prefix}+Shift+Down".action = config.lib.niri.actions.focus-monitor-down;
+    "${prefix}+Shift+Up".action = config.lib.niri.actions.focus-monitor-up;
+    "${prefix}+Shift+Right".action = config.lib.niri.actions.focus-monitor-right;
+    "${prefix}+Shift+H".action = config.lib.niri.actions.focus-monitor-left;
+    "${prefix}+Shift+J".action = config.lib.niri.actions.focus-monitor-down;
+    "${prefix}+Shift+K".action = config.lib.niri.actions.focus-monitor-up;
+    "${prefix}+Shift+L".action = config.lib.niri.actions.focus-monitor-right;
 
     # Move to monitor
-    "Mod+Shift+Ctrl+Left".action = config.lib.niri.actions.move-column-to-monitor-left;
-    "Mod+Shift+Ctrl+Down".action = config.lib.niri.actions.move-column-to-monitor-down;
-    "Mod+Shift+Ctrl+Up".action = config.lib.niri.actions.move-column-to-monitor-up;
-    "Mod+Shift+Ctrl+Right".action = config.lib.niri.actions.move-column-to-monitor-right;
-    "Mod+Shift+Ctrl+H".action = config.lib.niri.actions.move-column-to-monitor-left;
-    "Mod+Shift+Ctrl+J".action = config.lib.niri.actions.move-column-to-monitor-down;
-    "Mod+Shift+Ctrl+K".action = config.lib.niri.actions.move-column-to-monitor-up;
-    "Mod+Shift+Ctrl+L".action = config.lib.niri.actions.move-column-to-monitor-right;
+    "${prefix}+Shift+Ctrl+Left".action = config.lib.niri.actions.move-column-to-monitor-left;
+    "${prefix}+Shift+Ctrl+Down".action = config.lib.niri.actions.move-column-to-monitor-down;
+    "${prefix}+Shift+Ctrl+Up".action = config.lib.niri.actions.move-column-to-monitor-up;
+    "${prefix}+Shift+Ctrl+Right".action = config.lib.niri.actions.move-column-to-monitor-right;
+    "${prefix}+Shift+Ctrl+H".action = config.lib.niri.actions.move-column-to-monitor-left;
+    "${prefix}+Shift+Ctrl+J".action = config.lib.niri.actions.move-column-to-monitor-down;
+    "${prefix}+Shift+Ctrl+K".action = config.lib.niri.actions.move-column-to-monitor-up;
+    "${prefix}+Shift+Ctrl+L".action = config.lib.niri.actions.move-column-to-monitor-right;
 
     # Workspace navigation
-    "Mod+Page_Down".action = config.lib.niri.actions.focus-workspace-down;
-    "Mod+Page_Up".action = config.lib.niri.actions.focus-workspace-up;
-    "Mod+U".action = config.lib.niri.actions.focus-workspace-down;
-    "Mod+I".action = config.lib.niri.actions.focus-workspace-up;
-    "Mod+Ctrl+Page_Down".action = config.lib.niri.actions.move-column-to-workspace-down;
-    "Mod+Ctrl+Page_Up".action = config.lib.niri.actions.move-column-to-workspace-up;
-    "Mod+Ctrl+U".action = config.lib.niri.actions.move-column-to-workspace-down;
-    "Mod+Ctrl+I".action = config.lib.niri.actions.move-column-to-workspace-up;
-    "Mod+Shift+Page_Down".action = config.lib.niri.actions.move-workspace-down;
-    "Mod+Shift+Page_Up".action = config.lib.niri.actions.move-workspace-up;
-    "Mod+Shift+U".action = config.lib.niri.actions.move-workspace-down;
+    "${prefix}+Page_Down".action = config.lib.niri.actions.focus-workspace-down;
+    "${prefix}+Page_Up".action = config.lib.niri.actions.focus-workspace-up;
+    "${prefix}+U".action = config.lib.niri.actions.focus-workspace-down;
+    "${prefix}+I".action = config.lib.niri.actions.focus-workspace-up;
+    "${prefix}+Ctrl+Page_Down".action = config.lib.niri.actions.move-column-to-workspace-down;
+    "${prefix}+Ctrl+Page_Up".action = config.lib.niri.actions.move-column-to-workspace-up;
+    "${prefix}+Ctrl+U".action = config.lib.niri.actions.move-column-to-workspace-down;
+    "${prefix}+Ctrl+I".action = config.lib.niri.actions.move-column-to-workspace-up;
+    "${prefix}+Shift+Page_Down".action = config.lib.niri.actions.move-workspace-down;
+    "${prefix}+Shift+Page_Up".action = config.lib.niri.actions.move-workspace-up;
+    "${prefix}+Shift+U".action = config.lib.niri.actions.move-workspace-down;
 
     # Workspace focus
-    "Mod+1".action.focus-workspace = 1;
-    "Mod+2".action.focus-workspace = 2;
-    "Mod+3".action.focus-workspace = 3;
-    "Mod+4".action.focus-workspace = 4;
-    "Mod+5".action.focus-workspace = 5;
-    "Mod+6".action.focus-workspace = 6;
-    "Mod+7".action.focus-workspace = 7;
-    "Mod+8".action.focus-workspace = 8;
-    "Mod+9".action.focus-workspace = 9;
+    "${prefix}+1".action.focus-workspace = 1;
+    "${prefix}+2".action.focus-workspace = 2;
+    "${prefix}+3".action.focus-workspace = 3;
+    "${prefix}+4".action.focus-workspace = 4;
+    "${prefix}+5".action.focus-workspace = 5;
+    "${prefix}+6".action.focus-workspace = 6;
+    "${prefix}+7".action.focus-workspace = 7;
+    "${prefix}+8".action.focus-workspace = 8;
+    "${prefix}+9".action.focus-workspace = 9;
 
     # Move to workspace
-    "Mod+Ctrl+1".action.move-column-to-workspace = 1;
-    "Mod+Ctrl+2".action.move-column-to-workspace = 2;
-    "Mod+Ctrl+3".action.move-column-to-workspace = 3;
-    "Mod+Ctrl+4".action.move-column-to-workspace = 4;
-    "Mod+Ctrl+5".action.move-column-to-workspace = 5;
-    "Mod+Ctrl+6".action.move-column-to-workspace = 6;
-    "Mod+Ctrl+7".action.move-column-to-workspace = 7;
-    "Mod+Ctrl+8".action.move-column-to-workspace = 8;
-    "Mod+Ctrl+9".action.move-column-to-workspace = 9;
-    "Mod+Shift+I".action = config.lib.niri.actions.move-workspace-up;
+    "${prefix}+Ctrl+1".action.move-column-to-workspace = 1;
+    "${prefix}+Ctrl+2".action.move-column-to-workspace = 2;
+    "${prefix}+Ctrl+3".action.move-column-to-workspace = 3;
+    "${prefix}+Ctrl+4".action.move-column-to-workspace = 4;
+    "${prefix}+Ctrl+5".action.move-column-to-workspace = 5;
+    "${prefix}+Ctrl+6".action.move-column-to-workspace = 6;
+    "${prefix}+Ctrl+7".action.move-column-to-workspace = 7;
+    "${prefix}+Ctrl+8".action.move-column-to-workspace = 8;
+    "${prefix}+Ctrl+9".action.move-column-to-workspace = 9;
+    "${prefix}+Shift+I".action = config.lib.niri.actions.move-workspace-up;
 
     # Window management
-    "Mod+Comma".action = config.lib.niri.actions.consume-window-into-column;
-    "Mod+Period".action = config.lib.niri.actions.expel-window-from-column;
-    "Mod+BracketLeft".action = config.lib.niri.actions.consume-or-expel-window-left;
-    "Mod+BracketRight".action = config.lib.niri.actions.consume-or-expel-window-right;
+    "${prefix}+Comma".action = config.lib.niri.actions.consume-window-into-column;
+    "${prefix}+Period".action = config.lib.niri.actions.expel-window-from-column;
+    "${prefix}+BracketLeft".action = config.lib.niri.actions.consume-or-expel-window-left;
+    "${prefix}+BracketRight".action = config.lib.niri.actions.consume-or-expel-window-right;
 
     # Column management
-    "Mod+R".action = config.lib.niri.actions.switch-preset-column-width;
-    "Mod+Shift+R".action = config.lib.niri.actions.switch-preset-window-height;
-    "Mod+Ctrl+R".action = config.lib.niri.actions.reset-window-height;
-    "Mod+Minus".action = config.lib.niri.actions.set-column-width "-10%";
-    "Mod+Equal".action = config.lib.niri.actions.set-column-width "+10%";
-    "Mod+Shift+Minus".action = config.lib.niri.actions.set-window-height "-10%";
-    "Mod+Shift+Equal".action = config.lib.niri.actions.set-window-height "+10%";
+    "${prefix}+R".action = config.lib.niri.actions.switch-preset-column-width;
+    "${prefix}+Shift+R".action = config.lib.niri.actions.switch-preset-window-height;
+    "${prefix}+Ctrl+R".action = config.lib.niri.actions.reset-window-height;
+    "${prefix}+Minus".action = config.lib.niri.actions.set-column-width "-10%";
+    "${prefix}+Equal".action = config.lib.niri.actions.set-column-width "+10%";
+    "${prefix}+Shift+Minus".action = config.lib.niri.actions.set-window-height "-10%";
+    "${prefix}+Shift+Equal".action = config.lib.niri.actions.set-window-height "+10%";
 
     # Screenshots
-    "Print".action = config.lib.niri.actions.screenshot;
-    "Ctrl+Print".action = config.lib.niri.actions.screenshot-screen;
-    "Alt+Print".action = config.lib.niri.actions.screenshot-window;
+    "Print".action = config.lib.niri.actions.screenshot-screen;
+    "Ctrl+Print".action = config.lib.niri.actions.screenshot;
 
     # System
-    "Mod+Alt+L".action.spawn = [
+    "${prefix}+Mod+L".action.spawn = [
       "${lib.getExe' pkgs.systemd "loginctl"}"
       "lock-session"
     ];
