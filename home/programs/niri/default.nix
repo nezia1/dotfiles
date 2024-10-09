@@ -8,6 +8,12 @@
   colors = inputs.basix.schemeData.base16.${osConfig.style.scheme}.palette;
 in {
   imports = [./binds.nix];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    config.common.default = "*";
+  };
   programs.niri = {
     settings = {
       input.keyboard.xkb = {
