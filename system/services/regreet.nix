@@ -16,10 +16,6 @@ in {
   programs.regreet = {
     enable = true;
     package = pkgs.greetd.regreet;
-    cageArgs = [
-      "-s"
-      "-d"
-    ];
     settings = {
       background = {
         path = mkDefault config.style.wallpaper;
@@ -34,6 +30,17 @@ in {
         theme_name = mkForce config.style.gtk.theme.name;
         font_name = mkForce "Inter 18";
       };
+    };
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      default_session = {
+        command = "${lib.getExe pkgs.cage} -s -d -- ${lib.getExe config.programs.regreet.package}";
+        user = "greeter";
+      };
+      initial_session = default_session;
     };
   };
   security.pam.services.greetd = {
