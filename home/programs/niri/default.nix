@@ -23,7 +23,6 @@ in {
           enable = true;
           active.color = "#${colors.base0E}";
         };
-        center-focused-column = "always";
         always-center-single-column = true;
       };
 
