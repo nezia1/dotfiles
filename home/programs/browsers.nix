@@ -11,6 +11,9 @@
     enable = true;
     profiles = {
       nezia = {
+        settings = {
+          "ui.key.menuAccessKeyFocuses" = false;
+        };
         search = {
           engines = {
             "Nix Packages" = {
