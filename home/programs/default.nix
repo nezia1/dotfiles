@@ -19,5 +19,7 @@
     vesktop
     wl-clipboard
     cinny-desktop
+    gnome-control-center
+    playerctl
   ];
 }

@@ -19,8 +19,9 @@
         ++ [
           ./vamos
 
-          ../system/services/regreet.nix
+          "${mod}/services/regreet.nix"
           "${mod}/programs/niri"
+          "${mod}/services/gnome.nix"
 
           self.nixosModules.style
 
