@@ -1,4 +1,4 @@
-_: {
+{
   programs.git = {
     enable = true;
     userName = "Anthony Rodriguez";
@@ -6,6 +6,9 @@ _: {
     signing = {
       signByDefault = true;
       key = "EE3BE97C040A86CE";
+    };
+    extraConfig = {
+      push.autoSetupRemote = true;
     };
   };
 
