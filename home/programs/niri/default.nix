@@ -3,6 +3,7 @@
   lib,
   pkgs,
   osConfig,
+  config,
   ...
 }: let
   colors = inputs.basix.schemeData.base16.${osConfig.style.scheme}.palette;
@@ -11,8 +12,8 @@ in {
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    config.common.default = "*";
+    extraPortals = [pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-gnome];
+    configPackages = [config.programs.niri.package];
   };
   programs.niri = {
     settings = {
