@@ -1,6 +1,5 @@
 {
   self,
-  pkgs,
   inputs,
   ...
 }: {
@@ -28,8 +27,8 @@
           ({pkgs, ...}: {
             style = let
               wallpaper = pkgs.fetchurl {
-                url = "https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nixos-wallpaper-catppuccin-macchiato.png?raw=true";
-                hash = "sha256-SkXrLbHvBOItJ7+8vW+6iXV+2g0f8bUJf9KcCXYOZF0=";
+                url = "https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nixos-wallpaper-catppuccin-frappe.png?raw=true";
+                hash = "sha256-wtBffKK9rqSJo8+7Wo8OMruRlg091vdroyUZj5mDPfI=";
               };
             in {
               gtk.enable = true;
