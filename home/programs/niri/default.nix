@@ -9,6 +9,19 @@
 in {
   imports = [./binds.nix];
 
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome pkgs.gnome-keyring];
+    config = {
+      common = {
+        default = ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
+        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+      };
+    };
+  };
+
   programs.niri = {
     settings = {
       input.keyboard.xkb = {
