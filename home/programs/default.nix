@@ -18,6 +18,9 @@
     proton-pass
     vesktop
     wl-clipboard
+    fractal
     cinny-desktop
+    gnome-control-center
+    playerctl
   ];
 }

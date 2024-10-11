@@ -140,6 +140,9 @@ in {
       action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
       allow-when-locked = true;
     };
+    "XF86AudioPlay" = {
+      action.spawn = ["playerctl" "play-pause"];
+    };
     "XF86MonBrightnessUp" = {
       action.spawn = ["brillo" "-q" "-u 300000" "-A 5"];
       allow-when-locked = true;
@@ -147,6 +150,10 @@ in {
     "XF86MonBrightnessDown" = {
       action.spawn = ["brillo" "-q" "-u 300000" "-U 5"];
       allow-when-locked = true;
+    };
+    # set on media key since framework laptops have a gear as the button label
+    "XF86AudioMedia" = {
+      action.spawn = ["sh" "-c" "env XDG_CURRENT_DESKTOP=gnome gnome-control-center"];
     };
   };
 }
