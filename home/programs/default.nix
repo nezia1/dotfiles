@@ -21,6 +21,7 @@
     fractal
     cinny-desktop
     gnome-control-center
+    mission-center
     playerctl
   ];
 }
