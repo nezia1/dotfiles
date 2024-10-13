@@ -19,7 +19,7 @@
         ++ [
           ./vamos
 
-          "${mod}/services/regreet.nix"
+          "${mod}/services/greetd.nix"
           "${mod}/programs/niri"
           "${mod}/services/gnome.nix"
 
@@ -54,7 +54,7 @@
         ++ [
           ./solaire
 
-          "${mod}/services/regreet.nix"
+          "${mod}/services/greetd.nix"
           "${mod}/programs/niri"
           "${mod}/services/gnome.nix"
 

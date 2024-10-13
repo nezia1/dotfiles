@@ -23,7 +23,6 @@
   hardware.sane.extraBackends = [
     pkgs.sane-airscan # generic
     pkgs.hplip # HP
-    pkgs.epkowa # Epson
     pkgs.utsushi # other printers
   ];
 }
