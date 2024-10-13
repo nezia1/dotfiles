@@ -14,6 +14,7 @@
         settings = {
           "ui.key.menuAccessKeyFocuses" = false;
         };
+        # https://git.jacekpoz.pl/poz/niksos/src/commit/a48647a1c5bc6877a1100a65f4dc169b2fc11ed7/hosts/hape/firefox.nix
         search = {
           engines = {
             "Nix Packages" = {
@@ -54,7 +55,7 @@
             "Google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
           };
         };
-        # stolen from https://github.com/oddlama/nix-config/blob/main/users/myuser/graphical/firefox.nix#L53-L57
+        # https://github.com/oddlama/nix-config/blob/main/users/myuser/graphical/firefox.nix#L53-L57
         extraConfig = builtins.concatStringsSep "\n" [
           (builtins.readFile "${betterfox}/Securefox.js")
           (builtins.readFile "${betterfox}/Fastfox.js")
