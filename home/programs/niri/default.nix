@@ -2,6 +2,7 @@
   inputs,
   lib,
   pkgs,
+  config,
   osConfig,
   ...
 }: let
@@ -38,6 +39,30 @@ in {
           active.color = "#${colors.base0E}";
         };
         always-center-single-column = true;
+      };
+
+      # https://github.com/sodiboo/system/blob/2978f4d79c51a5bd7e38a9cd75e3ec9046aa7e75/niri.mod.nix#L418-L434
+      outputs = let
+        cfg = config.programs.niri.settings.outputs;
+      in {
+        "HDMI-A-1" = {
+          mode = {
+            width = 1920;
+            height = 1080;
+            refresh = 60.0;
+          };
+          position.x = -cfg."HDMI-A-1".mode.width;
+          position.y = 0;
+        };
+        "DP-1" = {
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 144.0;
+          };
+          position.x = 0;
+          position.y = 0;
+        };
       };
 
       window-rules = [
