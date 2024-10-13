@@ -54,11 +54,20 @@
         ++ [
           ./solaire
 
-          "${mod}/programs/kde.nix"
+          "${mod}/services/regreet.nix"
+          "${mod}/programs/niri"
+          "${mod}/services/gnome.nix"
+
           "${mod}/hardware/nvidia.nix"
           "${mod}/programs/games.nix"
 
-          self.nixosModules.theme
+          self.nixosModules.style
+          {
+            style = {
+              gtk.enable = true;
+              wallpaper = ../wallpapers/lucy-edgerunners-wallpaper.jpg;
+            };
+          }
           {
             home-manager = {
               users.nezia.imports = homeImports.solaire;
