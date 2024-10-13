@@ -134,11 +134,10 @@ function Right() {
   });
 }
 
-function Bar(monitor = 0) {
+function Bar() {
   return Widget.Window({
-    name: `bar-${monitor}`, // name has to be unique
+    name: "bar", // name has to be unique
     class_name: "bar",
-    monitor,
     anchor: ["top", "left", "right"],
     exclusivity: "exclusive",
     child: Widget.CenterBox({
@@ -151,7 +150,7 @@ function Bar(monitor = 0) {
 
 App.config({
   style: "./style.css",
-  windows: [Bar(0), Bar(1), NotificationPopups()],
+  windows: [Bar(), NotificationPopups()],
 });
 
 export {};
