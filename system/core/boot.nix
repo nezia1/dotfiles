@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   boot = {
     loader = {
       timeout = 0;
@@ -19,6 +19,8 @@ _: {
     consoleLogLevel = 0;
     initrd.systemd.enable = true;
     initrd.verbose = false;
+
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
       "splash"
