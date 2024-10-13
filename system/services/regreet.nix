@@ -37,7 +37,7 @@ in {
     enable = true;
     settings = rec {
       default_session = {
-        command = "${lib.getExe pkgs.cage} -s -d -- ${lib.getExe config.programs.regreet.package}";
+        command = "${lib.getExe pkgs.cage} -s -d -m last -- ${lib.getExe config.programs.regreet.package}";
         user = "greeter";
       };
       initial_session = default_session;
