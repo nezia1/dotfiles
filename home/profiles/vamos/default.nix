@@ -14,5 +14,6 @@
     "${self}/home/terminal/emulators/foot.nix"
 
     "${self}/home/programs/editors/neovim.nix"
+    "${self}/home/programs/editors/helix.nix"
   ];
 }
