@@ -3,6 +3,7 @@
     ./boot.nix
     ./users.nix
     ./security.nix
+    ./networking.nix
     ../nix
   ];
   i18n = {
