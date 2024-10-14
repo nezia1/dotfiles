@@ -15,7 +15,25 @@ in {
         auto-format = true;
         auto-completion = true;
         completion-timeout = 5;
+        color-modes = true;
+        completion-trigger-len = 1;
+        completion-replace = true;
+        cursorline = true;
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+        indent-guides.render = true;
+        lsp.display-inlay-hints = true;
+        statusline.center = ["position-percentage"];
+        true-color = true;
+        whitespace.characters = {
+          newline = "↴";
+          tab = "⇥";
+        };
       };
+
       keys.normal = {
         space = {
           space = "file_picker";
@@ -30,12 +48,16 @@ in {
       language = [
         {
           name = "nix";
-          formatter = {command = getExe pkgs.alejandra;};
+          auto-format = true;
         }
       ];
+
+      language-server = {
+        nil = {
+          command = lib.getExe pkgs.nil;
+          config.nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
+        };
+      };
     };
   };
-  home.packages = [
-    pkgs.nil
-  ];
 }
