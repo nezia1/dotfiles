@@ -8,9 +8,10 @@
 
   programs = {
     fzf.enable = true;
-    fastfetch.enable = true;
+    hyfetch.enable = true;
     yazi.enable = true;
   };
+
   home.packages = with pkgs; [
     imhex
     logisim-evolution
