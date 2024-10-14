@@ -16,11 +16,11 @@
         DeviceScale=2
       '';
     };
+
     consoleLogLevel = 0;
     initrd.systemd.enable = true;
     initrd.verbose = false;
 
-    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
       "splash"
@@ -30,5 +30,8 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
     ];
+
+    kernelPackages = pkgs.linuxPackages_cachyos;
   };
+  chaotic.scx.enable = true; # by default uses scx_rustland scheduler
 }

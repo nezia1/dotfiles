@@ -43,6 +43,7 @@
             };
           }
 
+          inputs.chaotic.nixosModules.default
           inputs.nixos-hardware.nixosModules.framework-13-7040-amd
         ];
     };
@@ -74,6 +75,8 @@
               extraSpecialArgs = specialArgs;
             };
           }
+
+          inputs.chaotic.nixosModules.default
         ];
     };
   };
