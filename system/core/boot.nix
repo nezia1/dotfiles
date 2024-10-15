@@ -33,5 +33,9 @@
 
     kernelPackages = pkgs.linuxPackages_cachyos;
   };
-  chaotic.scx.enable = true; # by default uses scx_rustland scheduler
+  environment.systemPackages = [pkgs.scx];
+  chaotic = {
+    scx.enable = true;
+    scx.scheduler = "scx_lavd";
+  };
 }
