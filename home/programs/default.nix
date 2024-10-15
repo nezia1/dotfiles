@@ -9,7 +9,10 @@
   programs = {
     fzf.enable = true;
     hyfetch.enable = true;
-    yazi.enable = true;
+    yazi = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   home.packages = with pkgs; [
