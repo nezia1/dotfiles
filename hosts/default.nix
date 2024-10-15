@@ -55,9 +55,7 @@
         ++ [
           ./solaire
 
-          "${mod}/services/greetd.nix"
-          "${mod}/programs/niri"
-          "${mod}/services/gnome.nix"
+          "${mod}/programs/gnome.nix"
 
           "${mod}/hardware/nvidia.nix"
           "${mod}/programs/games.nix"
@@ -65,7 +63,7 @@
           self.nixosModules.style
           {
             style = {
-              gtk.enable = true;
+              gtk.enable = false;
               wallpaper = ../wallpapers/lucy-edgerunners-wallpaper.jpg;
             };
           }

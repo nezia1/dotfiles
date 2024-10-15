@@ -2,13 +2,14 @@
   inputs,
   pkgs,
   config,
-  nixosConfig,
+  osConfig,
+  lib,
   ...
 }: let
-  isDark = inputs.basix.schemeData.base16.${nixosConfig.style.scheme}.variant == "dark";
+  isDark = inputs.basix.schemeData.base16.${osConfig.style.scheme}.variant == "dark";
 in {
   home.pointerCursor = {
-    inherit (nixosConfig.style.cursorTheme) name package size;
+    inherit (osConfig.style.cursorTheme) name package size;
     gtk.enable = true;
     x11.enable = true;
   };
@@ -34,11 +35,11 @@ in {
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
     iconTheme = {
-      inherit (nixosConfig.style.gtk.iconTheme) name package;
+      inherit (osConfig.style.gtk.iconTheme) name package;
     };
 
-    theme = {
-      inherit (nixosConfig.style.gtk.theme) name package;
+    theme = lib.mkIf (!osConfig.services.xserver.desktopManager.gnome.enable) {
+      inherit (osConfig.style.gtk.theme) name package;
     };
   };
   dconf.settings = {

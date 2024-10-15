@@ -22,6 +22,7 @@
     atomix
     gnome-contacts
     gnome-initial-setup
+    gnome-terminal
     gnome-music
     gedit
     cheese

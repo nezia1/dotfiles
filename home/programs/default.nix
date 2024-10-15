@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   imports = [
     ./browsers.nix
-    ./gtk.nix
     ./media
     ./xdg.nix
+    ./gtk.nix
   ];
 
   programs = {
