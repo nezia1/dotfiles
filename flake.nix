@@ -66,11 +66,6 @@
       url = "github:sodiboo/niri-flake";
     };
 
-    umu = {
-      url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
