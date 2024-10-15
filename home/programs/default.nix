@@ -27,5 +27,8 @@
     gnome-control-center
     mission-center
     playerctl
+    nautilus
+    simple-scan
+    entr
   ];
 }
