@@ -8,11 +8,11 @@
     events = [
       {
         event = "lock";
-        command = "${lib.getExe config.programs.swaylock.package}";
+        command = "${lib.getExe config.programs.swaylock.package} --daemonize";
       }
       {
         event = "before-sleep";
-        command = "${lib.getExe config.programs.swaylock.package}";
+        command = "${lib.getExe config.programs.swaylock.package} --daemonize";
       }
     ];
   };
